@@ -28,7 +28,6 @@ export const Home = (props) => {
     isLoading: false,
     keys: null,
     didDocument: null,
-    image: "https://imgflip.com/s/meme/One-Does-Not-Simply.jpg",
     text: "One does not simply make a meme generator.",
   });
   React.useEffect(() => {
@@ -36,13 +35,13 @@ export const Home = (props) => {
       (async () => {
         const ed25519Key = await Ed25519KeyPair.generate({
           secureRandom: () => {
-            // const random = crypto.randomBytes(32);
+            const random = crypto.randomBytes(32);
             // console.log(Buffer.from(random).toString("hex"));
-            const notRandom = Buffer.from(
-              "81a750ab714edeb5328ff13f938c0390ec411b3413f33ee513c38a97a1ce5181",
-              "hex"
-            );
-            return notRandom;
+            // const notRandom = Buffer.from(
+            //   "81a750ab714edeb5328ff13f938c0390ec411b3413f33ee513c38a97a1ce5181",
+            //   "hex"
+            // );
+            return random;
           },
         });
         const x25519Key = await X25519KeyPair.fromEdKeyPair(ed25519Key);

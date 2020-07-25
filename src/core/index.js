@@ -1,6 +1,6 @@
 import { client, urlSource } from "./ipfs";
 import concat from "it-concat";
-import { Ed25519KeyPair, driver } from "@transmute/did-key-ed25519";
+import { driver } from "@transmute/did-key-ed25519";
 const bs58 = require("bs58");
 let bech32 = require("bech32");
 var f5stego = require("f5stegojs");
@@ -44,12 +44,13 @@ const didToResolutionResponse = async (did) => {
   const didDocument = await driver.get({
     did: `did:key:${fragment}`,
   });
-  let asString = JSON.stringify(didDocument);
-  asString = asString.replace(/did:key:/g, "did:meme:");
-  const updatedDoc = JSON.parse(asString);
+  didDocument["@context"][1]["@base"] = did;
+  didDocument.id = did;
+  didDocument.publicKey[0].controller = did;
+  didDocument.keyAgreement[0].controller = did;
 
   return {
-    didDocument: updatedDoc,
+    didDocument,
     content: null,
     contentType: null,
     resolverMetadata: {

@@ -5,24 +5,28 @@ import Base from "../base/base";
 import { DIDDocumentPreview } from "@transmute/material-did-core";
 
 import { didToResolutionResponse } from "../../core";
+import { Typography } from "@material-ui/core";
 
 export const Resolver = (props) => {
   const [state, setState] = React.useState({
     memeUrl: "",
   });
   const { memeUrl } = state;
+  const { match } = props;
   React.useEffect(() => {
     (async () => {
       const { didDocument, methodMetadata } = await didToResolutionResponse(
-        props.match.params.did
+        match.params.did
       );
-      setState({
-        ...state,
-        didDocument,
-        memeUrl: methodMetadata.memeUrl,
+      setState((state) => {
+        return {
+          ...state,
+          didDocument,
+          memeUrl: methodMetadata.memeUrl,
+        };
       });
     })();
-  }, [memeUrl]);
+  }, [memeUrl, match]);
 
   return (
     <Base>
@@ -31,9 +35,13 @@ export const Resolver = (props) => {
       ) : (
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <img src={state.memeUrl} style={{ width: "100%" }} />
+            <a href={window.location.origin + "/" + state.didDocument.id}>
+              <Typography gutterBottom>{state.didDocument.id}</Typography>
+            </a>
+            <img src={state.memeUrl} alt="meme" style={{ width: "100%" }} />
           </Grid>
           <Grid item xs={12}>
+            <Typography gutterBottom>DID Document</Typography>
             <DIDDocumentPreview didDocument={state.didDocument} />
           </Grid>
         </Grid>
