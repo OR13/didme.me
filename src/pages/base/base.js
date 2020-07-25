@@ -14,10 +14,11 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import Theme from "../../components/Theme/Theme";
-import logo from "../../assets/peepo.png";
+// import logo from "../../assets/peepo.png";
 
-import Menu from "./menu";
+// import Menu from "./menu";
 import DrawerContent from "./drawer";
+import { Typography } from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -119,14 +120,15 @@ export default function MiniDrawer({ children }) {
             >
               <MenuIcon />
             </IconButton>
-            <img
+            {/* <img
               src={logo}
               alt={"logo"}
               className={classes.title}
-              style={{ height: "28px" }}
-            />
+              style={{ height: "28px", paddingRight: "16px" }}
+            /> */}
+            <Typography>DID MEME</Typography>
             <div style={{ flexGrow: 1 }}></div>
-            <Menu />
+            {/* <Menu /> */}
           </Toolbar>
         </AppBar>
         <Drawer

@@ -1,8 +1,8 @@
 {
-  "name": "did-meme",
+  "name": "didme.me",
   "version": "0.2.0",
   "private": true,
-  "homepage": "https://meme.did.ai",
+  "homepage": "https://didme.me",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.5.1",
@@ -14,17 +14,23 @@
     "@transmute/did-key.js": "^0.2.0",
     "@transmute/material-did-core": "0.0.8",
     "@transmute/universal-wallet": "0.0.6",
+    "bech32": "^1.1.4",
     "blob-to-buffer": "^1.2.8",
     "brace": "^0.11.1",
+    "canvas": "^2.6.1",
     "clsx": "^1.0.4",
     "connected-react-router": "^6.5.2",
     "env-cmd": "^10.0.1",
     "f5stegojs": "^0.1.2",
     "flat": "^5.0.0",
     "history": "^4.10.1",
+    "ipfs-http-client": "^45.0.0",
+    "it-concat": "^1.0.0",
+    "lodash-es": "^4.17.15",
     "material-table": "^1.57.2",
     "moment": "^2.25.3",
     "pako": "^1.0.11",
+    "png-to-jpeg": "^1.0.1",
     "prop-types": "^15.7.2",
     "qrcode.react": "^1.0.0",
     "react": "16.13.1",
@@ -51,7 +57,7 @@
     "eject": "react-scripts eject",
     "test": "jest",
     "lint:fix": "eslint src --fix",
-    "build": "NODE_OPTIONS=--max_old_space_size=4096 react-scripts build"
+    "build": "NODE_OPTIONS=--max_old_space_size=4096 react-scripts build && cp ./build/index.html ./build/404.html"
   },
   "browserslist": {
     "production": [

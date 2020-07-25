@@ -6,8 +6,8 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { darken, lighten } from "@material-ui/core/styles/colorManipulator";
 
 // https://favicon.io/favicon-generator/
-const primaryColor = "#050";
-const secondaryColor = "#FA5";
+const primaryColor = "#052";
+const secondaryColor = "#F80";
 
 class Theme extends Component {
   render() {
