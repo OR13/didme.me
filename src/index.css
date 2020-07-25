@@ -41,7 +41,5 @@ html {
 canvas {
   background: #000;
   margin: auto;
-  width: 1136px;
-  height: 670px;
-  display: block;
+  width: 100%;
 }
