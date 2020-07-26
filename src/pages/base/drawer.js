@@ -6,7 +6,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import CodeIcon from "@material-ui/icons/Code";
-
+import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import history from "../../store/history";
 
 export default function DrawerContent() {
@@ -22,6 +22,20 @@ export default function DrawerContent() {
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary={"Home"} />
+      </ListItem>
+      <ListItem
+        button
+        onClick={() => {
+          window.open(
+            window.location.origin +
+              "/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w"
+          );
+        }}
+      >
+        <ListItemIcon>
+          <BeachAccessIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Example"} />
       </ListItem>
 
       <ListItem

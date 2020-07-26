@@ -126,7 +126,17 @@ export default function MiniDrawer({ children }) {
               className={classes.title}
               style={{ height: "28px", paddingRight: "16px" }}
             /> */}
-            <Typography>DID MEME</Typography>
+            <a
+              href={window.location.origin}
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <Typography>DID MEME</Typography>
+            </a>
+
             <div style={{ flexGrow: 1 }}></div>
             {/* <Menu /> */}
           </Toolbar>
