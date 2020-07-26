@@ -15,7 +15,7 @@ yes.
 
 ## DID Method Spec
 
-`did:meme` is a deterministic transformation of `did:key`.
+`did:meme` is a deterministic transformation of `did:key`, that uses IPFS, image content and bech32.
 
 ### DID Format
 
