@@ -4,6 +4,10 @@
 
 yes.
 
+#### Can I see an example?
+
+[yes.](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
+
 #### How does it work?
 
 1. generate ed25519 key
