@@ -4,13 +4,7 @@
 
 - [W3C DID Core Spec](https://www.w3.org/TR/did-core/)
 
-#### Is this a joke?
-
-yes.
-
-#### Can I see an example?
-
-[yes.](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
+### [DID Meme Example](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
 
 ## DID Method Spec
 
