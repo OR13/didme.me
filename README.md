@@ -4,6 +4,8 @@
 
 - [W3C DID Core Spec](https://www.w3.org/TR/did-core/)
 
+- [W3C CCG Mailing List Announcement](https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0092.html)
+
 ### [DID Meme Example](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
 
 ## DID Method Spec
