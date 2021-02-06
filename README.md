@@ -14,7 +14,28 @@
 
 ### DID Format
 
+```
+did-meme-format := did:meme:<bech32-value>
+bech32-value    := [a-zA-HJ-NP-Z0-9]+
+```
+
+The `bech32-value` is an encoded [multihash](https://multiformats.io/multihash/).
+
+The `multihash` is a content identifier for an image.
+
+The image contains a steganographically embedded `did:key`.
+
 See [did-key](https://w3c-ccg.github.io/did-method-key/#format).
+
+Another way of representing the `did:meme` identifier encoding:
+
+```
+did:meme:<bech32(
+    multihash(
+        stego-embed(image, did:key)
+    )
+)>
+```
 
 ### DID Operations
 
@@ -47,3 +68,17 @@ Not supported.
 ### Security and Privacy Considerations
 
 See [did-key](https://w3c-ccg.github.io/did-method-key/#security-and-privacy-considerations)
+
+#### Security
+
+Because update and deactivate are not supported, did:meme should only be used for very short lived interactions, or just lulz.
+
+Because `did:meme` identifiers are a super set of `did:key`, it is possible for multiple `did:meme` to map to the same `did:key`... This can be problematic when private key compromise has occured.
+
+Generally speaking, `did:meme` has similar or weaker security properties compared with `did:key`.
+
+#### Privacy
+
+Be careful to strip XIF data or other meta data from images before constructing `did:meme`.
+
+Do not use images that identify physical locations or people.

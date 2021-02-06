@@ -1,23 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import Base from "../base/base";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 
-import { Ed25519KeyPair, driver } from "@transmute/did-key-ed25519";
-import { X25519KeyPair } from "@transmute/did-key-x25519";
+import { JSONEditor } from "@transmute/material-did-core";
 
-import crypto from "crypto";
 import { blobToDataURL, download, updateCanvas } from "../../core";
 import { client, urlSource } from "../../core/ipfs";
 
 import history from "../../store/history";
+import { PrimaryCallToAction } from "../../components/PrimaryCallToAction";
+import { MemeEditor } from "../../components/MemeEditor";
+
+import { generateKey } from "../../core";
 
 var f5stego = require("f5stegojs");
 const bs58 = require("bs58");
@@ -26,6 +22,7 @@ let bech32 = require("bech32");
 export const Home = (props) => {
   const [state, setState] = React.useState({
     isLoading: false,
+    selectedKeyType: "ed25519",
     keys: null,
     didDocument: null,
     text: "One does not simply make a meme generator.",
@@ -33,23 +30,12 @@ export const Home = (props) => {
   React.useEffect(() => {
     if (state.keys === null) {
       (async () => {
-        const ed25519Key = await Ed25519KeyPair.generate({
-          secureRandom: () => {
-            const random = crypto.randomBytes(32);
-            // console.log(Buffer.from(random).toString("hex"));
-            // const notRandom = Buffer.from(
-            //   "81a750ab714edeb5328ff13f938c0390ec411b3413f33ee513c38a97a1ce5181",
-            //   "hex"
-            // );
-            return random;
-          },
-        });
-        const x25519Key = await X25519KeyPair.fromEdKeyPair(ed25519Key);
-        const didDocument = driver.keyToDidDoc(ed25519Key);
+        const { keys, didDocument } = await generateKey(state.selectedKeyType);
+
         setState((state) => {
           return {
             ...state,
-            keys: { ed25519Key, x25519Key },
+            keys,
             didDocument,
           };
         });
@@ -108,15 +94,15 @@ export const Home = (props) => {
           if (decodedCid !== cid) {
             throw new Error("bech32 decode failed....");
           }
-          const key = state.keys.ed25519Key;
-          let asString = JSON.stringify(key);
-          asString = asString.replace(`${key.controller}`, didMeme);
+          const keys = state.keys;
+          let asString = JSON.stringify(keys);
+          asString = asString.replaceAll(`${state.didDocument.id}`, didMeme);
           const updatedKey = JSON.parse(asString);
           const exported = JSON.stringify(
             {
               id: didMeme,
               url: `https://ipfs.io/ipfs/${cid}`,
-              key: updatedKey,
+              keys: updatedKey,
             },
             null,
             2
@@ -136,97 +122,65 @@ export const Home = (props) => {
     }, 1 * 1000);
   };
 
+  const handleKeyTypeChange = async (newKeyType) => {
+    const { keys, didDocument } = await generateKey(newKeyType);
+
+    setState({
+      ...state,
+      selectedKeyType: newKeyType,
+      keys,
+      didDocument,
+    });
+  };
+
+  const handleTextChange = (event) => {
+    setState({
+      ...state,
+      text: event.target.value,
+    });
+    updateCanvas(state.file, event.target.value);
+  };
+
   return (
-    <Base>
+    <Base
+      isLoading={state.isLoading}
+      publish={state.file ? handlePublish : undefined}
+    >
       <Grid container spacing={2}>
         <Grid item xs={12}>
           {state.file && (
-            <div style={{ width: "100%" }}>
-              <Box display="flex">
-                <Box p={1} width="100%">
-                  <TextField
-                    label="Text"
-                    value={state.text}
-                    fullWidth
-                    onChange={(event) => {
-                      setState({
-                        ...state,
-                        text: event.target.value,
-                      });
-                      updateCanvas(state.file, event.target.value);
-                    }}
-                  />
-                </Box>
-                <Box p={1} flexShrink={1}>
-                  {state.isLoading ? (
-                    <CircularProgress color="secondary" />
-                  ) : (
-                    <Button
-                      variant={"contained"}
-                      color={"secondary"}
-                      disabled={state.isLoading}
-                      onClick={() => {
-                        handlePublish();
-                      }}
-                    >
-                      Publish Meme
-                    </Button>
-                  )}
-                </Box>
-              </Box>
-            </div>
+            <MemeEditor
+              isLoading={state.isLoading}
+              memeText={state.text}
+              selectedKeyType={state.selectedKeyType}
+              handleKeyTypeChange={handleKeyTypeChange}
+              handleTextChange={handleTextChange}
+            />
           )}
         </Grid>
 
-        <Grid item xs={12}>
-          {state.file ? (
-            <div id="canvas-container">
-              <canvas id="meme-canvas" />
-            </div>
-          ) : (
-            <div
-              style={{
-                textAlign: "center",
-                padding: "32px",
-                marginTop: "64px",
-              }}
-            >
-              <Typography variant={"h4"} gutterBottom>
-                Add an image to get started.
-              </Typography>
+        {state.file ? (
+          <>
+            <Grid item xs={12} sm={6}>
+              <div id="canvas-container" style={{ width: "100%" }}>
+                <canvas id="meme-canvas" />
+              </div>
+            </Grid>
 
-              <Typography gutterBottom>
-                Data will be published to the public IPFS network.
-                <br />
-                There is no encryption applied here, only steganography and
-                encoding.
-                <br />
-                DO NOT publish offensive content or data you do not own.
-              </Typography>
-              <br />
-              <Button
-                variant={"contained"}
-                color={"secondary"}
-                onClick={() => {
-                  document.getElementById("fileUpload").click();
-                }}
-              >
-                Add Image
-              </Button>
-              <input
-                id="fileUpload"
-                style={{ display: "none" }}
-                type="file"
-                onChange={(e) => showFile(e)}
-              />
-            </div>
-          )}
-        </Grid>
+            <Grid item xs={12} sm={6}>
+              <div id="key-container">
+                <JSONEditor value={JSON.stringify(state.keys, null, 2)} />
+              </div>
+            </Grid>
+          </>
+        ) : (
+          <Grid item xs={12}>
+            <PrimaryCallToAction showFile={showFile} />
+          </Grid>
+        )}
       </Grid>
     </Base>
   );
 };
 
-Home.propTypes = {
-  wallet: PropTypes.any,
-};
+Home.propTypes = {};

@@ -6,19 +6,34 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import CssBaseline from "@material-ui/core/CssBaseline";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ShareIcon from "@material-ui/icons/Share";
+
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import Theme from "../../components/Theme/Theme";
-// import logo from "../../assets/peepo.png";
 
-// import Menu from "./menu";
 import DrawerContent from "./drawer";
-import { Typography } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
+
+function Alert(props) {
+  return (
+    <MuiAlert
+      elevation={6}
+      variant="filled"
+      {...props}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    />
+  );
+}
 
 const drawerWidth = 240;
 
@@ -85,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer({ children }) {
+export default function Base({ children, isLoading, publish }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -98,9 +113,29 @@ export default function MiniDrawer({ children }) {
     setOpen(false);
   };
 
+  const [snackBarOpen, setSnackbarOpen] = React.useState(false);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
+
   return (
     <Theme>
       <div className={classes.root}>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}
+          open={snackBarOpen}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+        >
+          <Alert onClose={handleCloseSnackbar} severity="success">
+            Copied to clipboard!
+          </Alert>
+        </Snackbar>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -120,12 +155,7 @@ export default function MiniDrawer({ children }) {
             >
               <MenuIcon />
             </IconButton>
-            {/* <img
-              src={logo}
-              alt={"logo"}
-              className={classes.title}
-              style={{ height: "28px", paddingRight: "16px" }}
-            /> */}
+
             <a
               href={window.location.origin}
               style={{
@@ -138,9 +168,42 @@ export default function MiniDrawer({ children }) {
             </a>
 
             <div style={{ flexGrow: 1 }}></div>
-            {/* <Menu /> */}
+
+            {publish ? (
+              <>
+                {isLoading ? (
+                  <CircularProgress color="secondary" />
+                ) : (
+                  <Button
+                    color={"secondary"}
+                    variant={"contained"}
+                    onClick={() => {
+                      publish();
+                    }}
+                  >
+                    Publish
+                  </Button>
+                )}
+              </>
+            ) : (
+              <CopyToClipboard
+                text={window.location.href}
+                onCopy={() => {
+                  setSnackbarOpen(true);
+                }}
+              >
+                <Button
+                  color={"secondary"}
+                  variant={"contained"}
+                  endIcon={<ShareIcon />}
+                >
+                  Share
+                </Button>
+              </CopyToClipboard>
+            )}
           </Toolbar>
         </AppBar>
+
         <Drawer
           variant="permanent"
           className={clsx(classes.drawer, {
