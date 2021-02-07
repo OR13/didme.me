@@ -7,6 +7,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import CodeIcon from "@material-ui/icons/Code";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
+import CreateIcon from "@material-ui/icons/Create";
+import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import history from "../../store/history";
 
 export default function DrawerContent() {
@@ -23,6 +25,31 @@ export default function DrawerContent() {
         </ListItemIcon>
         <ListItemText primary={"Home"} />
       </ListItem>
+
+      <ListItem
+        button
+        onClick={() => {
+          history.push("/issue");
+        }}
+      >
+        <ListItemIcon>
+          <CreateIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Issue"} />
+      </ListItem>
+
+      <ListItem
+        button
+        onClick={() => {
+          history.push("/verify");
+        }}
+      >
+        <ListItemIcon>
+          <VerifiedUserIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Verify"} />
+      </ListItem>
+
       <ListItem
         button
         onClick={() => {

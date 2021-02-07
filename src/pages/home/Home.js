@@ -3,6 +3,12 @@ import React from "react";
 import Base from "../base/base";
 
 import Grid from "@material-ui/core/Grid";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import ShareIcon from "@material-ui/icons/Share";
+import Snackbar from "@material-ui/core/Snackbar";
+import Button from "@material-ui/core/Button";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import { JSONEditor } from "@transmute/material-did-core";
 
@@ -19,7 +25,28 @@ var f5stego = require("f5stegojs");
 const bs58 = require("bs58");
 let bech32 = require("bech32");
 
+function Alert(props) {
+  return (
+    <MuiAlert
+      elevation={6}
+      variant="filled"
+      {...props}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+    />
+  );
+}
+
 export const Home = (props) => {
+  const [snackBarOpen, setSnackbarOpen] = React.useState(false);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
+
   const [state, setState] = React.useState({
     isLoading: false,
     selectedKeyType: "ed25519",
@@ -144,8 +171,53 @@ export const Home = (props) => {
   return (
     <Base
       isLoading={state.isLoading}
-      publish={state.file ? handlePublish : undefined}
+      cta={
+        <>
+          {state.file ? (
+            <>
+              {state.isLoading ? (
+                <CircularProgress color="secondary" />
+              ) : (
+                <Button
+                  color={"secondary"}
+                  variant={"contained"}
+                  onClick={() => {
+                    handlePublish();
+                  }}
+                >
+                  Publish
+                </Button>
+              )}
+            </>
+          ) : (
+            <CopyToClipboard
+              text={window.location.href}
+              onCopy={() => {
+                setSnackbarOpen(true);
+              }}
+            >
+              <Button
+                color={"secondary"}
+                variant={"contained"}
+                endIcon={<ShareIcon />}
+              >
+                Share
+              </Button>
+            </CopyToClipboard>
+          )}
+        </>
+      }
     >
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={snackBarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success">
+          Copied to clipboard!
+        </Alert>
+      </Snackbar>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           {state.file && (

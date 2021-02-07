@@ -7,7 +7,7 @@ export const resolvers = {
     return ed25519.driver.resolve(did, { accept: "application/did+json" });
   },
   bls12381: async (did) => {
-    return bls12381.driver.resolve(did, { accept: "application/did+json" });
+    return bls12381.driver.resolve(did, { accept: "application/did+ld+json" });
   },
   secp256k1: async (did) => {
     return secp256k1.driver.resolve(did, { accept: "application/did+json" });

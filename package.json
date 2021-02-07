@@ -7,14 +7,17 @@
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.38",
+    "@mattrglobal/jsonld-signatures-bbs": "^0.7.0",
     "@transmute/did-key-bls12381": "^0.2.1-unstable.33",
     "@transmute/did-key-ed25519": "^0.2.1-unstable.33",
     "@transmute/did-key-secp256k1": "^0.2.1-unstable.33",
     "@transmute/did-key-x25519": "^0.2.0",
     "@transmute/did-key.js": "^0.2.0",
+    "@transmute/json-web-signature-2020": "^2.0.0",
     "@transmute/jsonld-document-loader": "^0.2.0",
     "@transmute/material-did-core": "0.0.8",
     "@transmute/universal-wallet": "0.0.6",
+    "@transmute/vc.js": "^0.2.1-unstable.2",
     "bech32": "^1.1.4",
     "blob-to-buffer": "^1.2.8",
     "brace": "^0.11.1",
@@ -52,7 +55,8 @@
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "env-cmd -f ./.env.local react-scripts start",

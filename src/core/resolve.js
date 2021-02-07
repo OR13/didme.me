@@ -7,6 +7,7 @@ let bech32 = require("bech32");
 var f5stego = require("f5stegojs");
 
 export const resolve = async (did) => {
+  did = did.split("#")[0];
   const decoded = bech32.decode(did);
   const decodedCid = bs58.encode(bech32.fromWords(decoded.words));
   const memeUrl = `https://ipfs.io/ipfs/${decodedCid}`;

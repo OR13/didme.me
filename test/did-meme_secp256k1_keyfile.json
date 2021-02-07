@@ -1,0 +1,24 @@
+{
+  "id": "did:meme:1zgsqg3ukg97ywfw04ez770qfuuy2qn90v50f6fsr0zl7rzn9nwcfcgspy0mrl",
+  "url": "https://ipfs.io/ipfs/QmNdMenBXEf5GcisjUBaeYuMym4U8agJdNC9W6EbodkqtV",
+  "keys": {
+    "secp256k1": {
+      "id": "#zQ3shwhMNRt8nPgtXjGRHpXU2ZMcW8M16of9r126sFMnGhTS4",
+      "type": "JsonWebKey2020",
+      "controller": "did:meme:1zgsqg3ukg97ywfw04ez770qfuuy2qn90v50f6fsr0zl7rzn9nwcfcgspy0mrl",
+      "publicKeyJwk": {
+        "kty": "EC",
+        "crv": "secp256k1",
+        "x": "_WuGVpdkhhASSm-H93YVLgFYe2lkKNv1IIUn3cqNWqU",
+        "y": "J7gYG_U8CjuawlNBioqEe90zs2wfjvtSRz3pTlUA3Ck"
+      },
+      "privateKeyJwk": {
+        "kty": "EC",
+        "crv": "secp256k1",
+        "d": "SampCB06r4q5qWgLrjiEOUBKiDftH5tVBISVH7e5MPs",
+        "x": "_WuGVpdkhhASSm-H93YVLgFYe2lkKNv1IIUn3cqNWqU",
+        "y": "J7gYG_U8CjuawlNBioqEe90zs2wfjvtSRz3pTlUA3Ck"
+      }
+    }
+  }
+}
