@@ -1,4 +1,5 @@
 import { Bls12381G2KeyPair } from "@transmute/did-key-bls12381";
+import { contexts } from "../../contexts";
 const vcjs = require("@transmute/vc.js");
 
 const {
@@ -12,15 +13,6 @@ const {
   // BbsBlsSignatureProof2020,
   // deriveProof,
 } = require("@mattrglobal/jsonld-signatures-bbs");
-
-const contexts = {
-  "https://www.w3.org/2018/credentials/v1": require("../../contexts/cred-v1.json"),
-  "https://w3id.org/security/jws/v1": require("../../contexts/jws-v1.json"),
-  "https://w3id.org/security/v2": require("../../contexts/sec-v2.json"),
-  "https://w3id.org/security/v1": require("../../contexts/sec-v1.json"),
-  "https://w3c-ccg.github.io/ldp-bbs2020/context/v1": require("../../contexts/bbs-v1.json"),
-  "https://w3id.org/security/bbs/v1": require("../../contexts/bbs-v1.json"),
-};
 
 const documentLoader = (iri) => {
   if (contexts[iri]) {

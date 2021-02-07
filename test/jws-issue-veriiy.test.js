@@ -24,5 +24,5 @@ it("issue", async () => {
     documentLoader,
   });
   expect(verifiableCredential.proof.type).toBe("JsonWebSignature2020");
-  console.log(verifiableCredential);
+  // console.log(verifiableCredential);
 });

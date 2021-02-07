@@ -7,7 +7,7 @@
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.38",
-    "@mattrglobal/jsonld-signatures-bbs": "^0.7.0",
+    "@mattrglobal/jsonld-signatures-bbs": "^0.7.1-unstable.8d414d9",
     "@transmute/did-key-bls12381": "^0.2.1-unstable.33",
     "@transmute/did-key-ed25519": "^0.2.1-unstable.33",
     "@transmute/did-key-secp256k1": "^0.2.1-unstable.33",

@@ -1,19 +1,10 @@
 import { resolve } from "../../core";
+import { contexts } from "../../contexts";
 
 const {
   BbsBlsSignatureProof2020,
   deriveProof,
 } = require("@mattrglobal/jsonld-signatures-bbs");
-
-const contexts = {
-  "https://www.w3.org/ns/did/v1": require("../../contexts/did-v1.json"),
-  "https://www.w3.org/2018/credentials/v1": require("../../contexts/cred-v1.json"),
-  "https://w3id.org/security/jws/v1": require("../../contexts/jws-v1.json"),
-  "https://w3id.org/security/v2": require("../../contexts/sec-v2.json"),
-  "https://w3id.org/security/v1": require("../../contexts/sec-v1.json"),
-  "https://w3c-ccg.github.io/ldp-bbs2020/context/v1": require("../../contexts/bbs-v1.json"),
-  "https://w3id.org/security/bbs/v1": require("../../contexts/bbs-v1.json"),
-};
 
 const documentLoader = async (iri) => {
   if (contexts[iri]) {
