@@ -51,9 +51,10 @@ export const Issue = () => {
       const keyData = JSON.parse(fileData);
       const { didMethodMetadata } = await resolve(keyData.id);
 
-      const suiteContext = keyData.keys.bls12391_g2
-        ? "https://w3id.org/security/bbs/v1"
-        : "https://w3id.org/security/jws/v1";
+      const suiteContext =
+        keyData.keys.bls12381_g2 !== undefined
+          ? "https://w3id.org/security/bbs/v1"
+          : "https://w3id.org/security/jws/v1";
 
       const updatedCredential = {
         ...c1,
