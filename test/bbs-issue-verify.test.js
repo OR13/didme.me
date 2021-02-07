@@ -64,7 +64,7 @@ it("derive", async () => {
 it("verify derived proof", async () => {
   const credentialVerified = await vcjs.ld.verifyCredential({
     credential: { ...derivedProofCredential },
-    suite: new BbsBlsSignatureProof2020({}),
+    suite: new BbsBlsSignatureProof2020(),
     documentLoader,
   });
   expect(credentialVerified.verified).toBe(true);
