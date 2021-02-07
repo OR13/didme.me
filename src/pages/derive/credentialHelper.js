@@ -1,11 +1,8 @@
 import { resolve } from "../../core";
 
-const vcjs = require("@transmute/vc.js");
-
-const { JsonWebSignature } = require("@transmute/json-web-signature-2020");
 const {
-  BbsBlsSignature2020,
   BbsBlsSignatureProof2020,
+  deriveProof,
 } = require("@mattrglobal/jsonld-signatures-bbs");
 
 const contexts = {
@@ -25,6 +22,7 @@ const documentLoader = async (iri) => {
       document: contexts[iri],
     };
   }
+
   if (iri.startsWith("did:meme:")) {
     const { didDocument } = await resolve(iri);
     return {
@@ -33,31 +31,23 @@ const documentLoader = async (iri) => {
     };
   }
 
-  console.error(iri);
-  throw new Error("unsupported iri" + iri);
+  console.error("unsupported iri " + iri);
+
+  throw new Error("unsupported iri " + iri);
 };
 
-export const verifyCredential = async (credential) => {
-  let suite;
+export const deriveProofFromFrame = async (
+  verifiableCredential,
+  deriveProofFrame
+) => {
+  const derivedProofCredential = await deriveProof(
+    verifiableCredential,
+    deriveProofFrame,
+    {
+      suite: new BbsBlsSignatureProof2020(),
+      documentLoader,
+    }
+  );
 
-  if (credential.proof.type === "JsonWebSignature2020") {
-    suite = new JsonWebSignature();
-  }
-
-  if (credential.proof.type === "BbsBlsSignature2020") {
-    suite = new BbsBlsSignature2020();
-  }
-
-  if (credential.proof.type === "BbsBlsSignatureProof2020") {
-    suite = new BbsBlsSignatureProof2020();
-  }
-
-  const verification = await vcjs.ld.verifyCredential({
-    credential,
-    suite,
-    documentLoader,
-  });
-  console.log(verification);
-
-  return verification;
+  return derivedProofCredential;
 };

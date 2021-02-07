@@ -9,6 +9,8 @@ import CodeIcon from "@material-ui/icons/Code";
 import BeachAccessIcon from "@material-ui/icons/BeachAccess";
 import CreateIcon from "@material-ui/icons/Create";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 import history from "../../store/history";
 
 export default function DrawerContent() {
@@ -36,6 +38,18 @@ export default function DrawerContent() {
           <CreateIcon />
         </ListItemIcon>
         <ListItemText primary={"Issue"} />
+      </ListItem>
+
+      <ListItem
+        button
+        onClick={() => {
+          history.push("/derive");
+        }}
+      >
+        <ListItemIcon>
+          <BorderColorIcon />
+        </ListItemIcon>
+        <ListItemText primary={"Derive"} />
       </ListItem>
 
       <ListItem

@@ -1,0 +1,39 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    {
+      "@base": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60"
+    }
+  ],
+  "id": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60",
+  "verificationMethod": [
+    {
+      "id": "#z3tEGCYEnFdVSUFFKV3F32fGAYpQbYjJu9BwXarDBP41dvhTQyPADHjpU9oHXmBM3gZdQt",
+      "type": "Bls12381G1Key2020",
+      "controller": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60",
+      "publicKeyBase58": "7JBhukoaRgwPPnSvhWrtADiha1faNLA4Ze6ka4rAUYCJzFEmAFtmyc76Cx1nbdwW4x"
+    },
+    {
+      "id": "#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg",
+      "type": "Bls12381G2Key2020",
+      "controller": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60",
+      "publicKeyBase58": "24xWuikos8rg5kE7jnUBTg5crTU3chB43Vo8UnhCB6Ug1eSa2jjEhzkqUxYYE7E1vHKik3WFrNto8u9UguUc8bQRND7VWMvnrqgEADkyzZDE6hJEpreEL11LgaNDxy6A3naN"
+    }
+  ],
+  "authentication": [
+    "#z3tEGCYEnFdVSUFFKV3F32fGAYpQbYjJu9BwXarDBP41dvhTQyPADHjpU9oHXmBM3gZdQt",
+    "#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg"
+  ],
+  "assertionMethod": [
+    "#z3tEGCYEnFdVSUFFKV3F32fGAYpQbYjJu9BwXarDBP41dvhTQyPADHjpU9oHXmBM3gZdQt",
+    "#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg"
+  ],
+  "capabilityInvocation": [
+    "#z3tEGCYEnFdVSUFFKV3F32fGAYpQbYjJu9BwXarDBP41dvhTQyPADHjpU9oHXmBM3gZdQt",
+    "#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg"
+  ],
+  "capabilityDelegation": [
+    "#z3tEGCYEnFdVSUFFKV3F32fGAYpQbYjJu9BwXarDBP41dvhTQyPADHjpU9oHXmBM3gZdQt",
+    "#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg"
+  ]
+}

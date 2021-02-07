@@ -4,17 +4,18 @@ import Link from "@material-ui/core/Link";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Base from "../base/base";
 import ShareIcon from "@material-ui/icons/Share";
-import CreateIcon from "@material-ui/icons/Create";
+import Grid from "@material-ui/core/Grid";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Typography from "@material-ui/core/Typography";
-import { v4 as uuidv4 } from "uuid";
+
 import { JSONEditor } from "@transmute/material-did-core";
-import { resolve, download } from "../../core";
-import { issueVc } from "./credentialHelper";
+import { download } from "../../core";
+import { deriveProofFromFrame } from "./credentialHelper";
 import history from "../../store/history";
 
-const c1 = require("./credential.json");
+const frame = require("./frame.json");
 
 function Alert(props) {
   return (
@@ -27,10 +28,9 @@ function Alert(props) {
   );
 }
 
-export const Issue = () => {
-  const [keyFile, setKeyFile] = React.useState({});
-
-  const [editorValue, setEditorValue] = React.useState("");
+export const Derive = () => {
+  const [credentialEditorValue, setCredentialEditorValue] = React.useState("");
+  const [frameEditorValue, setFrameEditorValue] = React.useState("");
 
   const [snackBarOpen, setSnackbarOpen] = React.useState(false);
 
@@ -48,48 +48,26 @@ export const Issue = () => {
     const reader = new FileReader();
     reader.onload = async (e2) => {
       const fileData = Buffer.from(e2.target.result).toString();
-      const keyData = JSON.parse(fileData);
-      const { didMethodMetadata } = await resolve(keyData.id);
-
-      const suiteContext =
-        keyData.keys.bls12381_g2 !== undefined
-          ? "https://w3id.org/security/bbs/v1"
-          : "https://w3id.org/security/jws/v1";
-
-      const updatedCredential = {
-        ...c1,
-        id: "urn:uuid:" + uuidv4(),
-        "@context": [
-          ...c1["@context"],
-          suiteContext,
-          {
-            image: "https://schema.org/image",
-            name: "https://schema.org/name",
-            birthDate: "https://schema.org/birthDate",
-          },
-        ],
-        issuer: {
-          id: keyData.id,
-          image: didMethodMetadata.memeUrl,
-        },
-        issuanceDate: new Date().toISOString(),
-      };
-      setEditorValue(JSON.stringify(updatedCredential, null, 2));
-      setKeyFile(keyData);
+      const fileJson = JSON.parse(fileData);
+      setFrameEditorValue(JSON.stringify(frame, null, 2));
+      setCredentialEditorValue(JSON.stringify(fileJson, null, 2));
     };
     reader.readAsArrayBuffer(file);
   };
 
-  const handleIssue = async () => {
-    const vc = await issueVc(keyFile, JSON.parse(editorValue));
-    download("did-meme-credential.json", JSON.stringify(vc, null, 2));
+  const handleDerive = async () => {
+    const zkp = await deriveProofFromFrame(
+      JSON.parse(credentialEditorValue),
+      JSON.parse(frameEditorValue)
+    );
+    download("did-meme-kzp.json", JSON.stringify(zkp, null, 2));
   };
 
   return (
     <Base
       cta={
         <>
-          {!keyFile.id ? (
+          {!frameEditorValue.length ? (
             <CopyToClipboard
               text={window.location.href}
               onCopy={() => {
@@ -109,10 +87,10 @@ export const Issue = () => {
               <Button
                 color={"secondary"}
                 variant={"contained"}
-                endIcon={<CreateIcon />}
-                onClick={handleIssue}
+                endIcon={<BorderColorIcon />}
+                onClick={handleDerive}
               >
-                Issue
+                Derive
               </Button>
             </>
           )}
@@ -136,7 +114,7 @@ export const Issue = () => {
         </Alert>
       </Snackbar>
 
-      {!keyFile.id ? (
+      {!frameEditorValue.length ? (
         <div
           style={{
             textAlign: "center",
@@ -145,18 +123,18 @@ export const Issue = () => {
           }}
         >
           <Typography variant={"h4"} gutterBottom>
-            Add a keyfile to issue from
+            Add a bbs+ credential to derive zkp from
           </Typography>
 
           <Typography gutterBottom>
-            You can generate a key file by{" "}
+            You can generate a bbs+ credential after creating a bls12381{" "}
             <Link
               style={{ cursor: "pointer" }}
               onClick={() => {
                 history.push("/");
               }}
             >
-              creating a new did:meme
+              did:meme
             </Link>
             .
           </Typography>
@@ -168,13 +146,22 @@ export const Issue = () => {
               document.getElementById("fileUpload").click();
             }}
           >
-            Load Keyfile
+            Load BBS+ Credential
           </Button>
         </div>
       ) : (
-        <>
-          <JSONEditor value={editorValue} onChange={setEditorValue} />
-        </>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <JSONEditor value={credentialEditorValue} />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <JSONEditor
+              value={frameEditorValue}
+              onChange={setFrameEditorValue}
+            />
+          </Grid>
+        </Grid>
       )}
     </Base>
   );

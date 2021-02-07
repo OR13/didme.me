@@ -9,22 +9,22 @@
     }
   ],
   "id": "urn:uuid:498abc0f-8b97-4ab3-aa1a-7ce8fe00b001",
-  "type": ["VerifiableCredential"],
+  "type": "VerifiableCredential",
   "credentialSubject": {
     "id": "did:example:456",
-    "name": "John Smith",
     "birthDate": "2021-02-07"
   },
+  "issuanceDate": "2021-02-07T04:52:17.120Z",
   "issuer": {
     "id": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60",
     "image": "https://ipfs.io/ipfs/QmUFWywXpqMbrREXwyRabScAzvfivWDLN8ByqGUFZ1azmP"
   },
-  "issuanceDate": "2021-02-07T04:52:17.120Z",
   "proof": {
-    "type": "BbsBlsSignature2020",
+    "type": "BbsBlsSignatureProof2020",
     "created": "2021-02-07T04:52:22Z",
+    "nonce": "Inpn3vGQmv6k4JJomUfe0QxI+9oDddgoa20HI8ZvQ2WX1cdVI+Nh+9AtWd0brDLRufk=",
     "proofPurpose": "assertionMethod",
-    "proofValue": "mSRucii1iDep/zIjhMkmASJV8U3oDWmUkSA0y/6G2knGhlMIAb+kveUiFfLdNt8hH52ITVipcNQ3y3o4XNmgEvMtS5aDKAuCd1p+ZKLZ6BYkD+2T81M7Ir/c+eSzhC+agbdT4I48kJRFBy4+RQVvOw==",
+    "proofValue": "AAsH35YjXwSOxIOo5A3FJY+JcBp1Ce130uYZvg1e1YzUNBenboDYW3trO0Eblcv9Oas2KYNXMHPR+99+DUrJHcpbH+Syo1rNcKFkC/Vg8j3qF2YG1M2EhuvN6oItA1+bIpsFbpa1I2i8anunwhlVVFSy0OvSbWfUhGXaOXhFRlhL2f5NgDCMqpotcb4RAsn8Dzh05AAAAHSBLoeAFz9JMYN4zYXVQlRc0tBvHGBuR/2LAEnb1O9oECTcFWyK+jP70RAhCTifU2EAAAACG9xBcU8cgKfNqy1391jgl5O8/JG32etQO9Ky8TD3q5Iv/eAtlwtNnGVVOoKvudiD+lz0J7A7G8xGQYZNdDcGn7cYHOPilvF2j8zeAwYQzvbulClXL3ePN+k9mkyc1Ynss3cz7n1cv8tX39rtCNlOmwAAAAMxWjxRKDc31RZik1QTkLIE6MSTLrS6rzMy85JHOBuhzUYaXYKYxnHOGIH+mJVLySelYxapeTGkdHDZ835RWuKwUp0XIJct/ltgy6xPF5AnJpvzrUkPfOVcW6CEMuXMx7g=",
     "verificationMethod": "did:meme:1zgs904tmqmvc77g7plraxgrulg5xhyexywe054hljtgd75vxvjyscwsmr2d60#zUC7Jo4nnSU6VUYJAAnaxQsfyNymhkMpj9byNBiJGYeyqN2p43XfSPdroCoA7XtUdXZZRY8d5v7fknM6r2Cp4jwrRMx61TPcKZvM7KvZ7ycs3AMy4CaRwaQSAokf3YxrYeJvHBg"
   }
 }
