@@ -9,13 +9,13 @@ export const updateCanvas = (file, text) => {
       canvas.width = myImg.width * window.devicePixelRatio;
       canvas.height = myImg.height * window.devicePixelRatio;
 
-      const lineHeightPx = 0.17 * myImg.height;
+      const lineHeightPx = 64;
 
       ctx.fillStyle = "white";
       ctx.strokeStyle = "black";
       ctx.textAlign = "center";
-      ctx.font = `${lineHeightPx}px Impact`;
-      ctx.lineWidth = 4;
+      ctx.font = `${64}px Impact`;
+      ctx.lineWidth = 2;
       function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(" ");
         var line = "";
