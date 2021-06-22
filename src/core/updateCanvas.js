@@ -9,13 +9,13 @@ export const updateCanvas = (file, text) => {
       canvas.width = myImg.width * window.devicePixelRatio;
       canvas.height = myImg.height * window.devicePixelRatio;
 
-      const lineHeightPx = 64;
+      const lineHeightPx = 0.17 * myImg.height;
 
       ctx.fillStyle = "white";
       ctx.strokeStyle = "black";
       ctx.textAlign = "center";
-      ctx.font = `${64}px Impact`;
-      ctx.lineWidth = 2;
+      ctx.font = `${lineHeightPx}px Impact`;
+      ctx.lineWidth = 4;
       function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(" ");
         var line = "";
@@ -25,8 +25,9 @@ export const updateCanvas = (file, text) => {
           var metrics = context.measureText(testLine);
           var testWidth = metrics.width;
           if (testWidth > maxWidth && n > 0) {
-            context.fillText(line, x, y);
             context.strokeText(line, x, y);
+            context.fillText(line, x, y);
+          
             line = words[n] + " ";
             y += lineHeight;
           } else {
@@ -34,8 +35,9 @@ export const updateCanvas = (file, text) => {
           }
         }
 
-        context.fillText(line, x, y);
         context.strokeText(line, x, y);
+        context.fillText(line, x, y);
+      
       }
 
       ctx.drawImage(
@@ -55,7 +57,7 @@ export const updateCanvas = (file, text) => {
         text.toUpperCase(),
         canvas.width / 2,
         canvas.height / 1.2,
-        canvas.width,
+        canvas.width * .9,
         lineHeightPx
       );
     };
