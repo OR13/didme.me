@@ -1,5 +1,5 @@
 name: deploy didmeme to vercel
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   vercel:
     runs-on: ubuntu-latest
@@ -11,7 +11,9 @@ jobs:
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
           projectName: didmeme # project name in Vercel
-          envVariableKeys:
+          envVariableKeys: ENV_VAR1
+        env:
+          ENV_VAR1: myEnvVar1
 
       # deploy app to vercel
       - name: deploy site to vercel
