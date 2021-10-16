@@ -3,20 +3,22 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
 
-type Data = Buffer;
+import getConfig from "next/config";
+const { serverRuntimeConfig } = getConfig();
 
-const filePath = path.resolve(
-  ".",
-  process.env.VERCEL ? "public/background-2.png" : "background-2.png"
-);
-const imageBuffer = fs.readFileSync(filePath);
+type Data = Buffer;
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200);
+  const filePath = path.join(
+    serverRuntimeConfig.PROJECT_ROOT,
+    "./public/background-2.png"
+  );
+  const imageBuffer = fs.readFileSync(filePath);
 
+  res.status(200);
   res.setHeader("Content-Type", "image/png");
   res.send(imageBuffer);
 }
