@@ -5,7 +5,7 @@ import path from "path";
 
 type Data = Buffer;
 
-const filePath = path.resolve(".", "public/background-2.png");
+const filePath = path.resolve(".", "background-2.png");
 const imageBuffer = fs.readFileSync(filePath);
 
 export default function handler(
