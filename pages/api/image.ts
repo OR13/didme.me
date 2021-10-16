@@ -9,10 +9,10 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  //   const templateDirectory = path.resolve(process.cwd(), "templates");
-  //   const filePath = path.join(templateDirectory, "background-2.png");
+  const templateDirectory = path.resolve(process.cwd(), "templates");
+  const filePath = path.join(templateDirectory, "background-2.png");
 
-  const filePath = path.join(process.cwd(), `/public/images/background-2.png`);
+  // const filePath = path.join(process.cwd(), `/public/images/background-2.png`);
   const imageBuffer = fs.readFileSync(filePath);
 
   res.status(200);
