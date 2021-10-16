@@ -1,4 +1,4 @@
-name: deploy nexturl to vercel
+name: deploy didmeme to vercel
 on: [push, pull_request]
 jobs:
   vercel:
@@ -10,7 +10,7 @@ jobs:
         uses: dkershner6/vercel-set-env-action@v1
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
-          projectName: nexturl # project name in Vercel
+          projectName: didmeme # project name in Vercel
 
       # deploy app to vercel
       - name: deploy site to vercel
