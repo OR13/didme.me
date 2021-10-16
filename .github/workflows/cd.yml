@@ -11,6 +11,14 @@ jobs:
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
           projectName: didmeme # project name in Vercel
+          envVariableKeys: MONGODB_URL,MONGODB_DB
+        env:
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
+          TARGET_MONGODB_URL: preview,development,production # comma delimited, one of [production, preview, development]
+          TYPE_MONGODB_URL: encrypted # one of [plain, encrypted]
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+          TARGET_MONGODB_DB: preview,development,production
+          TYPE_MONGODB_DB: encrypted
 
       # deploy app to vercel
       - name: deploy site to vercel
