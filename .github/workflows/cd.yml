@@ -11,6 +11,7 @@ jobs:
         with:
           token: ${{ secrets.VERCEL_TOKEN }}
           projectName: didmeme # project name in Vercel
+          envVariableKeys:
 
       # deploy app to vercel
       - name: deploy site to vercel
