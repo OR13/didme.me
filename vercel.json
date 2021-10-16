@@ -2,5 +2,10 @@
   "version": 2,
   "github": {
     "enabled": false
+  },
+  "functions": {
+    "pages/api/image.ts": {
+      "includeFiles": "email/template.mjml"
+    }
   }
 }

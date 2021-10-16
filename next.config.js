@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental: { nftTracing: true },
-  serverRuntimeConfig: {
-    PROJECT_ROOT: process.cwd(),
-  },
+  experimental: { outputFileTracing: true },
 
   rewrites: async () => {
     return [

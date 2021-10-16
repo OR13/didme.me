@@ -3,19 +3,14 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
 
-import getConfig from "next/config";
-const { serverRuntimeConfig } = getConfig();
-
 type Data = Buffer;
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const filePath = path.join(
-    serverRuntimeConfig.PROJECT_ROOT,
-    "./public/background-2.png"
-  );
+  const templateDirectory = path.resolve(process.cwd(), "data");
+  const filePath = path.join(templateDirectory, "background-2.png");
   const imageBuffer = fs.readFileSync(filePath);
 
   res.status(200);
