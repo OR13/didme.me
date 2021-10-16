@@ -5,7 +5,7 @@
   },
   "functions": {
     "pages/api/image.ts": {
-      "includeFiles": "email/template.mjml"
+      "includeFiles": "templates/background-2.png"
     }
   }
 }

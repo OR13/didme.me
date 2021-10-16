@@ -9,7 +9,7 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const templateDirectory = path.resolve(process.cwd(), "data");
+  const templateDirectory = path.resolve(process.cwd(), "templates");
   const filePath = path.join(templateDirectory, "background-2.png");
   const imageBuffer = fs.readFileSync(filePath);
 
