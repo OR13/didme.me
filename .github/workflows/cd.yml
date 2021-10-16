@@ -13,6 +13,7 @@ jobs:
           projectName: didmeme # project name in Vercel
           envVariableKeys: ENV_VAR1
         env:
+          TARGET_ENV_VAR1: production
           ENV_VAR1: myEnvVar1
 
       # deploy app to vercel
