@@ -8,7 +8,11 @@ import { ResolutionResult } from "../../components/did-resolution-result";
 
 export async function getServerSideProps(context: any) {
   return {
-    props: { params: context.params }, // will be passed to the page component as props
+    props: {
+      params: {
+        did: "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j",
+      },
+    }, // will be passed to the page component as props
   };
 }
 
