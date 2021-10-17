@@ -3,7 +3,6 @@ module.exports = {
   reactStrictMode: true,
   webpack5: false,
   experimental: {
-    nftTracing: true,
     outputFileTracing: true,
   },
 

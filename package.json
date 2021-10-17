@@ -24,7 +24,7 @@
     "ipfs-http-client": "45.0.0",
     "it-concat": "^2.0.0",
     "nanoid": "^3.1.30",
-    "next": "^11.1.3-canary.32",
+    "next": "v11.1.3-canary.45",
     "postcss": "^8.3.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
