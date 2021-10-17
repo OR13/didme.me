@@ -2,7 +2,7 @@
 import React from "react";
 
 import axios from "axios";
-import { CircularProgress, Typography, Link, Hidden } from "@mui/material";
+import { CircularProgress, Typography, Link, Hidden, Box } from "@mui/material";
 import { ResolutionTabs } from "./did-resolution-tabs";
 
 export const ResolutionResult = ({ did }: any) => {
@@ -30,13 +30,13 @@ export const ResolutionResult = ({ did }: any) => {
   }, [did]);
   if (loading) {
     return (
-      <div>
+      <Box style={{ display: "flex", flexGrow: 1, flexDirection: "row" }}>
         <CircularProgress />
-        <Typography style={{ marginTop: "16px" }}>
+        <Typography style={{ marginLeft: "16px", marginTop: "8px" }}>
           Resolving DID... due to IPFS being decentralized this may take
           minutes.
         </Typography>
-      </div>
+      </Box>
     );
   }
 

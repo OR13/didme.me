@@ -1,5 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+
 import CircularProgress from "@mui/material/CircularProgress";
 // import Stepper from "@mui/material/Stepper";
 // import Step from "@mui/material/Step";
@@ -83,7 +85,7 @@ export const MemeStepper = () => {
     {
       title: "Upload",
       content: (
-        <>
+        <Box sx={{ alignItems: "center", justifyContent: "center" }}>
           <div style={{ textAlign: "center", marginBottom: "32px" }}>
             <Typography variant={"h5"} gutterBottom>
               Add an image to get started
@@ -97,7 +99,7 @@ export const MemeStepper = () => {
             </Typography>
           </div>
           <FileUploader onFilesAccepted={handleAcceptedFiles} />
-        </>
+        </Box>
       ),
     },
     {
@@ -131,8 +133,17 @@ export const MemeStepper = () => {
 
   // </div>
   return (
-    <Box sx={{ width: "100%", marginTop: "32px" }}>
-      {/* <Stepper activeStep={activeStep}>
+    <Box sx={{ width: "100%" }}>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "75vh" }}
+      >
+        <Grid item xs={3}>
+          {/* <Stepper activeStep={activeStep}>
         {steps.map((step, index) => {
           const { title } = step;
           const stepProps: any = {};
@@ -153,49 +164,53 @@ export const MemeStepper = () => {
         })}
       </Stepper> */}
 
-      {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <div style={{ maxWidth: "512px", margin: "auto" }}>
-          <div style={{ marginTop: "64px" }}>{steps[activeStep].content}</div>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            {activeStep !== 0 && (
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-            )}
+          {activeStep === steps.length ? (
+            <React.Fragment>
+              <Typography sx={{ mt: 2, mb: 1 }}>
+                All steps completed - you&apos;re finished
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                <Box sx={{ flex: "1 1 auto" }} />
+                <Button onClick={handleReset}>Reset</Button>
+              </Box>
+            </React.Fragment>
+          ) : (
+            <div style={{ maxWidth: "512px", margin: "auto" }}>
+              <div style={{ marginTop: "64px" }}>
+                {steps[activeStep].content}
+              </div>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                {activeStep !== 0 && (
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    Back
+                  </Button>
+                )}
 
-            <Box sx={{ flex: "1 1 auto" }} />
-            {isStepOptional(activeStep) && (
-              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                Skip
-              </Button>
-            )}
+                <Box sx={{ flex: "1 1 auto" }} />
+                {isStepOptional(activeStep) && (
+                  <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                    Skip
+                  </Button>
+                )}
 
-            <Button
-              onClick={handleNext}
-              disabled={!file}
-              variant={file ? "contained" : undefined}
-              color={file ? "secondary" : "primary"}
-            >
-              {activeStep === steps.length - 1 ? "Publish" : "Next"}
-            </Button>
-          </Box>
-        </div>
-      )}
+                <Button
+                  onClick={handleNext}
+                  disabled={!file}
+                  variant={file ? "contained" : undefined}
+                  color={file ? "secondary" : "primary"}
+                >
+                  {activeStep === steps.length - 1 ? "Publish" : "Next"}
+                </Button>
+              </Box>
+            </div>
+          )}
+        </Grid>
+      </Grid>
     </Box>
   );
 };

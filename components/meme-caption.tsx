@@ -16,8 +16,8 @@ import { generators } from "../core/generators";
 export const MemeCaption = ({ file, setConfig }: any) => {
   const [caption, setCaption] = React.useState("did meme");
   const [mnemonic, setMnemonic] = React.useState(
-    // "" // uncomment to debug without wasting ipfs time...
-    "sell antenna drama rule twenty cement mad deliver you push derive hybrid"
+    "" // uncomment to debug without wasting ipfs time...
+    // "sell antenna drama rule twenty cement mad deliver you push derive hybrid"
   );
   const [key, setKey] = React.useState("");
 

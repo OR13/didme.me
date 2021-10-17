@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { AppPage } from "../../components/app-page";
 import React from "react";
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, Grid } from "@mui/material";
 
 import { ResolutionResult } from "../../components/did-resolution-result";
 
@@ -21,10 +21,6 @@ const Resolve: NextPage = (props: any) => {
     <>
       <Head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="Decentralized identifiers hidden in memes"
-        />
         <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
@@ -32,30 +28,38 @@ const Resolve: NextPage = (props: any) => {
         />
       </Head>
       <AppPage>
-        <div style={{ width: "100%", maxWidth: "640px" }}>
-          <Box
-            style={{
-              marginTop: "64px",
-              // textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              flexGrow: 1,
-            }}
-          >
-            <TextField
-              style={{ marginTop: "32px" }}
-              label="DID"
-              value={did || ""}
-              fullWidth
-              disabled={true}
-            />
-            <>
-              <Box style={{ marginTop: "32px" }}>
-                <ResolutionResult did={did} />
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: "5vh" }}
+        >
+          <Grid item xs={3}>
+            <div style={{ width: "100%", maxWidth: "640px" }}>
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  flexGrow: 1,
+                }}
+              >
+                <TextField
+                  label="DID"
+                  value={did || ""}
+                  fullWidth
+                  disabled={true}
+                />
+                <>
+                  <Box style={{ marginTop: "32px" }}>
+                    <ResolutionResult did={did} />
+                  </Box>
+                </>
               </Box>
-            </>
-          </Box>
-        </div>
+            </div>
+          </Grid>
+        </Grid>
       </AppPage>
     </>
   );

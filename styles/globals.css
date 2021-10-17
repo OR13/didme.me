@@ -21,7 +21,7 @@ a {
   height: 100%;
 }
 canvas {
-  background: #000;
+  /* background: #000; */
   margin: auto;
   width: 100%;
   margin-top: 16px;
