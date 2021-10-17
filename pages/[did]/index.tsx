@@ -7,23 +7,10 @@ import { Box, TextField } from "@mui/material";
 import { useRouter } from "next/router";
 import { ResolutionResult } from "../../components/did-resolution-result";
 
-const baseUrl = process.env.VERCEL
-  ? "https://didmeme.vercel.app/"
-  : "http://localhost:3000/";
-
 const Resolve: NextPage = () => {
   const router = useRouter();
-
-  const [did, setDid] = React.useState("");
+  const did = router.query.did as string;
   const title = did ? did.substr(0, 9) + "..." + did.substr(-4) : "unknown";
-
-  React.useEffect(() => {
-    setDid(router.query.did as string);
-  }, [router.query.did]);
-
-  const handleResolve = () => {
-    router.push("/" + did);
-  };
   return (
     <>
       <Head>
@@ -33,7 +20,10 @@ const Resolve: NextPage = () => {
           content="Decentralized identifiers hidden in memes"
         />
         <link rel="icon" href="/favicon.ico" />
-        <meta property="og:image" content={`${baseUrl}/api/image/${did}`} />
+        <meta
+          property="og:image"
+          content={`https://didmeme.vercel.app/api/image/${did}`}
+        />
       </Head>
       <AppPage>
         <div style={{ width: "100%", maxWidth: "640px" }}>
@@ -53,13 +43,11 @@ const Resolve: NextPage = () => {
               fullWidth
               disabled={true}
             />
-            {did !== "" && (
-              <>
-                <Box style={{ marginTop: "32px" }}>
-                  <ResolutionResult did={did} />
-                </Box>
-              </>
-            )}
+            <>
+              <Box style={{ marginTop: "32px" }}>
+                <ResolutionResult did={did} />
+              </Box>
+            </>
           </Box>
         </div>
       </AppPage>
