@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>didmeme</title>
+        <title>did:meme</title>
         <meta
           name="description"
           content="Decentralized identifiers hidden in memes"
