@@ -5,16 +5,17 @@ import React from "react";
 import { Box, TextField } from "@mui/material";
 
 import { useRouter } from "next/router";
+
 import { ResolutionResult } from "../../components/did-resolution-result";
 
-const Resolve: NextPage = () => {
-  const router = useRouter();
-  const queryKey = "did";
-  const queryValue =
-    router.query[queryKey] ||
-    router.asPath.match(new RegExp(`[&?]${queryKey}=(.*)(&|$)`));
+export async function getServerSideProps(context: any) {
+  return {
+    props: { params: context.params }, // will be passed to the page component as props
+  };
+}
 
-  const did = queryValue as string;
+const Resolve: NextPage = (props: any) => {
+  const did: any = props.params.did;
   const title = did ? did.substr(0, 9) + "..." + did.substr(-4) : "unknown";
   return (
     <>
