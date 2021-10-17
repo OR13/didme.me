@@ -7,10 +7,9 @@ import { Box, TextField } from "@mui/material";
 import { ResolutionResult } from "../../components/did-resolution-result";
 
 export async function getServerSideProps(context: any) {
-  console.log(context.params);
   return {
     props: {
-      did: "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j",
+      did: context.params.did,
     }, // will be passed to the page component as props
   };
 }
