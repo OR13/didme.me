@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { AppPage } from "../components/app-page";
 import React from "react";
-import { Box, Typography, TextField, Grid } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 
 import IconButton from "@mui/material/IconButton";
 
@@ -20,14 +20,9 @@ const Resolve: NextPage = () => {
   const [did, setDid] = React.useState(
     "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j"
   );
-  const [ipfsGateWay, setIpfsGateWay] = React.useState(ipfsGateway);
 
   const handleResolve = () => {
     router.push("/" + did);
-  };
-
-  const handleSaveIpfsGateway = () => {
-    localStorage.setItem("ipfs.gateway", ipfsGateWay);
   };
 
   return (
