@@ -10,8 +10,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 
 import SearchIcon from "@mui/icons-material/Search";
 
-import SaveIcon from "@mui/icons-material/Save";
-
 import { useRouter } from "next/router";
 import { ipfsGateway } from "../core/ipfs";
 
@@ -20,7 +18,7 @@ import { GateWaySelect } from "../components/gateway-select";
 const Resolve: NextPage = () => {
   const router = useRouter();
   const [did, setDid] = React.useState(
-    "did:meme:1zgsvl9sekwtxvjl5f26fplgrg78lkhrgm3a9tv4tjk32kugg3syrl0cur6a27"
+    "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j"
   );
   const [ipfsGateWay, setIpfsGateWay] = React.useState(ipfsGateway);
 
