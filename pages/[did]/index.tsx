@@ -9,7 +9,12 @@ import { ResolutionResult } from "../../components/did-resolution-result";
 
 const Resolve: NextPage = () => {
   const router = useRouter();
-  const did = router.query.did as string;
+  const queryKey = "did";
+  const queryValue =
+    router.query[queryKey] ||
+    router.asPath.match(new RegExp(`[&?]${queryKey}=(.*)(&|$)`));
+
+  const did = queryValue as string;
   const title = did ? did.substr(0, 9) + "..." + did.substr(-4) : "unknown";
   return (
     <>
