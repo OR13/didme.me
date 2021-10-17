@@ -1,14 +1,18 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 
+import { getResolutionResult } from "../../../core/getResolutionResult";
+
 type Data = {
-  name: string;
-  echo: any;
+  didDocument: any;
+  didResolutionMetadata: any;
+  didDocumentMetadata: any;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "API RESOLVER", echo: { header: req.headers } });
+  const { did } = req.query;
+  const result = await getResolutionResult(did as string);
+  res.status(200).json(result);
 }
