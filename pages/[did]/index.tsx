@@ -6,9 +6,17 @@ import { Box, TextField } from "@mui/material";
 
 import { ResolutionResult } from "../../components/did-resolution-result";
 
-const Resolve: NextPage = () => {
-  const did: any =
-    "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j";
+export async function getServerSideProps(context: any) {
+  console.log(context.params);
+  return {
+    props: {
+      did: "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j",
+    }, // will be passed to the page component as props
+  };
+}
+
+const Resolve: NextPage = (props: any) => {
+  const did: any = props.did;
   const title = did ? did.substr(0, 9) + "..." + did.substr(-4) : "unknown";
   return (
     <>
