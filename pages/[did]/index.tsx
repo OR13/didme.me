@@ -4,8 +4,6 @@ import { AppPage } from "../../components/app-page";
 import React from "react";
 import { Box, TextField } from "@mui/material";
 
-import { useRouter } from "next/router";
-
 import { ResolutionResult } from "../../components/did-resolution-result";
 
 export async function getServerSideProps(context: any) {
