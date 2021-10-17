@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental: { outputFileTracing: true },
+  webpack5: false,
+  experimental: {
+    nftTracing: true,
+    outputFileTracing: true,
+  },
 
   rewrites: async () => {
     return [
