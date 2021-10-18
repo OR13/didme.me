@@ -25,7 +25,7 @@ export const AppPage = ({ children }: any) => {
   return (
     <Box sx={{ display: "flex", flexGrow: 1 }}>
       <CssBaseline />
-      <AppBar
+      {/* <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -54,7 +54,7 @@ export const AppPage = ({ children }: any) => {
             did meme
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}

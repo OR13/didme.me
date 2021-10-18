@@ -1,4 +1,5 @@
 import React from "react";
+import { yellow } from "@mui/material/colors";
 import { Typography, TextField } from "@mui/material";
 import { updateCanvas } from "../core/updateCanvas";
 
@@ -9,16 +10,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import MemoryIcon from "@mui/icons-material/Memory";
 import * as bip39 from "bip39";
 import * as hdkey from "hdkey";
-
+import { defaultMnemonic } from "../core/defaultMnemonic";
 export const DIDMEME_BIP44_COIN_TYPE = "42";
 import { generators } from "../core/generators";
-
+import WarningIcon from "@mui/icons-material/Warning";
 export const MemeCaption = ({ file, setConfig }: any) => {
   const [caption, setCaption] = React.useState("did meme");
-  const [mnemonic, setMnemonic] = React.useState(
-    "" // uncomment to debug without wasting ipfs time...
-    // "sell antenna drama rule twenty cement mad deliver you push derive hybrid"
-  );
+  const [mnemonic, setMnemonic] = React.useState(defaultMnemonic);
   const [key, setKey] = React.useState("");
 
   if (file === null) {
@@ -73,7 +71,7 @@ export const MemeCaption = ({ file, setConfig }: any) => {
       />
 
       <TextField
-        label="Key"
+        label="Controller"
         value={key.substring(0, 16) + "..."}
         disabled
         fullWidth
@@ -81,17 +79,32 @@ export const MemeCaption = ({ file, setConfig }: any) => {
       />
 
       <TextField
+        color="warning"
+        focused
         style={{ marginTop: "32px" }}
-        label="Mnemonic"
+        label="Controller Mnemonic"
+        helperText={
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              paddingTop: "8px",
+            }}
+          >
+            <WarningIcon color={"warning"} />
+            <Typography style={{ marginLeft: "9px", color: yellow["700"] }}>
+              Anyone knowing this phrase controls this meme.
+            </Typography>
+          </div>
+        }
         multiline
         value={mnemonic}
         fullWidth
-        disabled={true}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
+                aria-label="generate mnemonic"
                 onClick={handleGenerateMnemonic}
               >
                 <MemoryIcon />

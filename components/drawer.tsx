@@ -38,7 +38,10 @@ export const Drawer = () => {
         </ListItem>
         <ListItem
           button
-          selected={router.pathname === "/resolve"}
+          selected={
+            router.pathname === "/resolve" ||
+            router.pathname.startsWith("/[did]")
+          }
           onClick={() => {
             router.push("/resolve");
           }}

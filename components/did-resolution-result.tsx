@@ -2,10 +2,21 @@
 import React from "react";
 
 import axios from "axios";
-import { CircularProgress, Typography, Link, Hidden, Box } from "@mui/material";
-import { ResolutionTabs } from "./did-resolution-tabs";
+import {
+  CircularProgress,
+  Typography,
+  Link,
+  Hidden,
+  Box,
+  Button,
+} from "@mui/material";
+
+import { useRouter } from "next/router";
+import SendIcon from "@mui/icons-material/Send";
+import SourceIcon from "@mui/icons-material/Source";
 
 export const ResolutionResult = ({ did }: any) => {
+  const router = useRouter();
   const [loading, setLoading] = React.useState(true);
   const [resolution, setResolution]: any = React.useState(null);
   React.useEffect(() => {
@@ -46,39 +57,46 @@ export const ResolutionResult = ({ did }: any) => {
 
   return (
     <>
-      <ResolutionTabs
-        image={
-          <div>
-            <Hidden smDown>
-              <div style={{ wordBreak: "break-all" }}>
-                <Link href={resolution.didDocumentMetadata.image}>
-                  {resolution.didDocumentMetadata.image}
-                </Link>
-              </div>
-            </Hidden>
-
+      <div>
+        <Hidden smDown>
+          <div style={{ wordBreak: "break-all" }}>
             <Link href={resolution.didDocumentMetadata.image}>
-              <img
-                src={resolution.didDocumentMetadata.image}
-                alt="meme image"
-                style={{ width: "100%", marginTop: "8px" }}
-              />
+              {resolution.didDocumentMetadata.image}
             </Link>
           </div>
-        }
-        didDocument={
-          <pre
-            style={{
-              textAlign: "left",
-              wordBreak: "break-all",
-              width: "100%",
-              fontSize: "10px",
+        </Hidden>
+
+        <Link href={resolution.didDocumentMetadata.image}>
+          <img
+            src={resolution.didDocumentMetadata.image}
+            alt="meme image"
+            style={{ width: "100%", marginTop: "8px" }}
+          />
+        </Link>
+        <div>
+          <Button
+            onClick={() => {
+              router.push("/api/" + resolution.didDocument.id);
             }}
+            variant="outlined"
+            color={"secondary"}
+            endIcon={<SourceIcon />}
           >
-            {JSON.stringify(resolution.didDocument, null, 2)}
-          </pre>
-        }
-      />
+            View Source
+          </Button>
+          <Button
+            style={{ marginLeft: "8px" }}
+            onClick={() => {
+              router.push("/e/" + resolution.didDocument.id);
+            }}
+            variant="contained"
+            color={"secondary"}
+            endIcon={<SendIcon />}
+          >
+            Encrypt
+          </Button>
+        </div>
+      </div>
     </>
   );
 };
