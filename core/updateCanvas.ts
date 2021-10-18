@@ -1,0 +1,78 @@
+export const updateCanvas = (file: any, text: string) => {
+  const reader = new FileReader();
+  reader.onload = async (e2: any) => {
+    var canvas: any = document.getElementById("meme-canvas");
+    var ctx = canvas.getContext("2d");
+
+    var myImg = new Image();
+    myImg.onload = function () {
+      canvas.width = myImg.width * window.devicePixelRatio;
+      canvas.height = myImg.height * window.devicePixelRatio;
+
+      const lineHeightPx = 0.17 * myImg.height;
+
+      ctx.fillStyle = "white";
+      ctx.strokeStyle = "black";
+      ctx.textAlign = "center";
+      ctx.font = `${lineHeightPx}px Impact`;
+      ctx.lineWidth = 4;
+      function wrapText(
+        context: any,
+        text: any,
+        x: any,
+        y: any,
+        maxWidth: any,
+        lineHeight: any
+      ) {
+        var words = text.split(" ");
+        var line = "";
+
+        for (var n = 0; n < words.length; n++) {
+          var testLine = line + words[n] + " ";
+          var metrics = context.measureText(testLine);
+          var testWidth = metrics.width;
+          if (testWidth > maxWidth && n > 0) {
+            context.strokeText(line, x, y);
+            context.fillText(line, x, y);
+
+            line = words[n] + " ";
+            y += lineHeight;
+          } else {
+            line = testLine;
+          }
+        }
+
+        context.strokeText(line, x, y);
+        context.fillText(line, x, y);
+      }
+
+      ctx.drawImage(
+        myImg,
+        0,
+        0,
+        myImg.width * window.devicePixelRatio,
+        myImg.height * window.devicePixelRatio, // source rectangle
+        0,
+        0,
+        canvas.width * window.devicePixelRatio,
+        canvas.height * window.devicePixelRatio
+      );
+
+      wrapText(
+        ctx,
+        text.toUpperCase(),
+        canvas.width / 2,
+        canvas.height / 1.2,
+        canvas.width * 0.9,
+        lineHeightPx
+      );
+    };
+
+    var blob = new Blob([e2.target.result], { type: "image/jpeg" });
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(blob);
+    myImg.src = imageUrl;
+  };
+
+  reader.readAsArrayBuffer(file);
+};
