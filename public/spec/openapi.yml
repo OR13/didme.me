@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+  description: Multi-file boilerplate for OpenAPI Specification.
+  license:
+    name: MIT
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+servers:
+  - url: http://localhost:3000
+  - url: https://didme.me
+tags:
+  - name: DID
+paths:
+  /{did}:
+    $ref: "./resources/did.yml"
+components:
+  parameters:
+    $ref: "./parameters/_index.yml"
+  schemas:
+    $ref: "./schemas/_index.yml"
+  responses:
+    $ref: "./responses/_index.yml"
