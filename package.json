@@ -15,7 +15,9 @@
     "@mui/material": "^5.0.4",
     "@transmute/did-key-ed25519": "^0.3.0-unstable.4",
     "@transmute/jose-ld": "^0.7.0-unstable.9",
+    "@transmute/json-web-signature": "^0.7.0-unstable.12",
     "@transmute/jsonld-document-loader": "^0.2.0",
+    "@transmute/vc.js": "^0.7.0-unstable.12",
     "@transmute/x25519-key-pair": "^0.7.0-unstable.9",
     "axios": "^0.23.0",
     "base64url": "^3.0.1",
@@ -37,7 +39,7 @@
   },
   "devDependencies": {
     "@types/react": "17.0.30",
-    "eslint": "8.0.1",
+    "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "typescript": "4.4.4"
   }

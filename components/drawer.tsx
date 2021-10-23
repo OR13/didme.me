@@ -13,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 import SearchIcon from "@mui/icons-material/Search";
+import ApiIcon from "@mui/icons-material/Api";
 
 import { useRouter } from "next/router";
 
@@ -75,6 +76,12 @@ export const Drawer = () => {
             <CodeIcon />
           </ListItemIcon>
           <ListItemText primary={"Source"} />
+        </ListItem>
+        <ListItem button component={Link} href="/docs">
+          <ListItemIcon>
+            <ApiIcon />
+          </ListItemIcon>
+          <ListItemText primary={"API"} />
         </ListItem>
       </List>
     </div>

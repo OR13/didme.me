@@ -19,9 +19,31 @@ export const MemeCaption = ({ file, setConfig }: any) => {
   const [mnemonic, setMnemonic] = React.useState(defaultMnemonic);
   const [key, setKey] = React.useState("");
 
-  if (file === null) {
-    return <>Loading...</>;
-  }
+  const handleTextChange = (text: string) => {
+    updateCanvas(file, text);
+    setCaption(text);
+  };
+
+  const handleUpdateKey = React.useCallback(
+    async (mnemonic: string) => {
+      const seed = await bip39.mnemonicToSeed(mnemonic);
+      const root = hdkey.fromMasterSeed(seed);
+      const hdPath = `m/44'/${DIDMEME_BIP44_COIN_TYPE}'/0'/0/0`;
+      const addrNode = root.derive(hdPath);
+
+      const res = await generators.ed25519(addrNode._privateKey);
+      setKey(res.didDocument.id);
+
+      setConfig({ key: res.didDocument.id, mnemonic });
+    },
+    [setKey, setConfig]
+  );
+
+  const handleGenerateMnemonic = React.useCallback(async () => {
+    const m = bip39.generateMnemonic();
+    setMnemonic(m);
+    handleUpdateKey(m);
+  }, [handleUpdateKey]);
 
   React.useEffect(() => {
     if (key === "") {
@@ -31,30 +53,11 @@ export const MemeCaption = ({ file, setConfig }: any) => {
     if (mnemonic === "") {
       handleGenerateMnemonic();
     }
-  }, [key, file]);
+  }, [key, file, caption, handleGenerateMnemonic, handleUpdateKey, mnemonic]);
 
-  const handleTextChange = (text: string) => {
-    updateCanvas(file, text);
-    setCaption(text);
-  };
-
-  const handleGenerateMnemonic = async () => {
-    const m = bip39.generateMnemonic();
-    setMnemonic(m);
-    handleUpdateKey(m);
-  };
-
-  const handleUpdateKey = async (mnemonic: string) => {
-    const seed = await bip39.mnemonicToSeed(mnemonic);
-    const root = hdkey.fromMasterSeed(seed);
-    const hdPath = `m/44'/${DIDMEME_BIP44_COIN_TYPE}'/0'/0/0`;
-    const addrNode = root.derive(hdPath);
-
-    const res = await generators.ed25519(addrNode._privateKey);
-    setKey(res.didDocument.id);
-
-    setConfig({ key: res.didDocument.id, mnemonic });
-  };
+  if (file === null) {
+    return <>Loading...</>;
+  }
 
   return (
     <div style={{ maxWidth: "512px", margin: "auto" }}>

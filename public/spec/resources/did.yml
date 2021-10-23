@@ -3,7 +3,7 @@ get:
   operationId: resolve
   description: Get a DID's latest keys, services and capabilities
   tags:
-    - DID
+    - Identifiers
   parameters:
     - $ref: "../parameters/path/did.yml"
   responses:

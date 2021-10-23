@@ -1,0 +1,7 @@
+name: mnemonic
+in: header
+required: true
+description: A phrase used to generate private keys, generally not safe to send over any network.
+example: "sell antenna drama rule twenty cement mad deliver you push derive hybrid"
+schema:
+  type: string

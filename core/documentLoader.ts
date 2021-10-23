@@ -5,6 +5,8 @@ import {
 
 import { resolvers } from "./resolvers";
 
+import { contexts as localContexts } from "./contexts";
+
 export const documentLoader = documentLoaderFactory.pluginFactory
   .build({
     contexts: {
@@ -13,11 +15,17 @@ export const documentLoader = documentLoaderFactory.pluginFactory
       ...contexts.W3ID_Security_Vocabulary,
     },
   })
-
+  .addContext(localContexts)
   .addResolver({
     // eslint-disable-next-line
     ["did:key:z6M"]: {
       resolve: resolvers.ed25519,
+    },
+  })
+  .addResolver({
+    // eslint-disable-next-line
+    ["did:meme:"]: {
+      resolve: resolvers.meme,
     },
   })
 

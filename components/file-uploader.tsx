@@ -9,9 +9,12 @@ import { useTheme } from "@mui/material/styles";
 export const FileUploader = ({ onFilesAccepted }: any) => {
   const theme = useTheme();
 
-  const onDrop = useCallback((acceptedFiles) => {
-    onFilesAccepted(acceptedFiles);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      onFilesAccepted(acceptedFiles);
+    },
+    [onFilesAccepted]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (

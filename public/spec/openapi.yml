@@ -1,22 +1,31 @@
 openapi: "3.0.0"
 info:
   version: 1.0.0
-  title: Swagger Petstore
-  description: Multi-file boilerplate for OpenAPI Specification.
+  title: DID Meme API
+  description: Identifier and Credentials APIs for Memes.
   license:
-    name: MIT
+    name: Apache.20
   contact:
     name: API Support
-    url: http://www.example.com/support
-    email: support@example.com
+    url: https://github.com/OR13/didme.me
 servers:
   - url: http://localhost:3000
   - url: https://didme.me
 tags:
-  - name: DID
+  - name: Identifiers
+  - name: Credentials
+  - name: Presentations
 paths:
   /{did}:
     $ref: "./resources/did.yml"
+  /credentials/issue:
+    $ref: "./resources/credential-issuer.yml"
+  /credentials/verify:
+    $ref: "./resources/credential-verifier.yml"
+  /presentations/prove:
+    $ref: "./resources/presentation-prover.yml"
+  /presentations/verify:
+    $ref: "./resources/presentation-verifier.yml"
 components:
   parameters:
     $ref: "./parameters/_index.yml"
