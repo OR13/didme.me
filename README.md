@@ -18,6 +18,11 @@ If you import the mnemonic into metamask, you can control the associated ethereu
 
 MetaMask will not let you change the hd path, and does not support Ed25519, so be carefuly exploring this feature.
 
+Technically, this interop is "did:key" interop since any secp256k1 public key has an ethereum address.
+
+Saddly, not all ethereym addresses are easily accessed via wallets such as metamask,
+so it is possible to generate an address that won't be easy to recover funds from without some scripting skill.
+
 <img src="./metamask-interop.png"/>
 
 ## DID Method Spec
