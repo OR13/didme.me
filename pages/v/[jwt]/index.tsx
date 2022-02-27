@@ -20,12 +20,19 @@ export async function getServerSideProps(context: any) {
 const Verify: NextPage = (props: any) => {
   const jwt: any = props.jwt;
   const title = "verify:..." + jwt.substr(-4);
+  const parts = jwt.split(".");
+  const { kid } = JSON.parse(Buffer.from(parts[0], "base64").toString());
+  const issuerDid = kid.split("#")[0];
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          property="og:image"
+          content={`https://didmeme.vercel.app/api/image/${issuerDid}`}
+        />
       </Head>
       <AppPage>
         <Grid
