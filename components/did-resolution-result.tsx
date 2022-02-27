@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-
 import axios from "axios";
 import {
   CircularProgress,
@@ -9,10 +8,11 @@ import {
   Hidden,
   Box,
   Button,
+  Stack,
+  Paper,
 } from "@mui/material";
 
 import { useRouter } from "next/router";
-import SendIcon from "@mui/icons-material/Send";
 import SourceIcon from "@mui/icons-material/Source";
 
 export const ResolutionResult = ({ did }: any) => {
@@ -41,39 +41,58 @@ export const ResolutionResult = ({ did }: any) => {
   }, [did]);
   if (loading) {
     return (
-      <Box style={{ display: "flex", flexGrow: 1, flexDirection: "row" }}>
-        <CircularProgress />
-        <Typography style={{ marginLeft: "16px", marginTop: "8px" }}>
-          Resolving DID... due to IPFS being decentralized this may take
-          minutes.
-        </Typography>
-      </Box>
+      <>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress />
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Typography>Resolving from IPFS... this may take minutes.</Typography>
+        </Box>
+      </>
     );
   }
 
   if (!resolution) {
-    return <div>Resolution failed for {did}</div>;
+    return (
+      <>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Typography>Resolution failed for: {did}</Typography>
+        </Box>
+      </>
+    );
   }
 
   return (
-    <>
-      <div>
+    <Paper sx={{ p: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Link href={resolution.didDocumentMetadata.image}>
+          <img
+            src={resolution.didDocumentMetadata.image}
+            alt="meme image"
+            style={{ width: "100%", maxWidth: "720px", marginTop: "8px" }}
+          />
+        </Link>
+      </Box>
+
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Hidden smDown>
-          <div style={{ wordBreak: "break-all" }}>
+          <div
+            style={{
+              wordBreak: "break-all",
+              marginTop: "16px",
+
+              fontSize: "0.8em",
+            }}
+          >
             <Link href={resolution.didDocumentMetadata.image}>
               {resolution.didDocumentMetadata.image}
             </Link>
           </div>
         </Hidden>
+      </Box>
 
-        <Link href={resolution.didDocumentMetadata.image}>
-          <img
-            src={resolution.didDocumentMetadata.image}
-            alt="meme image"
-            style={{ width: "100%", marginTop: "8px" }}
-          />
-        </Link>
-        <div>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+        <Stack spacing={2} direction="row" justifyContent={"center"}>
           <Button
             onClick={() => {
               router.push("/api/" + resolution.didDocument.id);
@@ -82,21 +101,26 @@ export const ResolutionResult = ({ did }: any) => {
             color={"secondary"}
             endIcon={<SourceIcon />}
           >
-            View Source
+            DID Source
           </Button>
+
           <Button
-            style={{ marginLeft: "8px" }}
             onClick={() => {
-              router.push("/e/" + resolution.didDocument.id);
+              const keywords = ["#swift", "#eth"];
+              const encodedQuery = keywords
+                .map(encodeURIComponent)
+                .join("%20%2B%20");
+              const url = `https://twitter.com/search?q=${encodedQuery}&src=typed_query`;
+              window.open(url);
             }}
-            variant="contained"
+            variant="outlined"
             color={"secondary"}
-            endIcon={<SendIcon />}
+            endIcon={<SourceIcon />}
           >
-            Encrypt
+            Recent Tweets
           </Button>
-        </div>
-      </div>
-    </>
+        </Stack>
+      </Box>
+    </Paper>
   );
 };

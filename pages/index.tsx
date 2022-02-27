@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { AppPage } from "../components/app-page";
+
 import { MemeStepper } from "../components/meme-stepper";
+
+import AppPage from "../components/app-page";
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +16,6 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <AppPage>
         <MemeStepper />
       </AppPage>

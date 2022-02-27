@@ -14,6 +14,8 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@transmute/did-key-ed25519": "^0.3.0-unstable.4",
+    "@transmute/did-key-secp256k1": "^0.3.0-unstable.5",
+    "@transmute/did-key.js": "^0.3.0-unstable.5",
     "@transmute/jose-ld": "^0.7.0-unstable.9",
     "@transmute/json-web-signature": "^0.7.0-unstable.12",
     "@transmute/jsonld-document-loader": "^0.2.0",
@@ -35,7 +37,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-dropzone": "^11.4.2",
-    "react-tsparticles": "^1.36.0"
+    "react-tsparticles": "^1.36.0",
+    "react-tweet-embed": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "17.0.30",
