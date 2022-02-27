@@ -8,6 +8,18 @@
 
 ### [DID Meme Example](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
 
+### Meta Mask Interoperability
+
+🔥🔥 Highly Experimental 🔥🔥
+
+You can set the Key Type to "secp256k1" and the "HD Path" to "m/44'/60'/0'/0/0".
+
+If you import the mnemonic into metamask, you can control the associated ethereum address.
+
+MetaMask will not let you change the hd path, and does not support Ed25519, so be carefuly exploring this feature.
+
+<img src="./metamask-interop.png"/>
+
 ## DID Method Spec
 
 `did:meme` is a deterministic transformation of `did:key`, that uses IPFS, image content and bech32.

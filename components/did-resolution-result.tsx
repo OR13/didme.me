@@ -112,7 +112,9 @@ export const ResolutionResult = ({ did }: any) => {
 
           <Button
             onClick={() => {
-              const keywords = ["#swift", "#eth"];
+              const did = resolution.didDocument.id;
+              const id = did.split("did:meme:").pop();
+              const keywords = ["#did:meme", "#" + id];
               const encodedQuery = keywords
                 .map(encodeURIComponent)
                 .join("%20%2B%20");
