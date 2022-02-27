@@ -23,7 +23,6 @@ const Verify: NextPage = () => {
         {" "}
         <Box
           style={{
-            marginTop: "64px",
             textAlign: "center",
             display: "flex",
             flexDirection: "column",
