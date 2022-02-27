@@ -7,6 +7,8 @@ import { resolvers } from "./resolvers";
 
 import { contexts as localContexts } from "./contexts";
 
+import axios from "axios";
+
 export const documentLoader = documentLoaderFactory.pluginFactory
   .build({
     contexts: {
@@ -25,7 +27,14 @@ export const documentLoader = documentLoaderFactory.pluginFactory
   .addResolver({
     // eslint-disable-next-line
     ["did:meme:"]: {
-      resolve: resolvers.meme,
+      resolve: async (iri: string) => {
+        const endpoint = `https://didme.me/${iri}`;
+        const res = await axios.get(endpoint, {
+          headers: { accept: "application/json" },
+        });
+        const { didDocument } = res.data as any;
+        return didDocument;
+      },
     },
   })
 

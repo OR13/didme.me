@@ -4,14 +4,21 @@ import { documentLoader } from "../core/documentLoader";
 export const issueCredential = async ({
   credential,
   mnemonic,
-  format,
+  keyType,
+  hdpath,
 }: any) => {
-  const suite = await getCredentialSuite({ credential, mnemonic });
+  const suite = await getCredentialSuite({
+    credential,
+    keyType,
+    mnemonic,
+    hdpath,
+  });
+
   const { items } = await verifiable.credential.create({
     credential,
     suite,
     documentLoader,
-    format: [format],
+    format: ["vc-jwt"],
   });
   return items[0];
 };
