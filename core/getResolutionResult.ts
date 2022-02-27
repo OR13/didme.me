@@ -1,8 +1,9 @@
 import { resolve } from "./resolve";
+import { resolutionWithEthereum } from "./resolutionWithEthereum";
 export const getResolutionResult = async (did: string) => {
   const { didDocument, didDocumentMetadata } = await resolve(did);
   const didUrlComponents = did.split(":");
-  return {
+  const resolutionResult = {
     didDocument,
     didResolutionMetadata: {
       didUrl: {
@@ -13,4 +14,5 @@ export const getResolutionResult = async (did: string) => {
     },
     didDocumentMetadata,
   };
+  return resolutionWithEthereum(resolutionResult);
 };

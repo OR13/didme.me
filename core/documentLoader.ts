@@ -18,8 +18,8 @@ export const documentLoader = documentLoaderFactory.pluginFactory
   .addContext(localContexts)
   .addResolver({
     // eslint-disable-next-line
-    ["did:key:z6M"]: {
-      resolve: resolvers.ed25519,
+    ["did:key:"]: {
+      resolve: resolvers.key,
     },
   })
   .addResolver({

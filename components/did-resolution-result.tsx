@@ -14,7 +14,14 @@ import {
 
 import { useRouter } from "next/router";
 import SourceIcon from "@mui/icons-material/Source";
+import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 
+import { colors } from "@mui/material";
+
+import Meta from "./meta";
+declare var window: any;
 export const ResolutionResult = ({ did }: any) => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
@@ -63,7 +70,7 @@ export const ResolutionResult = ({ did }: any) => {
   }
 
   return (
-    <Paper sx={{ p: 4 }}>
+    <Box sx={{ p: 4 }}>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Link href={resolution.didDocumentMetadata.image}>
           <img
@@ -98,7 +105,6 @@ export const ResolutionResult = ({ did }: any) => {
               router.push("/api/" + resolution.didDocument.id);
             }}
             variant="outlined"
-            color={"secondary"}
             endIcon={<SourceIcon />}
           >
             DID Source
@@ -114,13 +120,56 @@ export const ResolutionResult = ({ did }: any) => {
               window.open(url);
             }}
             variant="outlined"
-            color={"secondary"}
-            endIcon={<SourceIcon />}
+            endIcon={<TwitterIcon />}
           >
             Recent Tweets
           </Button>
+
+          {resolution.didDocumentMetadata.ethereum && (
+            <Button
+              onClick={() => {
+                const url = `https://ropsten.etherscan.io/address/${resolution.didDocumentMetadata.ethereum.address}`;
+                window.open(url);
+              }}
+              variant="outlined"
+              color={"secondary"}
+              endIcon={<MonetizationOnIcon />}
+            >
+              Ethereum Activity
+            </Button>
+          )}
         </Stack>
       </Box>
-    </Paper>
+
+      {window.ethereum && resolution.didDocumentMetadata.ethereum && (
+        <>
+          <Paper sx={{ mt: 4, p: 4, bgcolor: colors.grey["900"] }}>
+            <Meta resolution={resolution} />
+          </Paper>
+        </>
+      )}
+
+      {!window.ethereum && resolution.didDocumentMetadata.ethereum && (
+        <>
+          <Paper sx={{ mt: 4, p: 4, bgcolor: colors.grey["800"] }}>
+            <Typography sx={{ mb: 2 }} variant={"h6"}>
+              Install MetaMask to unlock experimental features.
+            </Typography>
+
+            <Button
+              onClick={() => {
+                const url = `https://docs.metamask.io/guide/`;
+                window.open(url);
+              }}
+              variant="outlined"
+              color={"secondary"}
+              endIcon={<ExtensionRoundedIcon />}
+            >
+              Get Started
+            </Button>
+          </Paper>
+        </>
+      )}
+    </Box>
   );
 };
