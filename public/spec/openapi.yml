@@ -2,7 +2,7 @@ openapi: "3.0.0"
 info:
   version: 1.0.0
   title: DID Meme API
-  description: Identifier and Credentials APIs for Memes.
+  description: DID APIs for Memes.
   license:
     name: Apache.20
   contact:
@@ -13,19 +13,10 @@ servers:
   - url: https://didme.me
 tags:
   - name: Identifiers
-  - name: Credentials
-  - name: Presentations
 paths:
   /{did}:
     $ref: "./resources/did.yml"
-  /credentials/issue:
-    $ref: "./resources/credential-issuer.yml"
-  /credentials/verify:
-    $ref: "./resources/credential-verifier.yml"
-  /presentations/prove:
-    $ref: "./resources/presentation-prover.yml"
-  /presentations/verify:
-    $ref: "./resources/presentation-verifier.yml"
+
 components:
   parameters:
     $ref: "./parameters/_index.yml"

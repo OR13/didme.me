@@ -22,7 +22,19 @@ const ApidDocs: NextPage = (props: any) => {
         ></script>
       </Head>
       <>
-        <rapi-doc spec-url="/spec/openapi.yml"></rapi-doc>
+        <rapi-doc
+          spec-url="/spec/openapi.yml"
+          schema-style="table"
+          show-header="true"
+          show-info="true"
+          allow-authentication="false"
+          allow-server-selection="true"
+          allow-api-list-style-selection="true"
+          render-style="read"
+          header-color="#039BE5"
+          primary-color="#FFEE58"
+          theme="dark"
+        ></rapi-doc>
       </>
     </>
   );

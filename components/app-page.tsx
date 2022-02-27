@@ -126,6 +126,7 @@ export default function AppPage({ title, children }: any) {
             variant="h6"
             noWrap
             component="div"
+            color={"secondary"}
             sx={{ cursor: "pointer" }}
             onClick={() => {
               router.push("/");
