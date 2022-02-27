@@ -23,6 +23,8 @@ Technically, this interop is "did:key" interop since any secp256k1 public key ha
 Saddly, not all ethereym addresses are easily accessed via wallets such as metamask,
 so it is possible to generate an address that won't be easy to recover funds from without some scripting skill.
 
+Here is an example [did:meme:1zgsfmn2g4797kzd4k6mkxq5d3u28cysj8m764j5g2z2tfpeyggdmhvq383e7u](https://didme.me/did:meme:1zgsfmn2g4797kzd4k6mkxq5d3u28cysj8m764j5g2z2tfpeyggdmhvq383e7u).
+
 <img src="./metamask-interop.png"/>
 
 ## DID Method Spec
