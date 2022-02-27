@@ -5,8 +5,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Paper from "@mui/material/Paper";
-
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -22,7 +20,8 @@ import ReadMoreIcon from "@mui/icons-material/ReadMore";
 import ApiIcon from "@mui/icons-material/Api";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
-
+import BiotechIcon from "@mui/icons-material/Biotech";
+import AddModeratorIcon from "@mui/icons-material/AddModerator";
 import { useRouter } from "next/router";
 
 const drawerWidth = 240;
@@ -170,7 +169,35 @@ export default function AppPage({ title, children }: any) {
             </ListItemIcon>
             <ListItemText primary={"Resolve"} />
           </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem
+            button
+            onClick={() => {
+              router.push("/issue");
+            }}
+          >
+            <ListItemIcon>
+              <AddModeratorIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Issue"} />
+          </ListItem>
 
+          <ListItem
+            button
+            onClick={() => {
+              router.push("/verify");
+            }}
+          >
+            <ListItemIcon>
+              <BiotechIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Verify"} />
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
           <ListItem
             button
             onClick={() => {
@@ -182,9 +209,7 @@ export default function AppPage({ title, children }: any) {
             </ListItemIcon>
             <ListItemText primary={"API"} />
           </ListItem>
-        </List>
-        <Divider />
-        <List>
+
           <ListItem
             button
             onClick={() => {

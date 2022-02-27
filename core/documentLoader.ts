@@ -28,7 +28,7 @@ export const documentLoader = documentLoaderFactory.pluginFactory
     // eslint-disable-next-line
     ["did:meme:"]: {
       resolve: async (iri: string) => {
-        const endpoint = `https://didme.me/${iri}`;
+        const endpoint = `${window.location.origin}/${iri}`;
         const res = await axios.get(endpoint, {
           headers: { accept: "application/json" },
         });
