@@ -3,15 +3,17 @@ import { useDropzone } from "react-dropzone";
 
 import { Paper, Typography } from "@mui/material";
 
-import { lightBlue, blue } from "@mui/material/colors";
 import { useTheme } from "@mui/material/styles";
 
 export const FileUploader = ({ onFilesAccepted }: any) => {
   const theme = useTheme();
 
-  const onDrop = useCallback((acceptedFiles) => {
-    onFilesAccepted(acceptedFiles);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      onFilesAccepted(acceptedFiles);
+    },
+    [onFilesAccepted]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -20,9 +22,11 @@ export const FileUploader = ({ onFilesAccepted }: any) => {
       style={{
         padding: "32px",
         background: !isDragActive
-          ? theme.palette.primary.light
-          : theme.palette.secondary.light,
-        border: "1px " + theme.palette.primary.main + " dashed",
+          ? theme.palette.background.paper
+          : theme.palette.background.paper,
+        border: !isDragActive
+          ? "1px " + theme.palette.primary.main + " dashed"
+          : "1px " + theme.palette.secondary.main + " dashed",
         boxShadow: "none",
         textAlign: "center",
       }}

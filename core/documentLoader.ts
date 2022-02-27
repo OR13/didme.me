@@ -5,6 +5,10 @@ import {
 
 import { resolvers } from "./resolvers";
 
+import { contexts as localContexts } from "./contexts";
+
+import axios from "axios";
+
 export const documentLoader = documentLoaderFactory.pluginFactory
   .build({
     contexts: {
@@ -13,11 +17,24 @@ export const documentLoader = documentLoaderFactory.pluginFactory
       ...contexts.W3ID_Security_Vocabulary,
     },
   })
-
+  .addContext(localContexts)
   .addResolver({
     // eslint-disable-next-line
-    ["did:key:z6M"]: {
-      resolve: resolvers.ed25519,
+    ["did:key:"]: {
+      resolve: resolvers.key,
+    },
+  })
+  .addResolver({
+    // eslint-disable-next-line
+    ["did:meme:"]: {
+      resolve: async (iri: string) => {
+        const endpoint = `${window.location.origin}/${iri}`;
+        const res = await axios.get(endpoint, {
+          headers: { accept: "application/json" },
+        });
+        const { didDocument } = res.data as any;
+        return didDocument;
+      },
     },
   })
 

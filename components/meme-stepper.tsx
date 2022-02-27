@@ -2,12 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import CircularProgress from "@mui/material/CircularProgress";
-// import Stepper from "@mui/material/Stepper";
-// import Step from "@mui/material/Step";
-// import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 import { FileUploader } from "./file-uploader";
 import { MemeCaption } from "./meme-caption";
@@ -15,8 +12,6 @@ import { generateDidMeme } from "../core/generateDidMeme";
 import router from "next/router";
 
 export const MemeStepper = () => {
-  const [loading, setLoading] = React.useState(false);
-  const [loadingMessage, setLoadingMessage] = React.useState("Loading...");
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [file, setFile] = React.useState(null);
@@ -85,85 +80,40 @@ export const MemeStepper = () => {
     {
       title: "Upload",
       content: (
-        <Box sx={{ alignItems: "center", justifyContent: "center" }}>
-          <div style={{ textAlign: "center", marginBottom: "32px" }}>
-            <Typography variant={"h5"} gutterBottom>
-              Add an image to get started
-            </Typography>
-            <Typography gutterBottom>
-              Data will be published to the public IPFS network.
-            </Typography>
+        <div style={{ maxWidth: "512px" }}>
+          <Paper sx={{ p: 4 }}>
+            <div style={{ marginBottom: "32px" }}>
+              <Typography variant={"h5"} gutterBottom>
+                Add an image to get started
+              </Typography>
+              <Typography gutterBottom>
+                Data will be published to the public IPFS network.
+              </Typography>
 
-            <Typography>
-              DO NOT publish offensive content or data you do not own.
-            </Typography>
-          </div>
-          <FileUploader onFilesAccepted={handleAcceptedFiles} />
-        </Box>
+              <Typography>
+                DO NOT publish offensive content or data you do not own.
+              </Typography>
+            </div>
+            <FileUploader onFilesAccepted={handleAcceptedFiles} />
+          </Paper>
+        </div>
       ),
     },
     {
       title: "Publish",
       content: (
-        <>
+        <Paper sx={{ p: 4, mt: 2 }}>
           <MemeCaption file={file} setConfig={setConfig} />
-        </>
+        </Paper>
       ),
     },
   ];
 
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          flexGrow: 1,
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        <CircularProgress />
-        <Typography style={{ marginTop: "32px" }}>{loadingMessage}</Typography>
-      </Box>
-    );
-  }
-  // <div style={{ maxWidth: "512px", margin: "auto", padding: "32px" }}>
-
   // </div>
   return (
-    <Box sx={{ width: "100%" }}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "75vh" }}
-      >
-        <Grid item xs={3}>
-          {/* <Stepper activeStep={activeStep}>
-        {steps.map((step, index) => {
-          const { title } = step;
-          const stepProps: any = {};
-          const labelProps: any = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={title} {...stepProps}>
-              <StepLabel {...labelProps}>{title}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper> */}
-
+    <Box sx={{ width: "100%", maxWidth: "1024px" }}>
+      <Grid container spacing={0} direction="column">
+        <Grid item xs={12}>
           {activeStep === steps.length ? (
             <React.Fragment>
               <Typography sx={{ mt: 2, mb: 1 }}>
@@ -175,11 +125,8 @@ export const MemeStepper = () => {
               </Box>
             </React.Fragment>
           ) : (
-            <div style={{ maxWidth: "512px", margin: "auto" }}>
-              <div style={{ marginTop: "64px" }}>
-                {steps[activeStep].content}
-              </div>
-              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+            <div>
+              <Box sx={{ display: "flex", flexDirection: "row" }}>
                 {activeStep !== 0 && (
                   <Button
                     color="inherit"
@@ -187,7 +134,7 @@ export const MemeStepper = () => {
                     onClick={handleBack}
                     sx={{ mr: 1 }}
                   >
-                    Back
+                    Cancel
                   </Button>
                 )}
 
@@ -198,15 +145,18 @@ export const MemeStepper = () => {
                   </Button>
                 )}
 
-                <Button
-                  onClick={handleNext}
-                  disabled={!file}
-                  variant={file ? "contained" : undefined}
-                  color={file ? "secondary" : "primary"}
-                >
-                  {activeStep === steps.length - 1 ? "Publish" : "Next"}
-                </Button>
+                {activeStep !== 0 && (
+                  <Button
+                    onClick={handleNext}
+                    disabled={!file}
+                    variant={file ? "contained" : undefined}
+                    color={file ? "secondary" : "primary"}
+                  >
+                    {activeStep === steps.length - 1 ? "Publish" : "Next"}
+                  </Button>
+                )}
               </Box>
+              <div>{steps[activeStep].content}</div>
             </div>
           )}
         </Grid>

@@ -5,7 +5,7 @@ import { lightBlue } from "@mui/material/colors";
 import Particles from "react-tsparticles";
 
 import { Box } from "@mui/material";
-const drawerWidth = 240;
+
 export const ParticlesBlock = ({ sx, children }: any) => {
   const graphColor = lighten(lightBlue["500"], 0.7);
 
@@ -116,10 +116,6 @@ export const ParticlesBlock = ({ sx, children }: any) => {
           display: "flex",
           flexGrow: 1,
         }}
-        // sx={{
-        //   width: { sm: `calc(100% - ${drawerWidth}px)` },
-        //   marginLeft: `-${drawerWidth}px`,
-        // }}
       >
         {children}
       </Box>

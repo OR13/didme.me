@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-
 import axios from "axios";
 import {
   CircularProgress,
@@ -9,12 +8,20 @@ import {
   Hidden,
   Box,
   Button,
+  Stack,
+  Paper,
 } from "@mui/material";
 
 import { useRouter } from "next/router";
-import SendIcon from "@mui/icons-material/Send";
 import SourceIcon from "@mui/icons-material/Source";
+import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 
+import { colors } from "@mui/material";
+
+import Meta from "./meta";
+declare var window: any;
 export const ResolutionResult = ({ did }: any) => {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
@@ -41,62 +48,130 @@ export const ResolutionResult = ({ did }: any) => {
   }, [did]);
   if (loading) {
     return (
-      <Box style={{ display: "flex", flexGrow: 1, flexDirection: "row" }}>
-        <CircularProgress />
-        <Typography style={{ marginLeft: "16px", marginTop: "8px" }}>
-          Resolving DID... due to IPFS being decentralized this may take
-          minutes.
-        </Typography>
-      </Box>
+      <>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress />
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Typography>Resolving from IPFS... this may take minutes.</Typography>
+        </Box>
+      </>
     );
   }
 
   if (!resolution) {
-    return <div>Resolution failed for {did}</div>;
+    return (
+      <>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+          <Typography>Resolution failed for: {did}</Typography>
+        </Box>
+      </>
+    );
   }
 
   return (
-    <>
-      <div>
+    <Box sx={{ p: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Link href={resolution.didDocumentMetadata.image}>
+          <img
+            src={resolution.didDocumentMetadata.image}
+            alt="meme image"
+            style={{ width: "100%", maxWidth: "720px", marginTop: "8px" }}
+          />
+        </Link>
+      </Box>
+
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Hidden smDown>
-          <div style={{ wordBreak: "break-all" }}>
+          <div
+            style={{
+              wordBreak: "break-all",
+              marginTop: "16px",
+
+              fontSize: "0.8em",
+            }}
+          >
             <Link href={resolution.didDocumentMetadata.image}>
               {resolution.didDocumentMetadata.image}
             </Link>
           </div>
         </Hidden>
+      </Box>
 
-        <Link href={resolution.didDocumentMetadata.image}>
-          <img
-            src={resolution.didDocumentMetadata.image}
-            alt="meme image"
-            style={{ width: "100%", marginTop: "8px" }}
-          />
-        </Link>
-        <div>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
+        <Stack spacing={2} direction="row" justifyContent={"center"}>
           <Button
             onClick={() => {
               router.push("/api/" + resolution.didDocument.id);
             }}
             variant="outlined"
-            color={"secondary"}
             endIcon={<SourceIcon />}
           >
-            View Source
+            DID Source
           </Button>
+
           <Button
-            style={{ marginLeft: "8px" }}
             onClick={() => {
-              router.push("/e/" + resolution.didDocument.id);
+              const did = resolution.didDocument.id;
+              const id = did.split("did:meme:").pop();
+              const keywords = ["#did:meme", "#" + id];
+              const encodedQuery = keywords
+                .map(encodeURIComponent)
+                .join("%20%2B%20");
+              const url = `https://twitter.com/search?q=${encodedQuery}&src=typed_query`;
+              window.open(url);
             }}
-            variant="contained"
-            color={"secondary"}
-            endIcon={<SendIcon />}
+            variant="outlined"
+            endIcon={<TwitterIcon />}
           >
-            Encrypt
+            Recent Tweets
           </Button>
-        </div>
-      </div>
-    </>
+
+          {resolution.didDocumentMetadata.ethereum && (
+            <Button
+              onClick={() => {
+                const url = `https://ropsten.etherscan.io/address/${resolution.didDocumentMetadata.ethereum.address}`;
+                window.open(url);
+              }}
+              variant="outlined"
+              color={"secondary"}
+              endIcon={<MonetizationOnIcon />}
+            >
+              Ethereum Activity
+            </Button>
+          )}
+        </Stack>
+      </Box>
+
+      {window.ethereum && resolution.didDocumentMetadata.ethereum && (
+        <>
+          <Paper sx={{ mt: 4, p: 4, bgcolor: colors.grey["900"] }}>
+            <Meta resolution={resolution} />
+          </Paper>
+        </>
+      )}
+
+      {!window.ethereum && resolution.didDocumentMetadata.ethereum && (
+        <>
+          <Paper sx={{ mt: 4, p: 4, bgcolor: colors.grey["800"] }}>
+            <Typography sx={{ mb: 2 }} variant={"h6"}>
+              Install MetaMask to unlock experimental features.
+            </Typography>
+
+            <Button
+              onClick={() => {
+                const url = `https://docs.metamask.io/guide/`;
+                window.open(url);
+              }}
+              variant="outlined"
+              color={"secondary"}
+              endIcon={<ExtensionRoundedIcon />}
+            >
+              Get Started
+            </Button>
+          </Paper>
+        </>
+      )}
+    </Box>
   );
 };

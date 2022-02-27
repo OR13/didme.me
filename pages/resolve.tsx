@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { AppPage } from "../components/app-page";
+
 import React from "react";
 import { Box, TextField } from "@mui/material";
 
@@ -11,9 +11,10 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { useRouter } from "next/router";
-import { ipfsGateway } from "../core/ipfs";
 
 import { GateWaySelect } from "../components/gateway-select";
+
+import AppPage from "../components/app-page";
 
 const Resolve: NextPage = () => {
   const router = useRouter();
@@ -36,16 +37,7 @@ const Resolve: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppPage>
-        {" "}
-        <Box
-          style={{
-            marginTop: "64px",
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-          }}
-        >
+        <Box sx={{ maxWidth: "720px" }}>
           <TextField
             style={{ marginTop: "32px" }}
             label="DID"
@@ -58,7 +50,11 @@ const Resolve: NextPage = () => {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton aria-label="Resolve DID" onClick={handleResolve}>
+                  <IconButton
+                    aria-label="Resolve DID"
+                    onClick={handleResolve}
+                    color={"primary"}
+                  >
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>

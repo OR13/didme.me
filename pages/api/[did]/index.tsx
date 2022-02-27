@@ -13,6 +13,6 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const { did } = req.query;
-  const result = await getResolutionResult(did as string);
+  const result: Data = await getResolutionResult(did as string);
   res.status(200).json(result);
 }

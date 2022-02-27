@@ -1,0 +1,4 @@
+DidResolutionResponse:
+  $ref: "./DidResolutionResponse.yaml"
+Error:
+  $ref: "./Error.yaml"
