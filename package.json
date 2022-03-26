@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@transmute/did-key.js": "^0.3.0-unstable.5",
+    "@transmute/did-web": "^0.7.0-unstable.57",
     "@transmute/json-web-signature": "0.7.0-unstable.37",
     "@transmute/jsonld-document-loader": "^0.2.0",
     "@transmute/vc.js": "0.7.0-unstable.37",

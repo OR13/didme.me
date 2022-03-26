@@ -2,11 +2,15 @@ import { client, ipfsGateway } from "./ipfs";
 import concat from "it-concat";
 import { documentLoader } from "./documentLoader";
 import { bech32 } from "bech32";
+import DIDWeb from "@transmute/did-web";
 const bs58 = require("bs58");
 
 var f5stego = require("f5stegojs");
 
 export const resolve = async (did: string) => {
+  if (did.startsWith("did:web")) {
+    return { didDocument: await DIDWeb.resolve(did) };
+  }
   did = did.split("#")[0];
   const decoded = bech32.decode(did);
   const decodedCid = bs58.encode(bech32.fromWords(decoded.words));

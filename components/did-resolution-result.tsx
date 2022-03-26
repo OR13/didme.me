@@ -17,11 +17,15 @@ import SourceIcon from "@mui/icons-material/Source";
 import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import ImageIcon from "@mui/icons-material/Image";
 
 import ExportPanel from "./export-panel";
 import { colors } from "@mui/material";
 
 import Meta from "./meta";
+
+import * as didWeb from "../core/didWebConverter";
+
 declare var window: any;
 export const ResolutionResult = ({ did }: any) => {
   const router = useRouter();
@@ -35,13 +39,7 @@ export const ResolutionResult = ({ did }: any) => {
             accept: "application/did+json",
           },
         });
-
         const resultData = res.data as any;
-        const localGateWay: any = localStorage.getItem("ipfs.gateway");
-        if (localGateWay) {
-          const hash = resultData.didDocumentMetadata.image.split("/").pop();
-          resultData.didDocumentMetadata.image = localGateWay + "/ipfs/" + hash;
-        }
         setResolution(resultData);
         setLoading(false);
       })();
@@ -54,7 +52,19 @@ export const ResolutionResult = ({ did }: any) => {
           <CircularProgress />
         </Box>
         <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-          <Typography>Resolving from IPFS... this may take minutes.</Typography>
+          {did.startsWith("did:web") ? (
+            <>
+              {" "}
+              <Typography>Resolving from Web</Typography>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Typography>
+                Resolving from IPFS... this may take minutes.
+              </Typography>
+            </>
+          )}
         </Box>
       </>
     );
@@ -141,6 +151,20 @@ export const ResolutionResult = ({ did }: any) => {
               Ethereum Activity
             </Button>
           )}
+
+          {resolution.didDocument.id.startsWith("did:web") && (
+            <Button
+              onClick={() => {
+                const didMeme = resolution.didDocument.alsoKnownAs[0];
+                router.push("/" + didMeme);
+              }}
+              variant="outlined"
+              color={"secondary"}
+              endIcon={<ImageIcon />}
+            >
+              Back to did:meme
+            </Button>
+          )}
         </Stack>
       </Box>
 
@@ -173,7 +197,7 @@ export const ResolutionResult = ({ did }: any) => {
           </Paper>
         </>
       )}
-      <ExportPanel />
+      {!resolution.didDocument.id.startsWith("did:web") && <ExportPanel />}
     </Box>
   );
 };
