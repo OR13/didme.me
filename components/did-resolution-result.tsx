@@ -18,6 +18,7 @@ import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 
+import ExportPanel from "./export-panel";
 import { colors } from "@mui/material";
 
 import Meta from "./meta";
@@ -172,6 +173,7 @@ export const ResolutionResult = ({ did }: any) => {
           </Paper>
         </>
       )}
+      <ExportPanel />
     </Box>
   );
 };
