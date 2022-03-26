@@ -1,6 +1,10 @@
 ## Welcome to DID MEME
 
-View on [GitHub](https://github.com/OR13/didme.me).
+View the Source Code on [GitHub](https://github.com/OR13/didme.me).
+
+Read the Documentation on [GitHub](https://or13.github.io/didme.me/).
+
+Open the [Web App](https://didme.me).
 
 ### Using GitHub Pages
 
