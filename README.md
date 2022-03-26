@@ -46,6 +46,10 @@ Once you have enabled publishing to pages, make sure to update your README
 
 You should review [Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions).
 
+If you finished setting up github pages, you have already started using GitHub actions.
+
+Actions help you program automation associated with your memes.
+
 There are many actions you might find useful, here is a short list to start with.
 
 - [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
