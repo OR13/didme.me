@@ -1,0 +1,20 @@
+title: DID Meme
+description: Steganographic Decentralized Identifiers using IPFS
+url: "https://or13.github.io/didme.me/"
+
+github:
+  private: false
+  license:
+    name: Apache-2.0
+  repository_url: "https://github.com/or13/didme.me"
+
+defaults:
+  - scope:
+      path: "**/*.*"
+    values:
+      sitemap: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
