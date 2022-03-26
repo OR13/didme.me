@@ -3,15 +3,12 @@ import concat from "it-concat";
 import { documentLoader } from "./documentLoader";
 import { bech32 } from "bech32";
 import DIDWeb from "@transmute/did-web";
+import * as didWeb from "../core/didWebConverter";
 const bs58 = require("bs58");
 
 var f5stego = require("f5stegojs");
 
-export const resolve = async (did: string) => {
-  if (did.startsWith("did:web")) {
-    return { didDocument: await DIDWeb.resolve(did) };
-  }
-  did = did.split("#")[0];
+const resolveDidMeme = async (did: string) => {
   const decoded = bech32.decode(did);
   const decodedCid = bs58.encode(bech32.fromWords(decoded.words));
   // depending on the client network, this CID may take a while to find...
@@ -45,4 +42,26 @@ export const resolve = async (did: string) => {
       image: `${ipfsGateway}/ipfs/${decodedCid}`,
     },
   };
+};
+export const resolve = async (did: string) => {
+  did = did.split("#")[0];
+
+  if (did.startsWith("did:meme")) {
+    return resolveDidMeme(did);
+  }
+
+  if (did.startsWith("did:web")) {
+    const didMeme = didWeb.didMeme(did);
+    let didDocument = await DIDWeb.resolve(did);
+
+    const { didDocumentMetadata } = await resolveDidMeme(didMeme);
+    didDocument = {
+      "@context": didDocument["@context"],
+      id: didDocument.id,
+      alsoKnownAs: [didMeme],
+      ...didDocument,
+    };
+    return { didDocument, didDocumentMetadata };
+  }
+  throw new Error("unsupported iri: " + did);
 };
