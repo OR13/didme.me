@@ -50,6 +50,12 @@ If you finished setting up github pages, you have already started using GitHub a
 
 Actions help you program automation associated with your memes.
 
+You can even use actions to perform cryptographic operations such as:
+
+- Signing and Verifying Verifiable Credential
+- Transferring Crypto Currency
+- Encrypting and Decrypting Content
+
 There are many actions you might find useful, here is a short list to start with.
 
 - [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)
