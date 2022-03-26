@@ -1,144 +1,34 @@
 ## [didme.me](https://didme.me)
 
-> The Decentralized Identifiers (DIDs) are a new type of globally unique identifier designed to enable individuals and organizations to generate our own identifiers using systems we trust, and to prove control of those identifiers (authenticate) using cryptographic proofs.
+🚧 This project is experimental.
 
-- [W3C DID Core Spec](https://www.w3.org/TR/did-core/)
+Learn more about [Verifable Data](https://github.com/transmute-industries/verifiable-data).
 
-- [W3C CCG Mailing List Announcement](https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0092.html)
+### Examples
 
-### [DID Meme Example](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
+- [did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)
 
-### Meta Mask Interoperability
+#### Standards
 
-🔥🔥 Highly Experimental 🔥🔥
+- [W3C Decentralized Identifiers](https://www.w3.org/TR/did-core/)
+- [W3C Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
+- [JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+- [JSON Web Key (JWK)](https://datatracker.ietf.org/doc/html/rfc7517)
+- [Bitcoin Improvement Protocol 39](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki)
+- [Bitcoin Improvement Protocol 44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki)
 
-You can set the Key Type to "secp256k1" and the "HD Path" to "m/44'/60'/0'/0/0".
+#### Community Drafts
 
-If you import the mnemonic into metamask, you can control the associated ethereum address.
+- [W3C CCG did:meme Mailing List Announcement](https://lists.w3.org/Archives/Public/public-credentials/2020Jul/0092.html)
+- [W3C CCG did:key method spec](https://github.com/w3c-ccg/did-method-key)
+- [W3C CCG did:web method spec](https://github.com/w3c-ccg/did-method-web)
+- [W3C CCG Verifiable Credentials API](https://github.com/w3c-ccg/vc-api)
+- [W3C CCG Traceability Vocabulary](https://w3id.org/traceability)
+- [W3C CCG Traceability Interoperability Profile](https://w3id.org/traceability/interoperability)
 
-MetaMask will not let you change the hd path, and does not support Ed25519, so be carefuly exploring this feature.
+#### Powered By
 
-Technically, this interop is "did:key" interop since any secp256k1 public key has an ethereum address.
-
-Saddly, not all ethereym addresses are easily accessed via wallets such as metamask,
-so it is possible to generate an address that won't be easy to recover funds from without some scripting skill.
-
-Here are some examples:
-
-- [did:meme:1zgsfmn2g4797kzd4k6mkxq5d3u28cysj8m764j5g2z2tfpeyggdmhvq383e7u](https://didme.me/did:meme:1zgsfmn2g4797kzd4k6mkxq5d3u28cysj8m764j5g2z2tfpeyggdmhvq383e7u).
-
-- [vc issued by did](https://didme.me/v/eyJhbGciOiJFUzI1NksiLCJraWQiOiJkaWQ6bWVtZToxemdzemcyMGhqcDhwcWdmcTNuN3VwaGYzeTJmNTZxdHhjY2E0Z2w2ODdndXRsOTdwY204Z25ncThjem5xYSN6UTNzaFFxSkNuYjV6czUzek5XelZHN0NTTGhQc1lhc05ielpxM3B2bktWUFhSU3F3In0.eyJpc3MiOiJkaWQ6bWVtZToxemdzemcyMGhqcDhwcWdmcTNuN3VwaGYzeTJmNTZxdHhjY2E0Z2w2ODdndXRsOTdwY204Z25ncThjem5xYSIsInN1YiI6ImRpZDpleGFtcGxlOjEyMyIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sImlkIjoidXJuOnV1aWQ6MDdhYTk2OWUtYjQwZC00YzFiLWFiNDYtZGVkMjUyMDAzZGVkIiwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6bWVtZToxemdzemcyMGhqcDhwcWdmcTNuN3VwaGYzeTJmNTZxdHhjY2E0Z2w2ODdndXRsOTdwY204Z25ncThjem5xYSIsImlzc3VhbmNlRGF0ZSI6IjIwMTAtMDEtMDFUMTk6MjM6MjRaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZXhhbXBsZToxMjMifX0sImp0aSI6InVybjp1dWlkOjA3YWE5NjllLWI0MGQtNGMxYi1hYjQ2LWRlZDI1MjAwM2RlZCIsIm5iZiI6MTI2MjM3MzgwNH0.KKFxLeSvl5H9p3bvK14bHvbDWNKEOdrXfREgyBK9xmUO7aaDk7p3cmhfo57P06__4791oB2xOIACOWVzQ1woRQ)
-
-<img src="./metamask-interop.png"/>
-
-## DID Method Spec
-
-`did:meme` is a deterministic transformation of `did:key`, that uses IPFS, image content and bech32.
-
-### DID Format
-
-```
-did-meme-format := did:meme:<bech32-value>
-bech32-value    := [a-zA-HJ-NP-Z0-9]+
-```
-
-The `bech32-value` is an encoded [multihash](https://multiformats.io/multihash/).
-
-The `multihash` is a content identifier for an image.
-
-The image contains a steganographically embedded `did:key`.
-
-See [did-key](https://w3c-ccg.github.io/did-method-key/#format).
-
-Another way of representing the `did:meme` identifier encoding:
-
-```
-did:meme:<bech32(
-    multihash(
-        stego-embed(image, did:key)
-    )
-)>
-```
-
-### DID Operations
-
-See [did-key](https://w3c-ccg.github.io/did-method-key/#operations).
-
-#### Create
-
-1. Generate a `did:key`
-2. Steganographically embed the public key multicodec representation in a meme.
-3. Upload the meme to ipfs.
-4. Transform the CID to a `did:meme` with bech32.
-5. Update the did document to use the `did:meme` identifier.
-
-#### Read
-
-1. Convert the bech32 id to an ipfs CID.
-2. Resolve the image.
-3. Extract the `did:key` multicodec.
-4. Construct the `did:key` document from the identifier.
-5. Update the did document to use the `did:meme` identifier.
-
-#### Update
-
-Not supported.
-
-#### Deactivate
-
-Not supported.
-
-### Security and Privacy Considerations
-
-See [did-key](https://w3c-ccg.github.io/did-method-key/#security-and-privacy-considerations)
-
-#### Security
-
-Because update and deactivate are not supported, did:meme should only be used for very short lived interactions, or just lulz.
-
-Because `did:meme` identifiers are a super set of `did:key`, it is possible for multiple `did:meme` to map to the same `did:key`... This can be problematic when private key compromise has occured.
-
-Generally speaking, `did:meme` has similar or weaker security properties compared with `did:key`.
-
-#### Privacy
-
-Be careful to strip XIF data or other meta data from images before constructing `did:meme`.
-
-Do not use images that identify physical locations or people.
-
-# Boilerplate
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Transmute](https://transmute.industries/)
+- [Material UI](https://mui.com/)
+- [Next.js](https://nextjs.org/)
+- [Vercel](https://vercel.com/)

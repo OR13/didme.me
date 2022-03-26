@@ -1,54 +1,105 @@
-import { Typography, Box, Paper } from "@mui/material";
+import { Typography, Box, Paper, Link } from "@mui/material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import IconButton from "@mui/material/IconButton";
+import ListItemText from "@mui/material/ListItemText";
+import Avatar from "@mui/material/Avatar";
 import dynamic from "next/dynamic";
-import * as didWeb from "../core/didWebConverter";
-import { useRouter } from "next/router";
 
+import { useRouter } from "next/router";
+import FolderIcon from "@mui/icons-material/Folder";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 const ExportManagerEditor = dynamic(() => import("./export-manager-editor"), {
   ssr: false,
 });
 
-// const apiRoot = `https://didme.me`;
-const apiRoot = `http://localhost:3000`;
 const ExportPanel = () => {
   const router = useRouter();
-  const { u, did }: any = router.query;
+  const { did }: any = router.query;
 
-  // \`\`\`bash
-
-  // echo "0. enter github username"
-  // read GITHUB_USERNAME
-  // echo
-  //
-
-  // /bin/bash -c "$(curl -fsSL ${apiRoot}/api/did:meme:1zgsfmn2g4797kzd4k6mkxq5d3u28cysj8m764j5g2z2tfpeyggdmhvq383e7u/install.sh?u=${})"
-  // \`\`\`
-
-  const newDid = didWeb.didWeb(did, u);
-
-  const script = `# Export
-\`\`\`bash  
-/bin/bash -c "$(curl -fsSL ${apiRoot}/api/${did}/${u}/install.sh)"
-\`\`\`
-
-## Next Steps
-
-Once the export completes you will need to review your new did:web here:
-
-- [new did](${apiRoot}/${newDid})
-
-  `;
   return (
-    <Paper sx={{ p: 1 }}>
-      <Typography variant="h1">Export</Typography>
+    <Paper sx={{ p: 4, mt: 2 }}>
       <Box mt={2}>
-        <Typography variant="body1" gutterBottom>
-          You can convert a did:meme to a did:web.
+        <Typography variant="h4" sx={{ mb: 1 }}>
+          Upgrade to did web
         </Typography>
-        <Typography variant="body1">
-          This will allow you to setup service integrations and use other
-          features of github such as verifiable actions.
+        <Typography variant="body1" sx={{ mb: 1 }}>
+          Unlock service endpoint integrations and other DID integrations via
+          GitHub.
         </Typography>
-        <ExportManagerEditor value={script}>Hey</ExportManagerEditor>
+
+        <List dense={true}>
+          <ListItem
+            secondaryAction={
+              <IconButton
+                edge="end"
+                aria-label="read-more"
+                href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ReadMoreIcon />
+              </IconButton>
+            }
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Decentralized Identifiers"
+              secondary={
+                "Web based Decentralized Identifiers powerd by GitHub Pages"
+              }
+            />
+          </ListItem>
+          <ListItem
+            secondaryAction={
+              <IconButton
+                edge="end"
+                aria-label="read-more"
+                href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ReadMoreIcon />
+              </IconButton>
+            }
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <FolderIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Verifiable Actions"
+              secondary={"Verifiable Credentials with GitHub Workflows"}
+            />
+          </ListItem>
+        </List>
+
+        <Typography variant="body2" sx={{ mb: 2 }}>
+          In general, you should avoid running random scripts from the internet.
+          <br />
+          You can browse the source of the script you are about to run{" "}
+          <Link
+            href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            here
+          </Link>
+          .
+        </Typography>
+
+        <ExportManagerEditor
+          value={`gh repo create memes --template https://github.com/OR13/did-web-github-did-meme --public --clone
+cd memes
+./scripts/install.sh ${did}
+  `}
+        />
       </Box>
     </Paper>
   );

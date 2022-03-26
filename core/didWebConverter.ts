@@ -1,5 +1,4 @@
 export const didWeb = (didMeme: string, username: string) => {
-  return `did:web:${username.toLowerCase()}.github.io:${didMeme
-    .split(":")
-    .pop()}`;
+  const id = didMeme.split(":").pop();
+  return `did:web:${username.toLowerCase()}.github.io:memes:${id}`;
 };
