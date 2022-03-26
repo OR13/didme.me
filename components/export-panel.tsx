@@ -35,7 +35,7 @@ const ExportPanel = () => {
               <IconButton
                 edge="end"
                 aria-label="read-more"
-                href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
+                href="https://or13.github.io/didme.me/#using-github-pages"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -85,7 +85,7 @@ const ExportPanel = () => {
           <br />
           You can browse the source of the script you are about to run{" "}
           <Link
-            href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
+            href="https://or13.github.io/didme.me/#using-github-actions"
             target="_blank"
             rel="noopener noreferrer"
           >
