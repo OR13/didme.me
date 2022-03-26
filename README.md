@@ -4,6 +4,10 @@
 
 Learn more about [Verifable Data](https://github.com/transmute-industries/verifiable-data).
 
+### About DID Meme
+
+See the [Documentation](https://or13.github.io/didme.me)
+
 ### Examples
 
 - [did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w](https://didme.me/did:meme:1zgswzdje885tzr8408m37sjmaa0sthw265ty6hmwzmau48kd809zzrgra4w5w)

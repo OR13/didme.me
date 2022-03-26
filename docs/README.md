@@ -26,6 +26,14 @@ There are many actions you might find useful, here is a short list to start with
 - [git-auto-commit-action](https://github.com/stefanzweifel/git-auto-commit-action)
 - [verifiable-actions](https://github.com/transmute-industries/verifiable-actions)
 
+### Using MetaMask
+
+See the section on [experimental metamask interop](./metamask.md)
+
+### Review the Method Specification
+
+See the [did:meme method specification](./did-method-spec.md)
+
 ### Using Vercel
 
 ##### Coming Soon!
