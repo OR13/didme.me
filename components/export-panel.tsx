@@ -8,7 +8,7 @@ import Avatar from "@mui/material/Avatar";
 import dynamic from "next/dynamic";
 
 import { useRouter } from "next/router";
-import FolderIcon from "@mui/icons-material/Folder";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 const ExportManagerEditor = dynamic(() => import("./export-manager-editor"), {
   ssr: false,
@@ -19,10 +19,10 @@ const ExportPanel = () => {
   const { did }: any = router.query;
 
   return (
-    <Paper sx={{ p: 4, mt: 2 }}>
+    <Paper sx={{ p: 4, mt: 8 }}>
       <Box mt={2}>
         <Typography variant="h4" sx={{ mb: 1 }}>
-          Upgrade to did web
+          Upgrade to did:web
         </Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>
           Unlock service endpoint integrations and other DID integrations via
@@ -45,7 +45,7 @@ const ExportPanel = () => {
           >
             <ListItemAvatar>
               <Avatar>
-                <FolderIcon />
+                <GitHubIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -70,7 +70,7 @@ const ExportPanel = () => {
           >
             <ListItemAvatar>
               <Avatar>
-                <FolderIcon />
+                <GitHubIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -85,7 +85,7 @@ const ExportPanel = () => {
           <br />
           You can browse the source of the script you are about to run{" "}
           <Link
-            href="https://or13.github.io/didme.me/#using-github-actions"
+            href="https://github.com/OR13/did-web-github-did-meme/blob/main/scripts/install.sh"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -95,9 +95,8 @@ const ExportPanel = () => {
         </Typography>
 
         <ExportManagerEditor
-          value={`gh repo create memes --template https://github.com/OR13/did-web-github-did-meme --public --clone
-cd memes
-./scripts/install.sh ${did}
+          value={`gh repo clone memes || gh repo create memes --template https://github.com/OR13/did-web-github-did-meme --public --clone
+cd memes && ./scripts/install.sh ${did}
   `}
         />
       </Box>
