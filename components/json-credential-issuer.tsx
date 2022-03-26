@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import CreateIcon from "@mui/icons-material/Create";
 import { defaultMnemonic, defaultIssuer } from "../core/defaultMnemonic";
 
-import { issueCredential } from "../vc-api";
+import { issueCredential } from "../core/vc-api";
 
 import AdvancedKeyType from "./advanced-key-type";
 

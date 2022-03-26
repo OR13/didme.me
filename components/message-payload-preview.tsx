@@ -1,5 +1,5 @@
-import { verifyCredential } from "../vc-api";
-import { verifyPresentation } from "../vc-api";
+import { verifyCredential } from "../core/vc-api";
+import { verifyPresentation } from "../core/vc-api";
 
 import { CredentialPreview } from "./credential-preview";
 import { PresentationPreview } from "./presentation-preview";
