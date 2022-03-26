@@ -1,6 +1,6 @@
 import { verifiable } from "@transmute/vc.js";
 import { getSuite } from "./getSuite";
-import { documentLoader } from "../core/documentLoader";
+import { documentLoader } from "../documentLoader";
 export const verifyCredential = async ({
   verifiableCredential,
   format,

@@ -1,4 +1,4 @@
-import { getKeysForMnemonic } from "../core/getKeysForMnemonic";
+import { getKeysForMnemonic } from "../getKeysForMnemonic";
 import { getSuite } from "./getSuite";
 
 export const getSigningSuite = async ({ keyType, mnemonic, hdpath }: any) => {

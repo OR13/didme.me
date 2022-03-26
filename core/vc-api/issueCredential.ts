@@ -1,6 +1,6 @@
 import { verifiable } from "@transmute/vc.js";
 import { getCredentialSuite } from "./getCredentialSuite";
-import { documentLoader } from "../core/documentLoader";
+import { documentLoader } from "../documentLoader";
 export const issueCredential = async ({
   credential,
   mnemonic,

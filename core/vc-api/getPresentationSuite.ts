@@ -1,4 +1,4 @@
-import { resolve } from "../core/resolve";
+import { resolve } from "../resolve";
 import { getSigningSuite } from "./getSigningSuite";
 
 export const getPresentationSuite = async ({

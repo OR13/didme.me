@@ -1,6 +1,6 @@
 import { verifiable } from "@transmute/vc.js";
 import { getPresentationSuite } from "./getPresentationSuite";
-import { documentLoader } from "../core/documentLoader";
+import { documentLoader } from "../documentLoader";
 export const provePresentation = async ({
   presentation,
   options,
