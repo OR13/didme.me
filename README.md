@@ -1,5 +1,7 @@
 ## [didme.me](https://didme.me)
 
+[![Documentation](https://github.com/OR13/didme.me/actions/workflows/docs.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/docs.yml)
+
 🚧 This project is experimental.
 
 Learn more about [Verifable Data](https://github.com/transmute-industries/verifiable-data).
