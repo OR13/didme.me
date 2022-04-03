@@ -205,8 +205,9 @@ export const ResolutionResult = ({ did }: any) => {
         </>
       )}
 
-      <MintNFT />
       {!resolution.didDocument.id.startsWith("did:web") && <ExportPanel />}
+
+      <MintNFT />
     </Box>
   );
 };

@@ -4,6 +4,15 @@ import { useRouter } from "next/router";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import IconButton from "@mui/material/IconButton";
+import ListItemText from "@mui/material/ListItemText";
+import Avatar from "@mui/material/Avatar";
+
+import ImageIcon from "@mui/icons-material/Image";
+import ReadMoreIcon from "@mui/icons-material/ReadMore";
 
 const Web3 = require("web3");
 declare var window: any;
@@ -45,6 +54,32 @@ const MintNFT = () => {
           once per Token URI.
         </Typography>
         <ToastContainer />
+
+        <List dense={true}>
+          <ListItem
+            secondaryAction={
+              <IconButton
+                edge="end"
+                aria-label="read-more"
+                href="https://or13.github.io/didme.me/#nft-support"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ReadMoreIcon />
+              </IconButton>
+            }
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <ImageIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="NFT"
+              secondary={"Minting NFTs is powered by MetaMask"}
+            />
+          </ListItem>
+        </List>
         <Button
           onClick={async () => {
             const web3 = await getWeb3();
