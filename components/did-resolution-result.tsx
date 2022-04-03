@@ -123,11 +123,7 @@ export const ResolutionResult = ({ did }: any) => {
 
           <Button
             onClick={() => {
-              const did = resolution.didDocument.id;
-              const keywords = [did];
-              const encodedQuery = keywords
-                .map(encodeURIComponent)
-                .join("%20%2B%20");
+              const encodedQuery = encodeURIComponent(window.location.href);
               const url = `https://twitter.com/search?q=${encodedQuery}&src=typed_query`;
               window.open(url);
             }}
