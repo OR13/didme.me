@@ -25,6 +25,10 @@ so it is possible to generate an address that won't be easy to recover funds fro
 
 ### NFT Support
 
+You can mint a DID Meme NFT from a web browser with MetaMask enabled.
+
+<img src="./did-meme-mint.png"/>
+
 Image previews are currently only available in MetaMask Mobile.
 
 Choose the "ropsten" network.
