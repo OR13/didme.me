@@ -31,9 +31,17 @@ const Resolve: NextPage = (props: any) => {
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta property="og:title" content={`${title}`} />
+        <meta property="og:url" content={`https://didme.me/${did}`} />
+        <meta property="og:description" content={`Decentralized Identifier`} />
         <meta
           property="og:image"
-          content={`https://didmeme.vercel.app/api/image/${didImage}`}
+          content={`https://didme.me/api/image/${didImage}`}
+        />
+        <meta
+          name="twitter:card"
+          content={`https://didme.me/api/image/${didImage}`}
         />
       </Head>
       <AppPage>
