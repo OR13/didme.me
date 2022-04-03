@@ -25,6 +25,8 @@ so it is possible to generate an address that won't be easy to recover funds fro
 
 ### NFT Support
 
+See the source code for the contract and deployment details [here](https://github.com/OR13/didme.me/tree/main/nft).
+
 You can mint a DID Meme NFT from a web browser with MetaMask enabled.
 
 <img src="./did-meme-mint.png"/>
