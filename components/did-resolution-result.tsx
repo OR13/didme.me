@@ -123,12 +123,7 @@ export const ResolutionResult = ({ did }: any) => {
 
           <Button
             onClick={() => {
-              const did = resolution.didDocument.id;
-              const id = did.split("did:meme:").pop();
-              const keywords = ["#" + id];
-              const encodedQuery = keywords
-                .map(encodeURIComponent)
-                .join("%20%2B%20");
+              const encodedQuery = encodeURIComponent(window.location.href);
               const url = `https://twitter.com/search?q=${encodedQuery}&src=typed_query`;
               window.open(url);
             }}
@@ -136,6 +131,19 @@ export const ResolutionResult = ({ did }: any) => {
             endIcon={<TwitterIcon />}
           >
             Recent Tweets
+          </Button>
+
+          <Button
+            onClick={() => {
+              const did = resolution.didDocument.id;
+              const tweet = `${window.location.href}...`;
+              const url = `https://twitter.com/intent/tweet?text=${tweet}`;
+              window.open(url);
+            }}
+            variant="outlined"
+            endIcon={<TwitterIcon />}
+          >
+            Share on Twitter
           </Button>
 
           {resolution.didDocumentMetadata.ethereum && (

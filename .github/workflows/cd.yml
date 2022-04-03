@@ -1,12 +1,14 @@
 name: Vercel
+
+# on: [push]
 on:
   push:
     branches:
       - main
-  # schedule:
-  #   # Every day at midnight
-  #   - cron: "0 0 * * *"
-  # workflow_dispatch:
+# schedule:
+#   # Every day at midnight
+#   - cron: "0 0 * * *"
+# workflow_dispatch:
 
 jobs:
   vercel:
