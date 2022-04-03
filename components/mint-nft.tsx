@@ -61,7 +61,7 @@ const MintNFT = () => {
               <IconButton
                 edge="end"
                 aria-label="read-more"
-                href="https://or13.github.io/didme.me/#nft-support"
+                href="https://or13.github.io/didme.me/metamask.html#nft-support"
                 target="_blank"
                 rel="noopener noreferrer"
               >
