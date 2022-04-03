@@ -19,12 +19,16 @@ export async function getServerSideProps(context: any) {
 
 const Resolve: NextPage = (props: any) => {
   const did: any = props.did;
-  const title = did ? did.substr(0, 9) + "..." + did.substr(-4) : "unknown";
+  const title = did ? did.substr(0, 16) + "..." + did.substr(-16) : "unknown";
 
   let didImage = did;
   if (did.startsWith("did:web")) {
     didImage = didWeb.didMeme(did);
   }
+
+  const url = `https://didme.me/${did}`;
+  const image = `https://didme.me/api/image/${didImage}`;
+  const description = `Decentralized Identifier powered by IPFS and Steganography`;
 
   return (
     <>
@@ -32,17 +36,16 @@ const Resolve: NextPage = (props: any) => {
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
 
-        <meta property="og:title" content={`${title}`} />
-        <meta property="og:url" content={`https://didme.me/${did}`} />
-        <meta property="og:description" content={`Decentralized Identifier`} />
-        <meta
-          property="og:image"
-          content={`https://didme.me/api/image/${didImage}`}
-        />
-        <meta
-          name="twitter:card"
-          content={`https://didme.me/api/image/${didImage}`}
-        />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={url} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:domain" content="didme.me" />
+        <meta name="twitter:url" content={url} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={image} />
       </Head>
       <AppPage>
         <ResolutionResult did={did} />
