@@ -1,6 +1,5 @@
 name: Vercel
 
-# on: [push]
 on:
   push:
     branches:
