@@ -41,7 +41,8 @@ const MintNFT = () => {
           Mint an NFT
         </Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>
-          Use MetaMask to mint an NFT for this DID.
+          Use MetaMask to mint an NFT for this DID. You cannot mint more than
+          once per Token URI.
         </Typography>
         <ToastContainer />
         <Button
@@ -49,10 +50,9 @@ const MintNFT = () => {
             const web3 = await getWeb3();
             const [account] = await getAccounts(web3);
             const contract = await NFT.getContract(web3);
-            const tx = await contract.methods
-              .awardItem(account, "https://didme.me/api/nft/" + did + "?dev=0")
+            await contract.methods
+              .awardItem(account, "https://didme.me/api/nft/" + did)
               .send({ from: account });
-            console.log(tx);
             toast("Wow so easy!");
           }}
         >
