@@ -1,10 +1,10 @@
 name: Vercel
 
-# on: [push]
-on:
-  push:
-    branches:
-      - main
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - main
 # schedule:
 #   # Every day at midnight
 #   - cron: "0 0 * * *"

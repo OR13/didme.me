@@ -20,11 +20,10 @@ import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import ImageIcon from "@mui/icons-material/Image";
 
 import ExportPanel from "./export-panel";
+import MintNFT from "./mint-nft";
 import { colors } from "@mui/material";
 
 import Meta from "./meta";
-
-import * as didWeb from "../core/didWebConverter";
 
 declare var window: any;
 export const ResolutionResult = ({ did }: any) => {
@@ -205,6 +204,8 @@ export const ResolutionResult = ({ did }: any) => {
           </Paper>
         </>
       )}
+
+      <MintNFT />
       {!resolution.didDocument.id.startsWith("did:web") && <ExportPanel />}
     </Box>
   );
