@@ -14,6 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import ImageIcon from "@mui/icons-material/Image";
 import ReadMoreIcon from "@mui/icons-material/ReadMore";
 
+import { Link } from "@mui/material";
 const Web3 = require("web3");
 declare var window: any;
 const getWeb3 = async (): Promise<any | false> => {
@@ -47,11 +48,14 @@ const MintNFT = () => {
     <Paper sx={{ p: 4, mt: 8 }}>
       <Box mt={2}>
         <Typography variant="h4" sx={{ mb: 1 }}>
-          Mint an NFT
+          Non Fungible Token
         </Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>
-          Use MetaMask to mint an NFT for this DID. You cannot mint more than
-          once per Token URI.
+          Use MetaMask to mint a Non Fungible Token (NFT) for this DID.
+        </Typography>
+
+        <Typography variant="body1" sx={{ mb: 1 }} color={"error"}>
+          Only on the Ropsten Ethereum Test Network.
         </Typography>
         <ToastContainer />
 
@@ -75,20 +79,34 @@ const MintNFT = () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="NFT"
-              secondary={"Minting NFTs is powered by MetaMask"}
+              primary="Contract"
+              secondary={
+                <Link
+                  href={`https://ropsten.etherscan.io/address/${"0x06778A58A073E5173fac00f1CD4C673CEb176fb8"}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  0x06778A58A073E5173fac00f1CD4C673CEb176fb8
+                </Link>
+              }
             />
           </ListItem>
         </List>
         <Button
+          variant={"contained"}
+          color={"secondary"}
           onClick={async () => {
-            const web3 = await getWeb3();
-            const [account] = await getAccounts(web3);
-            const contract = await NFT.getContract(web3);
-            await contract.methods
-              .awardItem(account, "https://didme.me/api/nft/" + did)
-              .send({ from: account });
-            toast("Wow so easy!");
+            try {
+              const web3 = await getWeb3();
+              const [account] = await getAccounts(web3);
+              const contract = await NFT.getContract(web3);
+              await contract.methods
+                .awardItem(account, "https://didme.me/api/nft/" + did)
+                .send({ from: account });
+              toast("Wow so easy!");
+            } catch (e) {
+              toast.error("Probably you need MetaMask!");
+            }
           }}
         >
           Mint NFT

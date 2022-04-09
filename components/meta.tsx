@@ -1,5 +1,7 @@
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
 import { useState } from "react";
 const Web3 = require("web3");
 declare var window: any;
@@ -72,6 +74,9 @@ const Meta = ({ resolution }: any) => {
 
   return (
     <>
+      <Typography variant="body1" sx={{ mb: 1 }} color={"error"}>
+        Only on the Ropsten Ethereum Test Network.
+      </Typography>
       <pre>{JSON.stringify({ address, balance }, null, 2)}</pre>
       <Stack direction="row" spacing={2}>
         <Button onClick={handleCheckBalance}>Check Balance</Button>

@@ -1,6 +1,13 @@
 import { resolve } from "./resolve";
 
 import { resolutionWithEthereum } from "./resolutionWithEthereum";
+
+import { resolutionWithNFTHistory } from "./resolutionWithNFTHistory";
+
+const withPostResolutionAnnoutations = async (resolution: any) => {
+  return resolutionWithEthereum(await resolutionWithNFTHistory(resolution));
+};
+
 export const getResolutionResult = async (did: string) => {
   const { didDocument, didDocumentMetadata } = await resolve(did);
 
@@ -16,5 +23,5 @@ export const getResolutionResult = async (did: string) => {
     },
     didDocumentMetadata,
   };
-  return resolutionWithEthereum(resolutionResult);
+  return withPostResolutionAnnoutations(resolutionResult);
 };
