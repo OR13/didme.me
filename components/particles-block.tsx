@@ -1,13 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
 import * as React from "react";
-import { lighten } from "@mui/material/styles";
-import { lightBlue } from "@mui/material/colors";
+import { yellow, blue } from "@mui/material/colors";
 import Particles from "react-tsparticles";
 
 import { Box } from "@mui/material";
 
 export const ParticlesBlock = ({ sx, children }: any) => {
-  const graphColor = lighten(lightBlue["500"], 0.7);
+  const nodeColor = yellow["A400"];
+
+  const edgeColor = blue["500"];
 
   const options = {
     particles: {
@@ -19,10 +19,13 @@ export const ParticlesBlock = ({ sx, children }: any) => {
         },
       },
       color: {
-        value: graphColor,
+        value: nodeColor,
       },
       shape: {
-        type: "circle",
+        type: "polygon",
+        polygon: {
+          nb_sides: 6,
+        },
       },
       opacity: {
         value: 0.5,
@@ -47,7 +50,7 @@ export const ParticlesBlock = ({ sx, children }: any) => {
       line_linked: {
         enable: true,
         distance: 100,
-        color: graphColor,
+        color: edgeColor,
         opacity: 0.4,
         width: 2,
       },
@@ -70,7 +73,7 @@ export const ParticlesBlock = ({ sx, children }: any) => {
       detect_on: "canvas",
       events: {
         onhover: {
-          enable: false,
+          enable: true,
           mode: "bubble",
         },
         onclick: {
@@ -94,11 +97,11 @@ export const ParticlesBlock = ({ sx, children }: any) => {
           speed: 3,
         },
         repulse: {
-          distance: 400,
+          distance: 50,
           duration: 0.4,
         },
         push: {
-          particles_nb: 4,
+          particles_nb: 1,
         },
         remove: {
           particles_nb: 2,

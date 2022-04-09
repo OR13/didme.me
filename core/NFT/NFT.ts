@@ -2,7 +2,15 @@ export const contractAddress = "0x06778A58A073E5173fac00f1CD4C673CEb176fb8";
 
 import artifact from "./DIDMemeNFT.json";
 
-import { init, close, getTokenIdFromUri, updateCache } from "./neo";
+import allowList from "./allowList.json";
+
+import {
+  init,
+  close,
+  getTokenIdFromUri,
+  updateCache,
+  getRecentNFTs,
+} from "./neo";
 
 export const getContract = async (web3: any) => {
   const contractInstance = new web3.eth.Contract(artifact.abi, contractAddress);
@@ -40,4 +48,23 @@ export const getHistory = async (did: string) => {
     count: history.length,
     items: history,
   };
+};
+
+export const getSummary = async () => {
+  const { NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD }: any = process.env;
+
+  await init(NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD);
+  const records = await getRecentNFTs();
+
+  const results = records
+    .map((r: any) => {
+      const did = r.uri.split("/").pop().split("?")[0];
+      return { did };
+    })
+    .filter((r: any) => {
+      return allowList.items.map((i: any) => i.did).includes(r.did);
+    });
+
+  await close();
+  return results;
 };

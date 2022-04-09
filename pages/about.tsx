@@ -18,9 +18,11 @@ const About: NextPage = () => {
       </Head>
 
       <AppPage>
-        <Paper sx={{ bgcolor: "text.disabled", p: 1 }}>
+        <Paper sx={{ bgcolor: "#fff", p: 4 }}>
           <div style={{ width: "100%", padding: "8px" }}>
-            <Typography variant={"h5"}>Powered By</Typography>
+            <Typography variant={"h5"} color={"primary"} sx={{ mb: 2 }}>
+              DID Meme is powered...
+            </Typography>
           </div>
           <Grid container spacing={8}>
             <Grid item>
@@ -65,6 +67,52 @@ const About: NextPage = () => {
                 />
               </a>
             </Grid>
+
+            <Grid item>
+              <a
+                href="https://metamask.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/metamask.svg"
+                  alt="MetaMask Logo"
+                  width={160}
+                  height={51}
+                />
+              </a>
+            </Grid>
+
+            <Grid item>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/twitter.png"
+                  alt="Twitter Logo"
+                  width={160}
+                  height={60}
+                />
+              </a>
+            </Grid>
+
+            <Grid item>
+              <a
+                href="https://etherscan.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src="/etherscan.svg"
+                  alt="Etherscan Logo"
+                  width={160}
+                  height={51}
+                />
+              </a>
+            </Grid>
+
             <Grid item>
               <a
                 href="https://mui.com/"

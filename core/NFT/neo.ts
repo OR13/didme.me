@@ -121,6 +121,19 @@ export const updateCache = async (
   return true;
 };
 
+export const getRecentNFTs = async () => {
+  const session = driver.session();
+  const query = `
+MATCH (s:Transaction)
+WHERE s.uri IS NOT NULL
+RETURN s
+ORDER BY s.blockNumber DESC LIMIT 10
+  `;
+  const res = await session.run(query);
+  const records = recordsToJson(res.records);
+  return records;
+};
+
 export {
   init,
   close,
