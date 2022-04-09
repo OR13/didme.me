@@ -4,6 +4,19 @@
 
 🚧 This project is experimental.
 
+We created it to have fun with technologies that folks tend to associate with each other.
+
+- Decentralized Identifiers ( did:key and did:web )
+- Verifiable Credentials ( Linked Data Proofs and JWTs )
+- Crypto Currency Wallets ( MetaMask / BIP39 BIP44 )
+- Non Fungible Tokens ( ERC721 )
+- Content Addressable Storage ( IFPS )
+- Smart Contracts ( Ethereum )
+- Graph Databases ( Neo4j )
+- Open Source Development ( GitHub Pages / GitHub Actions )
+
+DID Meme demonstrates ecosystem interoperability, by showing how "standards" are related to eachother...
+
 Learn more about [Verifable Data](https://github.com/transmute-industries/verifiable-data).
 
 ### About DID Meme
