@@ -11,7 +11,7 @@ import {
   Stack,
   Paper,
 } from "@mui/material";
-
+import { colors } from "@mui/material";
 import { useRouter } from "next/router";
 import SourceIcon from "@mui/icons-material/Source";
 import ExtensionRoundedIcon from "@mui/icons-material/ExtensionRounded";
@@ -21,7 +21,7 @@ import ImageIcon from "@mui/icons-material/Image";
 
 import ExportPanel from "./export-panel";
 import MintNFT from "./mint-nft";
-import { colors } from "@mui/material";
+import NFTHistoryPanel from "./nft-history-panel";
 
 import Meta from "./meta";
 
@@ -175,6 +175,13 @@ export const ResolutionResult = ({ did }: any) => {
         </Stack>
       </Box>
 
+      {resolution.didDocumentMetadata.nft && (
+        <NFTHistoryPanel
+          nft={resolution.didDocumentMetadata.nft}
+          image={resolution.didDocumentMetadata.image}
+        />
+      )}
+
       {window.ethereum && resolution.didDocumentMetadata.ethereum && (
         <>
           <Paper sx={{ mt: 4, p: 4, bgcolor: colors.grey["900"] }}>
@@ -206,8 +213,7 @@ export const ResolutionResult = ({ did }: any) => {
       )}
 
       {!resolution.didDocument.id.startsWith("did:web") && <ExportPanel />}
-
-      <MintNFT />
+      {!resolution.didDocumentMetadata.nft && <MintNFT />}
     </Box>
   );
 };
