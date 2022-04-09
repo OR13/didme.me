@@ -25,7 +25,7 @@ const Home: NextPage = () => {
       </Head>
       <Theme>
         <HomeAppBar>
-          <ParticlesBlock sx={{ height: "400px" }}>
+          <ParticlesBlock sx={{ height: "320px" }}>
             <Box alignContent={"center"} justifyItems={"center"} sx={{ p: 3 }}>
               <Typography variant={"h2"}>DID MEME</Typography>
               <Typography variant={"h5"} sx={{ mb: 4 }}>

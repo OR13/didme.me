@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export default function NftCard({ did }: any) {
   const router = useRouter();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 480 }}>
       <CardActionArea
         onClick={() => {
           router.push("/" + did);
@@ -19,7 +19,7 @@ export default function NftCard({ did }: any) {
           component="img"
           image={`https://didme.me/api/image/${did}`}
           alt="did meme"
-          style={{ maxHeight: "200px" }}
+          style={{ height: 280, objectFit: "cover" }}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
