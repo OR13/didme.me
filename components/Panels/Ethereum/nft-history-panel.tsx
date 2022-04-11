@@ -17,7 +17,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import NFTHistoryTable from "./nft-history-table";
 const NFTHistoryPanel = ({ nft, image }: any) => {
   return (
-    <Paper sx={{ p: 4, mt: 8 }}>
+    <Paper sx={{ p: 4 }}>
       <Box>
         <Typography variant="h4" sx={{ mb: 1 }}>
           Non Fungible Token
