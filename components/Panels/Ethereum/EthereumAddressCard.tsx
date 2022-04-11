@@ -32,7 +32,7 @@ const ExpandMore = styled((props: any) => {
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-export function CardMenu() {
+export function CardMenu({ address }: any) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: any) => {
@@ -121,7 +121,7 @@ export default function RecipeReviewCard({ address }: any) {
             0x
           </Avatar>
         }
-        action={<CardMenu />}
+        action={<CardMenu address={address} />}
         title={address}
         subheader={`${balance} ETH`}
       />
