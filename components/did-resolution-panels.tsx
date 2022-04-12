@@ -1,11 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 import * as React from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
-import { useRouter } from "next/router";
 import { ImagePanel, Bitcoin, Ethereum, GitHub } from "./Panels";
 
 function TabPanel(props: any) {
@@ -15,11 +12,11 @@ function TabPanel(props: any) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`tabpanel-${index}`}
+      aria-labelledby={`tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3, flexGrow: 1 }}>{children}</Box>}
+      {value === index && <Box sx={{ pt: 2 }}>{children}</Box>}
     </div>
   );
 }
@@ -32,17 +29,13 @@ TabPanel.propTypes = {
 
 function a11yProps(index: any) {
   return {
-    id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    id: `tab-${index}`,
+    "aria-controls": `tabpanel-${index}`,
   };
 }
 
-export default function VerticalTabs({ resolution }: any) {
+export default function BasicTabs({ resolution }: any) {
   const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: any, newValue: any) => {
-    setValue(newValue);
-  };
 
   const rows = [
     {
@@ -69,29 +62,29 @@ export default function VerticalTabs({ resolution }: any) {
       panel: <GitHub resolution={resolution} />,
     });
   }
+
+  const handleChange = (event: any, newValue: any) => {
+    setValue(newValue);
+  };
+
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        display: "flex",
-      }}
-    >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: "divider" }}
-      >
-        {rows.map((row, i) => {
-          return <Tab key={i} label={row.title} {...a11yProps(i)} />;
-        })}
-      </Tabs>
-      {rows.map((row, i) => {
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="resolution details tabs"
+        >
+          {rows.map((r, i) => {
+            return <Tab key={i} label={r.title} {...a11yProps(i)} />;
+          })}
+        </Tabs>
+      </Box>
+
+      {rows.map((r, i) => {
         return (
           <TabPanel key={i} value={value} index={i}>
-            {row.panel}
+            {r.panel}
           </TabPanel>
         );
       })}
