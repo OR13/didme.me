@@ -27,7 +27,7 @@ export const RecentTweetsButton = ({ resolution }: any) => {
     <Button
       onClick={() => {
         const encodedQuery = encodeURIComponent(window.location.href);
-        const url = `https:twitter.com/search?q=${encodedQuery}&src=typed_query`;
+        const url = `https://twitter.com/search?q=${encodedQuery}&src=typed_query`;
         window.open(url);
       }}
       variant="outlined"
@@ -43,7 +43,7 @@ export const ShareOnTwitterButton = ({ resolution }: any) => {
     <Button
       onClick={() => {
         const tweet = `${window.location.href}`;
-        const url = `https:twitter.com/intent/tweet?text=${tweet}`;
+        const url = `https://twitter.com/intent/tweet?text=${tweet}`;
         window.open(url);
       }}
       variant="outlined"
@@ -61,7 +61,7 @@ export const ViewOnBitcoinButton = ({ resolution }: any) => {
   return (
     <Button
       onClick={() => {
-        const url = `https:live.blockcypher.com/btc-testnet/address/${resolution.didDocumentMetadata.bitcoin.address}/`;
+        const url = `https://live.blockcypher.com/btc-testnet/address/${resolution.didDocumentMetadata.bitcoin.address}/`;
         window.open(url);
       }}
       variant="outlined"
@@ -80,7 +80,7 @@ export const ViewOnEthereumButton = ({ resolution }: any) => {
   return (
     <Button
       onClick={() => {
-        const url = `https:ropsten.etherscan.io/address/${resolution.didDocumentMetadata.ethereum.address}`;
+        const url = `https://ropsten.etherscan.io/address/${resolution.didDocumentMetadata.ethereum.address}`;
         window.open(url);
       }}
       variant="outlined"
