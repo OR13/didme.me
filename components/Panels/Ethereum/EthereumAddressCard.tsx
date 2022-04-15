@@ -3,21 +3,19 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
-
+import CardActions from "@mui/material/CardActions";
+import Collapse from "@mui/material/Collapse";
+import Stack from "@mui/material/Stack";
 import { getWeb3, getAccounts, getBalance } from "./web3";
-
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 const ExpandMore = styled((props: any) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -31,6 +29,7 @@ const ExpandMore = styled((props: any) => {
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { QR } from "@bloomprotocol/qr-react";
 
 export function CardMenu({ address }: any) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -76,10 +75,15 @@ export function CardMenu({ address }: any) {
   );
 }
 
-export default function RecipeReviewCard({ address }: any) {
-  const [expanded, setExpanded] = React.useState(false);
+export default function RecipeReviewCard({ address, logo }: any) {
+  console.log(logo);
+  const [expanded, setExpanded] = React.useState(true);
 
   const [balance, setBalance] = useState("unknown");
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   const handleSendEth = async () => {
     const web3 = await getWeb3();
@@ -125,27 +129,56 @@ export default function RecipeReviewCard({ address }: any) {
         title={address}
         subheader={`${balance} ETH`}
       />
-      {/* <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      /> */}
+
       <CardContent>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           An ethereum blockchain compatible key was discovered in this DID.
         </Typography>
 
-        <Button
-          variant={"outlined"}
-          color={"secondary"}
-          onClick={async () => {
-            handleSendEth();
-          }}
-        >
-          Send ETH
-        </Button>
+        <Stack direction="row" spacing={2}>
+          <Button
+            variant={"outlined"}
+            color={"secondary"}
+            onClick={async () => {
+              const url = `https://ropsten.etherscan.io/address/${address}`;
+              window.open(url);
+            }}
+          >
+            View on Etherscan
+          </Button>
+          <Button
+            variant={"outlined"}
+            color={"secondary"}
+            onClick={async () => {
+              handleSendEth();
+            }}
+          >
+            Send ETH
+          </Button>
+        </Stack>
       </CardContent>
+      <CardActions disableSpacing>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+          <QrCodeScannerIcon />
+        </ExpandMore>
+      </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent sx={{ p: 4, maxWidth: "600px", margin: "auto" }}>
+          <QR
+            data={address}
+            width={"100%"}
+            bgColor={"#121212"}
+            fgColor={"#fff"}
+            logo={{ image: logo }}
+          />
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }

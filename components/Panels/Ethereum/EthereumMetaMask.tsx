@@ -32,13 +32,19 @@ const InstallMetaMaskCard = () => {
 
 const EthereumMetaMask = ({ resolution }: any) => {
   const { address } = resolution.didDocumentMetadata.ethereum;
+  console.log(resolution);
   return (
     <>
       <Typography variant="body1" sx={{ mb: 1 }} color={"error"}>
         Only on the Ropsten Ethereum Test Network.
       </Typography>
       {!window.ethereum && <InstallMetaMaskCard />}
-      {window.ethereum && <EthereumAddressCard address={address} />}
+      {window.ethereum && (
+        <EthereumAddressCard
+          address={address}
+          logo={resolution.didDocumentMetadata.image}
+        />
+      )}
     </>
   );
 };

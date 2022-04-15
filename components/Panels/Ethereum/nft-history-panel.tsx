@@ -26,9 +26,6 @@ const NFTHistoryPanel = ({ nft, image }: any) => {
           Use MetaMask Mobile to transfer this NFT.
         </Typography>
 
-        <Typography variant="body1" sx={{ mb: 1 }} color={"error"}>
-          Only on the Ropsten Ethereum Test Network.
-        </Typography>
         <List dense={true}>
           <ListItem
             secondaryAction={
