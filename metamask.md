@@ -29,14 +29,16 @@ See the source code for the contract and deployment details [here](https://githu
 
 You can mint a DID Meme NFT from a web browser with MetaMask enabled.
 
-<img src="./did-meme-mint.png"/>
+<img src="./did-meme-mint.png" width="400px"/>
 
-Image previews are currently only available in MetaMask Mobile.
+Image previews are currently only tested in MetaMask Mobile.
 
 Choose the "ropsten" network.
 
 Enter the Contract Address: "0x06778A58A073E5173fac00f1CD4C673CEb176fb8"
 
-Enter the TokenId, you can find this by following meta mask instructions.
+Enter the TokenId, you can find this by following meta mask instructions, or by viewing it in the ethereum tab of the did after minting.
 
-<img src="./did-meme-metamask-nft.png"/>
+<img src="./metamask-import-nft.png" width="400px"/>
+
+<img src="./did-meme-metamask-nft.png" width="400px"/>
