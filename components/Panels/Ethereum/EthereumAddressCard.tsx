@@ -77,7 +77,7 @@ export function CardMenu({ address }: any) {
 
 export default function RecipeReviewCard({ address, logo }: any) {
   console.log(logo);
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
 
   const [balance, setBalance] = useState("unknown");
 
