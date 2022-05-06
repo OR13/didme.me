@@ -12,7 +12,7 @@ const resolveDidMeme = async (did: string) => {
   const decoded = bech32.decode(did);
   const decodedCid = bs58.encode(bech32.fromWords(decoded.words));
   // depending on the client network, this CID may take a while to find...
-  const source = client.get(decodedCid, { timeout: 4000 });
+  const source = client.get(decodedCid);
   const file = await source.next();
   const bufferList: any = await concat(file.value.content);
   const content = bufferList.copy();
