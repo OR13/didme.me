@@ -51,20 +51,9 @@ export const getHistory = async (did: string) => {
 };
 
 export const getSummary = async () => {
-  const { NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD }: any = process.env;
-
-  await init(NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD);
-  const records = await getRecentNFTs();
-
-  const results = records
-    .map((r: any) => {
-      const did = r.uri.split("/").pop().split("?")[0];
-      return { did };
-    })
-    .filter((r: any) => {
-      return allowList.items.map((i: any) => i.did).includes(r.did);
-    });
-
-  await close();
-  return results;
+  // const { NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD }: any = process.env;
+  // await init(NEO4J_CONNECTION, NEO4J_USERNAME, NEO4J_PASSWORD);
+  // const records = await getRecentNFTs();
+  // await close();
+  return allowList.items;
 };
