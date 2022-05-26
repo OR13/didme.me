@@ -102,7 +102,7 @@ export const updateCache = async (
   contractAddress: string
 ) => {
   const last = await getTransactionFromLatestBlock();
-  const lastBlockNumber = last ? `${last.blockNumber + 1}` : "0";
+  const lastBlockNumber = last ? `${(last.blockNumber || 0) + 1}` : "0";
   console.log("Last block in cache: " + lastBlockNumber);
   const res = await etherscan.getTokenActivity(
     baseUrl,
