@@ -6,6 +6,7 @@ export const issueCredential = async ({
   mnemonic,
   keyType,
   hdpath,
+  format,
 }: any) => {
   const suite = await getCredentialSuite({
     credential,
@@ -18,7 +19,7 @@ export const issueCredential = async ({
     credential,
     suite,
     documentLoader,
-    format: ["vc-jwt"],
+    format: [format || "vc-jwt"],
   });
   return items[0];
 };

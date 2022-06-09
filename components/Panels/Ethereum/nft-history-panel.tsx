@@ -3,6 +3,7 @@ import { Typography, Box, Paper } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 
 import "react-toastify/dist/ReactToastify.css";
+import Link from "@mui/material/Link";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -67,7 +68,11 @@ const NFTHistoryPanel = ({ nft, image }: any) => {
               <Avatar sx={{ bgcolor: deepOrange[500] }} src={image}></Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={`${nft.history.items[0].to}`}
+              primary={
+                <Link
+                  href={`${nft.history.items[0].to}`}
+                >{`${nft.history.items[0].to}`}</Link>
+              }
               secondary={`${nft.history.items[0].token}`}
             />
           </ListItem>

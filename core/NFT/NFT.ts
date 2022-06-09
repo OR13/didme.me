@@ -42,7 +42,16 @@ export const getHistory = async (did: string) => {
 
   await updateCache(ETHERSCAN_BASEURL, ETHERSCAN_API_KEY, NFT_CONTRACT_ADDRESS);
 
-  const history = await getTokenIdFromUri(did);
+  let history = await getTokenIdFromUri(did);
+  history = history.map((i: any) => {
+    return {
+      ...i,
+      id: `https://ropsten.etherscan.io/tx/${i.id}`,
+      from: `https://ropsten.etherscan.io/address/${i.from}`,
+      to: `https://ropsten.etherscan.io/address/${i.to}`,
+    };
+  });
+
   await close();
   return {
     count: history.length,

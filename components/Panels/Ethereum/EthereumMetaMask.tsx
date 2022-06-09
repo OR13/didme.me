@@ -32,7 +32,7 @@ const InstallMetaMaskCard = () => {
 
 const EthereumMetaMask = ({ resolution }: any) => {
   const { address } = resolution.didDocumentMetadata.ethereum;
-  console.log(resolution);
+  // console.log(resolution);
   return (
     <>
       <Typography variant="body1" sx={{ mb: 1 }} color={"error"}>

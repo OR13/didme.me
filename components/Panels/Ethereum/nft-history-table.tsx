@@ -25,7 +25,7 @@ const TransactionType = ({ action, onClick }: any) => {
 };
 export default function NFTHistoryTable({ rows }: any) {
   const handleRowClick = (row: any) => {
-    window.open("https://ropsten.etherscan.io/tx/" + row.id);
+    window.open(row.id);
   };
   return (
     <TableContainer component={Paper}>
