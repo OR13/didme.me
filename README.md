@@ -2,10 +2,11 @@
 
 [![Vercel](https://github.com/OR13/didme.me/actions/workflows/cd.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/cd.yml) [![Documentation](https://github.com/OR13/didme.me/actions/workflows/docs.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/docs.yml)
 
-- [Verifiable Software Bill Of Materials](https://or13.github.io/didme.me/sbom.json)
-- [Issuer](https://api.did.actor/api/identifiers/did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn)
+- [SBOM Issuer](https://api.did.actor/api/identifiers/did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn)
+- [SBOM Repository Credential](https://or13.github.io/didme.me/sbom.repository.json)
+- [SBOM Deployment Credential](https://didme.me/sbom.deployment.json)
 
-🚧 This project is experimental.
+  🚧 This project is experimental.
 
 We created it to have fun with technologies that folks tend to associate with each other.
 
