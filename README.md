@@ -2,6 +2,9 @@
 
 [![Vercel](https://github.com/OR13/didme.me/actions/workflows/cd.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/cd.yml) [![Documentation](https://github.com/OR13/didme.me/actions/workflows/docs.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/docs.yml)
 
+- [Verifiable Software Bill Of Materials](https://or13.github.io/didme.me/sbom.json)
+- [Issuer](https://api.did.actor/api/identifiers/did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn)
+
 🚧 This project is experimental.
 
 We created it to have fun with technologies that folks tend to associate with each other.

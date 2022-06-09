@@ -9,10 +9,11 @@
   "id": "https://or13.github.io/didme.me/sbom.json",
   "type": ["VerifiableCredential"],
   "issuer": {
-    "id": "did:web:or13.github.io:didme.me"
+    "id": "did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"
   },
   "issuanceDate": "2022-01-15T19:25:55.574Z",
   "credentialSubject": {
-    "id": "https://didme.me/"
+    "id": "https://didme.me/",
+    "repository": "https://github.com/OR13/didme.me"
   }
 }
