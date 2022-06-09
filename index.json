@@ -1,7 +1,8 @@
 {
-  "count": 2,
+  "count": 3,
   "items": [
-    "https://OR13.github.io/didme.me/credentials/sbom.json",
-    "https://or13.github.io/didme.me/sbom.json"
+    "https://didme.me/sbom.deployment.json",
+    "https://OR13.github.io/didme.me/credentials/sbom.repository.json",
+    "https://or13.github.io/didme.me/sbom.repository.json"
   ]
 }

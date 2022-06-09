@@ -6,22 +6,23 @@
       "@vocab": "https://ontology.example/vocab/#"
     }
   ],
-  "id": "https://OR13.github.io/didme.me/credentials/sbom.json",
+  "id": "https://OR13.github.io/didme.me/credentials/sbom.repository.json",
   "type": [
     "VerifiableCredential"
   ],
   "issuer": {
-    "id": "did:web:or13.github.io:didme.me"
+    "id": "did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn"
   },
   "issuanceDate": "2022-01-15T19:25:55.574Z",
   "credentialSubject": {
-    "id": "https://didme.me/"
+    "id": "https://didme.me",
+    "deployment": "https://didme.me/sbom.deployment.json"
   },
   "proof": {
     "type": "JsonWebSignature2020",
-    "created": "2022-06-09T02:00:36Z",
+    "created": "2022-06-09T02:23:01Z",
     "verificationMethod": "did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
     "proofPurpose": "assertionMethod",
-    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..sx8FIZ9BWH7xgfWVVgVEuGThViKt9OnCZQwE7lD_m9K2MnIY187cM2hlpa76YBtX0guGagkMJe-_jDQiUMcoCA"
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..UlsB5_a3hI8F4afRgMK3Jje3APCcfLaLGdcPmq18CxqvCoELuDFZbg0-GgdzdBDgNylEumw1EkSLECvsfcs3Cw"
   }
 }
