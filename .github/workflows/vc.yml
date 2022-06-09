@@ -28,7 +28,7 @@ jobs:
           mnemonic: "${{ secrets.MNEMONIC }}"
           hd-path: "m/44'/0'/0'/0/0"
           key-type: "ed25519"
-          vc-format: "vc-jwt"
+          vc-format: "vc"
           file-input: "./docs/credential.json"
           file-output: "./docs/example-vc.json"
 
