@@ -29,12 +29,12 @@ jobs:
           hd-path: "m/44'/0'/0'/0/0"
           key-type: "ed25519"
           vc-format: "vc"
-          file-input: "./docs/sbom.template.json"
-          file-output: "./docs/sbom.json"
+          file-input: "./docs/sbom.repository.template.json"
+          file-output: "./docs/sbom.repository.json"
 
       - name: View Example
         run: |-
-          cat ./docs/sbom.json
+          cat ./docs/sbom.repository.json
 
       - name: Publish Documentation
         uses: peaceiris/actions-gh-pages@v3
