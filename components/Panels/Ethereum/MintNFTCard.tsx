@@ -119,19 +119,13 @@ export default function MintNFTCard() {
         title={address}
         subheader={`On Ropsten`}
       />
-      {/* <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      /> */}
       <CardContent>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
           You can mint an NFT for this DID with MetaMask.
         </Typography>
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Beware that the owner of a DID Meme NFT is not necessarily the same
+          Caution! The owner of a DID Meme NFT is not necessarily the same as
           the DID Controller.
         </Typography>
 
