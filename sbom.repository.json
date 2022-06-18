@@ -20,9 +20,9 @@
   },
   "proof": {
     "type": "JsonWebSignature2020",
-    "created": "2022-06-18T16:29:04Z",
+    "created": "2022-06-18T16:37:25Z",
     "verificationMethod": "did:web:or13.github.io:didme.me:issuers:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn#z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn",
     "proofPurpose": "assertionMethod",
-    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..fBwP_4adSfXratKSohZl6O2CPARtNaDZlEd1sceOaj3-CIdQ1yNssyFTnsCf_Quajsv4R9MYX4Rws9Eg3p_oDQ"
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..80K-tuKYs1JnjPuybMjzdf6Ak5lSU3ZVkNrHxepPziz1iyXjcEcExCr-ZntRKGWu-_WFUxF3j0Upxhmo20QFCg"
   }
 }
