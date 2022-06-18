@@ -1,6 +1,6 @@
 ## [didme.me](https://didme.me)
 
-[![Vercel](https://github.com/OR13/didme.me/actions/workflows/cd.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/cd.yml) [![Documentation](https://github.com/OR13/didme.me/actions/workflows/docs.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/docs.yml)
+[![Documentation](https://github.com/OR13/didme.me/actions/workflows/docs.yml/badge.svg)](https://github.com/OR13/didme.me/actions/workflows/docs.yml)
 
 🚧 This project is experimental.
 
