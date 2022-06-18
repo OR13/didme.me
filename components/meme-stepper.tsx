@@ -130,7 +130,7 @@ export const MemeStepper = () => {
                 router.push("/dale");
               }}
             >
-              Try Mini Dale
+              Try Dale Mini
             </Button>
           </Paper>
         </div>

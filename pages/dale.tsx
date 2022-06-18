@@ -65,10 +65,10 @@ const Dale: NextPage = () => {
                 <Stack spacing={4}>
                   <>
                     <Typography sx={{ mt: 2 }} variant={"h4"}>
-                      Dale Image Generator
+                      Dale Mini Image Generator
                     </Typography>
 
-                    <Typography sx={{ mt: 1 }} variant={"body1"}>
+                    <Typography variant={"body1"}>
                       Learn more about Dale by visiting{" "}
                       <Link
                         href="https://huggingface.co/spaces/dalle-mini/dalle-mini"
@@ -81,6 +81,28 @@ const Dale: NextPage = () => {
                         openai.com
                       </Link>
                       .
+                      <br />
+                      <br />
+                      This service relies on a community hosted endpoint, which
+                      is often under extreme load,{" "}
+                      <Link
+                        href="https://github.com/borisdayma/dalle-mini/issues/231"
+                        target="_blank"
+                      >
+                        causing it to become unavailable.
+                      </Link>
+                      <br />
+                      <br />
+                      You may have better luck generating the images yourself
+                      and then uploading them.
+                      <br />
+                      You can do that via this link:{" "}
+                      <Link
+                        href="https://huggingface.co/spaces/dalle-mini/dalle-mini"
+                        target="_blank"
+                      >
+                        huggingface.co/spaces/dalle-mini/dalle-mini
+                      </Link>
                     </Typography>
                   </>
 
