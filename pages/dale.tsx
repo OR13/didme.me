@@ -21,7 +21,9 @@ import DaleImage from "../components/Cards/DaleImage";
 
 const Dale: NextPage = () => {
   const router = useRouter();
-  const [prompt, setPrompt] = useState("Safe for work identity memes");
+  const [prompt, setPrompt] = useState(
+    "Cats using decentralized identifiers to buy bitcoin"
+  );
 
   const [isLoading, setIsLoading] = useState(false);
 
