@@ -18,17 +18,17 @@ import { generators } from "../core/generators";
 import WarningIcon from "@mui/icons-material/Warning";
 
 import AdvancedKeyType from "./advanced-key-type";
-export const MemeCaption = ({ file, setConfig }: any) => {
+export const MemeCaption = ({ image, setConfig }: any) => {
   const [caption, setCaption] = React.useState("did meme");
   const [mnemonic, setMnemonic] = React.useState(defaultMnemonic);
   const [key, setKey] = React.useState("");
   const [advancedConfiguration, setAdvancedConfiguration] = React.useState({
     hdpath: `m/44'/0'/0'/0/0`,
-    keyType: "ed25519",
+    keyType: "secp256k1",
   });
 
   const handleTextChange = (text: string) => {
-    updateCanvas(file, text);
+    updateCanvas(image, text);
     setCaption(text);
   };
 
@@ -70,7 +70,7 @@ export const MemeCaption = ({ file, setConfig }: any) => {
 
   React.useEffect(() => {
     if (key === "") {
-      updateCanvas(file, caption);
+      updateCanvas(image, caption);
       handleUpdateKey(
         advancedConfiguration.keyType,
         mnemonic,
@@ -82,7 +82,7 @@ export const MemeCaption = ({ file, setConfig }: any) => {
     }
   }, [
     key,
-    file,
+    image,
     caption,
     handleGenerateMnemonic,
     handleUpdateKey,
@@ -90,7 +90,7 @@ export const MemeCaption = ({ file, setConfig }: any) => {
     advancedConfiguration,
   ]);
 
-  if (file === null) {
+  if (image === null) {
     return <>Loading...</>;
   }
 
@@ -99,7 +99,6 @@ export const MemeCaption = ({ file, setConfig }: any) => {
       <Grid item md={12} lg={6}>
         <div style={{ margin: "auto" }}>
           <canvas id="meme-canvas" />
-          <Typography variant={"caption"}>{file.path}</Typography>
           <TextField
             sx={{ mt: 2 }}
             label="Caption"
@@ -135,7 +134,7 @@ export const MemeCaption = ({ file, setConfig }: any) => {
               focused
               label="Controller Mnemonic"
               helperText={
-                <div
+                <span
                   style={{
                     display: "flex",
                     flexDirection: "row",
@@ -143,12 +142,10 @@ export const MemeCaption = ({ file, setConfig }: any) => {
                   }}
                 >
                   <WarningIcon color={"warning"} />
-                  <Typography
-                    style={{ marginLeft: "9px", color: yellow["700"] }}
-                  >
+                  <span style={{ marginLeft: "9px", color: yellow["700"] }}>
                     Anyone knowing this phrase controls this meme.
-                  </Typography>
-                </div>
+                  </span>
+                </span>
               }
               multiline
               value={mnemonic}

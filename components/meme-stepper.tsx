@@ -11,10 +11,25 @@ import { MemeCaption } from "./meme-caption";
 import { generateDidMeme } from "../core/generateDidMeme";
 import router from "next/router";
 
+import { useEffect } from "react";
+
+const fileToImageDataUrl = async (file: any) => {
+  const reader = new FileReader();
+  return new Promise((resolve) => {
+    reader.onload = async (e2: any) => {
+      const blob = new Blob([e2.target.result], { type: "image/jpeg" });
+      const urlCreator = window.URL || window.webkitURL;
+      const imageUrl = urlCreator.createObjectURL(blob);
+      resolve(imageUrl);
+    };
+    reader.readAsArrayBuffer(file);
+  });
+};
+
 export const MemeStepper = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
-  const [file, setFile] = React.useState(null);
+  const [image, setImage] = React.useState(null);
 
   const [config, setConfig]: any = React.useState(null);
 
@@ -31,7 +46,6 @@ export const MemeStepper = () => {
         newSkipped = new Set(newSkipped.values());
         newSkipped.delete(activeStep);
       }
-
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped(newSkipped);
     }
@@ -60,8 +74,9 @@ export const MemeStepper = () => {
     setActiveStep(0);
   };
 
-  const handleAcceptedFiles = (files: any) => {
-    setFile(files[0]);
+  const handleAcceptedFiles = async (files: any) => {
+    const image: any = await fileToImageDataUrl(files[0]);
+    setImage(image);
     handleNext();
   };
 
@@ -75,6 +90,15 @@ export const MemeStepper = () => {
       router.push("/" + did);
     }
   };
+
+  useEffect(() => {
+    if (router.query.dale) {
+      const image = localStorage.getItem("dale-image") as any;
+      setImage(image);
+      localStorage.removeItem("dale-image");
+      handleNext();
+    }
+  }, []);
 
   const steps = [
     {
@@ -95,6 +119,19 @@ export const MemeStepper = () => {
               </Typography>
             </div>
             <FileUploader onFilesAccepted={handleAcceptedFiles} />
+
+            <Typography sx={{ mt: 4, mb: 2 }}>
+              Or use AI to generate an image from text...
+            </Typography>
+            <Button
+              variant="outlined"
+              color={"secondary"}
+              onClick={() => {
+                router.push("/dale");
+              }}
+            >
+              Try Mini Dale
+            </Button>
           </Paper>
         </div>
       ),
@@ -103,13 +140,12 @@ export const MemeStepper = () => {
       title: "Publish",
       content: (
         <Paper sx={{ p: 4, mt: 2 }}>
-          <MemeCaption file={file} setConfig={setConfig} />
+          <MemeCaption image={image} setConfig={setConfig} />
         </Paper>
       ),
     },
   ];
 
-  // </div>
   return (
     <Box sx={{ width: "100%", maxWidth: "1024px" }}>
       <Grid container spacing={0} direction="column">
@@ -125,7 +161,7 @@ export const MemeStepper = () => {
               </Box>
             </React.Fragment>
           ) : (
-            <div>
+            <>
               <Box sx={{ display: "flex", flexDirection: "row" }}>
                 {activeStep !== 0 && (
                   <Button
@@ -148,16 +184,16 @@ export const MemeStepper = () => {
                 {activeStep !== 0 && (
                   <Button
                     onClick={handleNext}
-                    disabled={!file}
-                    variant={file ? "contained" : undefined}
-                    color={file ? "secondary" : "primary"}
+                    disabled={!image}
+                    variant={image ? "contained" : undefined}
+                    color={image ? "secondary" : "primary"}
                   >
                     {activeStep === steps.length - 1 ? "Publish" : "Next"}
                   </Button>
                 )}
               </Box>
-              <div>{steps[activeStep].content}</div>
-            </div>
+              <>{steps[activeStep].content}</>
+            </>
           )}
         </Grid>
       </Grid>
