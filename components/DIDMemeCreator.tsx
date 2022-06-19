@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FileUploader } from "../components/file-uploader";
 
@@ -55,6 +55,15 @@ const DIDMemeCreator = () => {
     const didMeme = await DIDMeme.canvasToDidMeme("meme-canvas", config.key);
     router.push("/" + didMeme);
   };
+
+  useEffect(() => {
+    if (router.query.dalle) {
+      const image: any = localStorage.getItem("dalle-image");
+      if (image) {
+        setImage(image);
+      }
+    }
+  }, []);
 
   return (
     <>

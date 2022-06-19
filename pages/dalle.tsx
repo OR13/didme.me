@@ -12,6 +12,7 @@ import {
   Stack,
   Grid,
   Link,
+  Box,
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
@@ -106,21 +107,25 @@ const Dalle: NextPage = () => {
                     </Typography>
                   </>
 
-                  <TextField
-                    label={"Prompt"}
-                    value={prompt}
-                    onChange={(event: any) => {
-                      setPrompt(event.target.value);
-                    }}
-                  />
-
-                  <Button
-                    variant="contained"
-                    onClick={handleMint}
-                    disabled={isLoading}
-                  >
-                    Generate Images
-                  </Button>
+                  <Box sx={{ width: "512px" }}>
+                    <TextField
+                      fullWidth
+                      label={"Prompt"}
+                      value={prompt}
+                      onChange={(event: any) => {
+                        setPrompt(event.target.value);
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Button
+                      variant="contained"
+                      onClick={handleMint}
+                      disabled={isLoading}
+                    >
+                      Generate Images
+                    </Button>
+                  </Box>
                 </Stack>
               </>
             ) : (

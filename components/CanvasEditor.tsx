@@ -46,8 +46,8 @@ const CanvasEditor = ({ image }: any) => {
             fontFamily: defaultFontFamily,
           },
           position: {
-            x: 350,
-            y: 350,
+            x: 10,
+            y: 10,
           },
         });
       }, 75);
