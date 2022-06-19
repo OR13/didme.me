@@ -18,6 +18,7 @@ We created it to have fun with technologies that folks tend to associate with ea
 - Graph Databases ( Neo4j )
 - Open Source Development ( GitHub Pages / GitHub Actions )
 
+
 DID Meme demonstrates ecosystem interoperability, by showing how "standards" are related to eachother...
 
 Learn more about [Verifable Data](https://github.com/transmute-industries/verifiable-data).

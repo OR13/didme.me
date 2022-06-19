@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.6.0",
     "@mui/material": "^5.0.4",
+    "@toast-ui/react-image-editor": "^3.15.2",
     "@transmute/did-key.js": "^0.3.0-unstable.5",
     "@transmute/did-web": "^0.7.0-unstable.57",
     "@transmute/json-web-signature": "0.7.0-unstable.37",

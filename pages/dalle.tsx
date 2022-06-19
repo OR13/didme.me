@@ -12,6 +12,7 @@ import {
   Stack,
   Grid,
   Link,
+  Box,
 } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
@@ -19,7 +20,7 @@ import { useRouter } from "next/router";
 
 import DaleImage from "../components/Cards/DaleImage";
 
-const Dale: NextPage = () => {
+const Dalle: NextPage = () => {
   const router = useRouter();
   const [prompt, setPrompt] = useState(
     "Cats using decentralized identifiers to buy bitcoin"
@@ -32,7 +33,7 @@ const Dale: NextPage = () => {
   const handleMint = async () => {
     setIsLoading(true);
 
-    const response = await axios.post("/ai/dale", { prompt });
+    const response = await axios.post("/ai/dalle", { prompt });
     const { images } = response.data as any;
 
     setImages(images);
@@ -65,11 +66,11 @@ const Dale: NextPage = () => {
                 <Stack spacing={4}>
                   <>
                     <Typography sx={{ mt: 2 }} variant={"h4"}>
-                      Dale Mini Image Generator
+                      Dalle Mini Image Generator
                     </Typography>
 
                     <Typography variant={"body1"}>
-                      Learn more about Dale by visiting{" "}
+                      Learn more about Dalle by visiting{" "}
                       <Link
                         href="https://huggingface.co/spaces/dalle-mini/dalle-mini"
                         target="_blank"
@@ -106,21 +107,25 @@ const Dale: NextPage = () => {
                     </Typography>
                   </>
 
-                  <TextField
-                    label={"Prompt"}
-                    value={prompt}
-                    onChange={(event: any) => {
-                      setPrompt(event.target.value);
-                    }}
-                  />
-
-                  <Button
-                    variant="contained"
-                    onClick={handleMint}
-                    disabled={isLoading}
-                  >
-                    Generate Images
-                  </Button>
+                  <Box sx={{ width: "512px" }}>
+                    <TextField
+                      fullWidth
+                      label={"Prompt"}
+                      value={prompt}
+                      onChange={(event: any) => {
+                        setPrompt(event.target.value);
+                      }}
+                    />
+                  </Box>
+                  <Box>
+                    <Button
+                      variant="contained"
+                      onClick={handleMint}
+                      disabled={isLoading}
+                    >
+                      Generate Images
+                    </Button>
+                  </Box>
                 </Stack>
               </>
             ) : (
@@ -136,8 +141,8 @@ const Dale: NextPage = () => {
                           index={index}
                           image={image}
                           onClick={(item: any) => {
-                            localStorage.setItem("dale-image", item.image);
-                            router.push("/create?dale=true");
+                            localStorage.setItem("dalle-image", item.image);
+                            router.push("/create?dalle=true");
                           }}
                         />
                       </Grid>
@@ -153,4 +158,4 @@ const Dale: NextPage = () => {
   );
 };
 
-export default Dale;
+export default Dalle;

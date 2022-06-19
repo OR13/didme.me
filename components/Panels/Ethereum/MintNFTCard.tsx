@@ -3,46 +3,23 @@ import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-import { red, green } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { green } from "@mui/material/colors";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/router";
 
-import { useState } from "react";
-
-import { getWeb3, getAccounts, getBalance } from "./web3";
+import { getWeb3, getAccounts } from "./web3";
 
 import * as NFT from "../../../core/NFT";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
+import { toast } from "react-toastify";
+
 import IconButton from "@mui/material/IconButton";
-import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 
 import ImageIcon from "@mui/icons-material/Image";
-import ReadMoreIcon from "@mui/icons-material/ReadMore";
-
-import { Link } from "@mui/material";
-
-const ExpandMore = styled((props: any) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -119,23 +96,15 @@ export default function MintNFTCard() {
         title={address}
         subheader={`On Ropsten`}
       />
-      {/* <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      /> */}
       <CardContent>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
           You can mint an NFT for this DID with MetaMask.
         </Typography>
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Beware that the owner of a DID Meme NFT is not necessarily the same
+          Caution! The owner of a DID Meme NFT is not necessarily the same as
           the DID Controller.
         </Typography>
-
-        <ToastContainer />
 
         <Button
           variant={"outlined"}
