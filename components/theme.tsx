@@ -1,7 +1,9 @@
 import * as React from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { blue, purple, yellow } from "@mui/material/colors";
+import { blue, yellow } from "@mui/material/colors";
+
+export const colors = { primary: blue[500], secondary: yellow[500] };
 
 const theme = createTheme({
   palette: {

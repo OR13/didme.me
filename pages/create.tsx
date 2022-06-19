@@ -1,9 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import { MemeStepper } from "../components/meme-stepper";
-
 import AppPage from "../components/app-page";
+
+import dynamic from "next/dynamic";
+
+const DIDMemeCreator = dynamic(() => import("../components/DIDMemeCreator"), {
+  ssr: false,
+});
 
 const Create: NextPage = () => {
   return (
@@ -17,7 +21,7 @@ const Create: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AppPage>
-        <MemeStepper />
+        <DIDMemeCreator />
       </AppPage>
     </>
   );

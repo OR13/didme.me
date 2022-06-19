@@ -21,12 +21,6 @@ a {
   flex-grow: 1;
   height: 100%;
 }
-canvas {
-  /* background: #000; */
-  margin: auto;
-  width: 100%;
-  margin-top: 16px;
-}
 
 pre {
   white-space: pre-wrap; /* css-3 */
@@ -35,6 +29,24 @@ pre {
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
+
 #tsparticles {
   width: 100%;
+}
+
+.tui-image-editor-container .tui-image-editor-header-logo {
+  display: none;
+}
+
+.tui-image-editor-align-wrap {
+  overflow: hidden !important;
+}
+.tui-image-editor-header-buttons {
+  display: none !important;
+}
+.tui-image-editor-main-container,
+.tui-image-editor-submenu,
+.tui-image-editor-menu-text,
+.tui-image-editor-controls {
+  background-color: #121212 !important;
 }

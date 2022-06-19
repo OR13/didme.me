@@ -1,11 +1,4 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-
-import AppPage from "../components/app-page";
-
-import { Button, Stack } from "@mui/material";
-import { FileUploader } from "../components/file-uploader";
-import { client } from "../core/ipfs";
+import { client } from "../ipfs";
 
 import bs58 from "bs58";
 import { bech32 } from "bech32";
@@ -130,42 +123,8 @@ const canvasToDidMeme = async (canvasId: string, didKey: string) => {
   return didMeme;
 };
 
-const did = "did:key:z6MktiSzqF9kqwdU8VkdBKx56EYzXfpgnNPUAGznpicNiWfn";
-const canvasId = "meme-canvas";
-
-const Publish: NextPage = () => {
-  const handleFile = (files: any[]) => {
-    const [file] = files;
-    addFileToCanvas(canvasId, file);
-  };
-
-  const handlePublish = async () => {
-    console.log("publish...");
-    const didMeme = await canvasToDidMeme(canvasId, did);
-    console.log(didMeme);
-    return didMeme;
-  };
-  return (
-    <>
-      <Head>
-        <title>did:meme</title>
-        <meta
-          name="description"
-          content="Decentralized identifiers hidden in memes"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <AppPage>
-        <Stack spacing={2}>
-          <Button variant={"contained"} onClick={handlePublish}>
-            Publish
-          </Button>
-          <FileUploader onFilesAccepted={handleFile} />
-          <canvas id="meme-canvas" style={{ height: "512px" }} />
-        </Stack>
-      </AppPage>
-    </>
-  );
+const DIDMeme = {
+  canvasToDidMeme,
 };
 
-export default Publish;
+export default DIDMeme;

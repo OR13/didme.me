@@ -150,7 +150,7 @@ export default function AppPage({ title, children }: any) {
           <ListItem
             button
             onClick={() => {
-              router.push("/");
+              router.push("/create");
             }}
           >
             <ListItemIcon>
@@ -235,7 +235,7 @@ export default function AppPage({ title, children }: any) {
           </ListItem>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3, maxWidth: "1024px" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {children}
       </Box>

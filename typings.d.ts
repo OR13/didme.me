@@ -7,6 +7,7 @@ declare module "bitcore-message";
 declare module "bitcore-insight";
 
 declare module "f5stegojs";
+declare module "@toast-ui/react-image-editor";
 
 declare namespace JSX {
   interface IntrinsicElements {
