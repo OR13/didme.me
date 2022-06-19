@@ -17,12 +17,9 @@ const fileToImageDataUrl = async (file: any) => {
   const reader = new FileReader();
   return new Promise((resolve) => {
     reader.onload = async (e2: any) => {
-      const blob = new Blob([e2.target.result], { type: "image/jpeg" });
-      const urlCreator = window.URL || window.webkitURL;
-      const imageUrl = urlCreator.createObjectURL(blob);
-      resolve(imageUrl);
+      resolve(e2.target.result);
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsDataURL(file);
   });
 };
 
@@ -30,6 +27,8 @@ export const MemeStepper = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [image, setImage] = React.useState(null);
+  const [file, setFile] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const [config, setConfig]: any = React.useState(null);
 
@@ -37,9 +36,18 @@ export const MemeStepper = () => {
     return skipped.has(step);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (activeStep + 1 >= steps.length) {
-      return handleLastStep();
+      setIsLoading(true);
+      let result;
+      try {
+        result = await handleLastStep();
+      } catch (e) {
+        //
+      }
+
+      setIsLoading(false);
+      return result;
     } else {
       let newSkipped = skipped;
       if (isStepSkipped(activeStep)) {
@@ -75,8 +83,10 @@ export const MemeStepper = () => {
   };
 
   const handleAcceptedFiles = async (files: any) => {
-    const image: any = await fileToImageDataUrl(files[0]);
-    setImage(image);
+    // const image: any = await fileToImageDataUrl(files[0]);
+    // console.log(image);
+    // setImage(image);
+    setFile(files[0]);
     handleNext();
   };
 
@@ -92,10 +102,10 @@ export const MemeStepper = () => {
   };
 
   useEffect(() => {
-    if (router.query.dale) {
-      const image = localStorage.getItem("dale-image") as any;
+    if (router.query.dalle) {
+      const image = localStorage.getItem("dalle-image") as any;
       setImage(image);
-      localStorage.removeItem("dale-image");
+      localStorage.removeItem("dalle-image");
       handleNext();
     }
   }, []);
@@ -127,10 +137,10 @@ export const MemeStepper = () => {
               variant="outlined"
               color={"secondary"}
               onClick={() => {
-                router.push("/dale");
+                router.push("/dalle");
               }}
             >
-              Try Dale Mini
+              Try Dalle Mini
             </Button>
           </Paper>
         </div>
@@ -140,7 +150,7 @@ export const MemeStepper = () => {
       title: "Publish",
       content: (
         <Paper sx={{ p: 4, mt: 2 }}>
-          <MemeCaption image={image} setConfig={setConfig} />
+          <MemeCaption file={file} setConfig={setConfig} />
         </Paper>
       ),
     },
@@ -184,9 +194,9 @@ export const MemeStepper = () => {
                 {activeStep !== 0 && (
                   <Button
                     onClick={handleNext}
-                    disabled={!image}
-                    variant={image ? "contained" : undefined}
-                    color={image ? "secondary" : "primary"}
+                    disabled={!file || isLoading}
+                    variant={file ? "contained" : undefined}
+                    color={file ? "secondary" : "primary"}
                   >
                     {activeStep === steps.length - 1 ? "Publish" : "Next"}
                   </Button>

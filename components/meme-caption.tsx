@@ -18,7 +18,7 @@ import { generators } from "../core/generators";
 import WarningIcon from "@mui/icons-material/Warning";
 
 import AdvancedKeyType from "./advanced-key-type";
-export const MemeCaption = ({ image, setConfig }: any) => {
+export const MemeCaption = ({ file, setConfig }: any) => {
   const [caption, setCaption] = React.useState("did meme");
   const [mnemonic, setMnemonic] = React.useState(defaultMnemonic);
   const [key, setKey] = React.useState("");
@@ -28,7 +28,7 @@ export const MemeCaption = ({ image, setConfig }: any) => {
   });
 
   const handleTextChange = (text: string) => {
-    updateCanvas(image, text);
+    updateCanvas(file, text);
     setCaption(text);
   };
 
@@ -70,7 +70,7 @@ export const MemeCaption = ({ image, setConfig }: any) => {
 
   React.useEffect(() => {
     if (key === "") {
-      updateCanvas(image, caption);
+      updateCanvas(file, caption);
       handleUpdateKey(
         advancedConfiguration.keyType,
         mnemonic,
@@ -82,7 +82,7 @@ export const MemeCaption = ({ image, setConfig }: any) => {
     }
   }, [
     key,
-    image,
+    file,
     caption,
     handleGenerateMnemonic,
     handleUpdateKey,
@@ -90,7 +90,7 @@ export const MemeCaption = ({ image, setConfig }: any) => {
     advancedConfiguration,
   ]);
 
-  if (image === null) {
+  if (file === null) {
     return <>Loading...</>;
   }
 

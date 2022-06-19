@@ -29,6 +29,8 @@ export const FileUploader = ({ onFilesAccepted }: any) => {
           : "1px " + theme.palette.secondary.main + " dashed",
         boxShadow: "none",
         textAlign: "center",
+
+        cursor: "pointer",
       }}
     >
       <input {...getInputProps()} />

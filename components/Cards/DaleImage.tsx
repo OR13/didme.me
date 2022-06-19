@@ -17,11 +17,11 @@ export default function DaleImage({ index, image, onClick }: any) {
           component="img"
           height="140"
           image={image}
-          alt={"dale generated image #" + index}
+          alt={"dalle generated image #" + index}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {"Dale Image #" + index}
+            {"Dalle Image #" + index}
           </Typography>
         </CardContent>
       </CardActionArea>
