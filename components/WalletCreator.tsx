@@ -62,23 +62,12 @@ const WalletCreator = ({ setConfig }: any) => {
   }, [advancedConfiguration, handleUpdateKey]);
 
   React.useEffect(() => {
-    if (key === "") {
-      handleUpdateKey(
-        advancedConfiguration.keyType,
-        mnemonic,
-        advancedConfiguration.hdpath
-      );
-    }
-    if (mnemonic === "") {
-      handleGenerateMnemonic();
-    }
-  }, [
-    key,
-    handleGenerateMnemonic,
-    handleUpdateKey,
-    mnemonic,
-    advancedConfiguration,
-  ]);
+    handleUpdateKey(
+      advancedConfiguration.keyType,
+      mnemonic,
+      advancedConfiguration.hdpath
+    );
+  }, []);
 
   return (
     <>

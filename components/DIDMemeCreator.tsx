@@ -16,6 +16,8 @@ import FingerprintIcon from "@mui/icons-material/Fingerprint";
 
 import DIDMeme from "../core/DIDMeme";
 
+declare var window: any;
+
 const CanvasEditor = dynamic(() => import("../components/CanvasEditor"), {
   ssr: false,
 });
@@ -38,22 +40,25 @@ const DIDMemeCreator = () => {
   const router = useRouter();
   const [image, setImage] = useState(null);
   const [config, setConfig]: any = useState(null);
+  const [isImageReady, setIsImageReady]: any = useState(false);
+  const [isCanvasReady, setIsCanvasReady]: any = useState(false);
   const [isLoading, setIsLoading]: any = useState(false);
 
   const handleFile = async (files: any[]) => {
-    setIsLoading(true);
+    setIsImageReady(false);
     const [file] = files;
     const dataUrl = await readFileAsDataUrl(file);
     setImage(dataUrl);
-    setIsLoading(false);
+    setIsImageReady(true);
   };
 
   const handlePublish = async () => {
     setIsLoading(true);
-    const [el]: any = document.getElementsByClassName("lower-canvas");
-    el.setAttribute("id", "meme-canvas");
-    const didMeme = await DIDMeme.canvasToDidMeme("meme-canvas", config.key);
-    router.push("/" + didMeme);
+    window.handlePublishDidMeme();
+    setTimeout(async () => {
+      const didMeme = await DIDMeme.canvasToDidMeme("meme-canvas", config.key);
+      router.push("/" + didMeme);
+    }, 1 * 1000);
   };
 
   useEffect(() => {
@@ -61,14 +66,28 @@ const DIDMemeCreator = () => {
       const image: any = localStorage.getItem("dalle-image");
       if (image) {
         setImage(image);
+        setIsImageReady(true);
       }
     }
   }, []);
 
+  const handleCanvasReady = () => {
+    setIsCanvasReady(true);
+  };
+
+  const handleCancel = () => {
+    setIsCanvasReady(false);
+    setIsImageReady(false);
+    setConfig(null);
+    setImage(null);
+  };
+
+  const isConfigReady = !!config;
+
   return (
-    <>
+    <Box sx={{ flexGrow: 1 }}>
       {isLoading && <LinearProgress color={"secondary"} sx={{ mb: 4 }} />}
-      {image === null ? (
+      {image === null && (
         <>
           <Paper sx={{ p: 4, textAlign: "center" }}>
             <Typography variant={"h4"} gutterBottom>
@@ -100,38 +119,47 @@ const DIDMemeCreator = () => {
             </Button>
           </Paper>
         </>
-      ) : (
-        <Grid container spacing={2}>
+      )}
+
+      <Grid container spacing={2}>
+        {isImageReady && isConfigReady && (
           <Grid item xs={12}>
             <Box sx={{ justifyContent: "space-between", display: "flex" }}>
-              <Button
-                onClick={() => {
-                  setImage(null);
-                }}
-              >
+              <Button disabled={isLoading} onClick={handleCancel}>
                 Cancel
               </Button>
-              <Button
-                color={"secondary"}
-                variant={"contained"}
-                onClick={handlePublish}
-                disabled={isLoading}
-                endIcon={<FingerprintIcon />}
-              >
-                Publish
-              </Button>
+              {!!config && (
+                <Button
+                  color={"secondary"}
+                  variant={"contained"}
+                  onClick={handlePublish}
+                  disabled={isLoading}
+                  endIcon={<FingerprintIcon />}
+                >
+                  Publish
+                </Button>
+              )}
             </Box>
           </Grid>
-          <Grid item xs={12} lg={6}>
-            <CanvasEditor image={image} />
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            {config === null && <LinearProgress color={"secondary"} />}
-            <WalletCreator setConfig={setConfig} />
-          </Grid>
-        </Grid>
-      )}
-    </>
+        )}
+        {isImageReady && (
+          <>
+            <Grid item xs={12} lg={8}>
+              <CanvasEditor image={image} setCanvasReady={handleCanvasReady} />
+            </Grid>
+          </>
+        )}
+
+        {isCanvasReady && (
+          <>
+            <Grid item xs={12} lg={4}>
+              {!config && <LinearProgress color={"secondary"} sx={{ mb: 4 }} />}
+              <WalletCreator setConfig={setConfig} />
+            </Grid>
+          </>
+        )}
+      </Grid>
+    </Box>
   );
 };
 

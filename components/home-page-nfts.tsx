@@ -45,7 +45,9 @@ export default function Example(props: any) {
   return (
     <Carousel
       navButtonsAlwaysVisible={true}
-      indicatorContainerProps={{ style: { marginTop: "32px" } }}
+      indicatorContainerProps={{
+        style: { marginTop: "32px", marginBottom: "64px" },
+      }}
     >
       {items.map((item: any, i: number) => (
         <Item key={i} {...item} />

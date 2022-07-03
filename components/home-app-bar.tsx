@@ -24,7 +24,10 @@ const HomeAppBar = ({ children }: any) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{ backgroundImage: "none", border: "none", boxShadow: "none" }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
