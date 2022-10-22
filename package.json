@@ -1,0 +1,20 @@
+{
+  "name": "@or13/did-meme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "shove": "git add -A ; git commit -m '🌈 :rocket:'; git push origin feat/v2" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OR13/didme.me.git"
+  },
+  "author": "Orie Steele",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/OR13/didme.me/issues"
+  },
+  "homepage": "https://github.com/OR13/didme.me#readme"
+}
