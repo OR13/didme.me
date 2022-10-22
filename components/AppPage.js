@@ -20,7 +20,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 import CodeIcon from "@mui/icons-material/Code";
-import KeyIcon from "@mui/icons-material/Key";
+// import KeyIcon from "@mui/icons-material/Key";
 
 import { useRouter } from "next/router";
 
@@ -146,7 +146,7 @@ export default function PersistentDrawerRight({
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton
               onClick={() => {
                 router.push("/keys");
@@ -157,7 +157,7 @@ export default function PersistentDrawerRight({
               </ListItemIcon>
               <ListItemText primary={"Keys"} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem disablePadding>
             <ListItemButton
               onClick={() => {
