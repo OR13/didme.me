@@ -1,7 +1,0 @@
-name: did
-in: path
-required: true
-description: A decentralized identifier
-example: "did:meme:1zgsqltm43euwf6rhs2gf2gp9hp879j47hua2sy5l2lv26vu44r2es2gcjlk7j"
-schema:
-  type: string
