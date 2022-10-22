@@ -1,20 +1,30 @@
 {
-  "name": "@or13/did-meme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "nextjs",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "shove": "git add -A ; git commit -m '🌈 :rocket:'; git push origin feat/v2" 
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "shove": "git add -A ; git commit -m '🌈 :rocket:'; git push origin feat/v2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OR13/didme.me.git"
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.10",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.0.8"
   },
-  "author": "Orie Steele",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/OR13/didme.me/issues"
-  },
-  "homepage": "https://github.com/OR13/didme.me#readme"
+  "devDependencies": {
+    "eslint": "8.22.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-next": "12.2.5",
+    "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.2",
+    "prettier": "^2.7.1"
+  }
 }
