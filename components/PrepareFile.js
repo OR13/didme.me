@@ -24,7 +24,8 @@ const writeImageToCanvas = (dataUrl) => {
   };
 };
 
-const memeDimension = 1024;
+// https://twitter.com/foone/status/1095669707795877888?lang=en
+const memeDimension = 896;
 
 export default function PrepareFile() {
   const router = useRouter();
