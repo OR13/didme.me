@@ -28,9 +28,6 @@ import gladstone from '../../services/Gladstone';
 
 import DID from '../DID';
 
-const database = 'Memes';
-const collection = 'Keys';
-
 const ImagePreview = ({ did }) => {
   const [image, setImage] = useState('https://via.placeholder.com/150');
   useEffect(() => {
@@ -123,16 +120,19 @@ export default function KeyTable() {
   const refreshList = async () => {
     setIsLoading(true);
     setTimeout(async () => {
-      const store = await gladstone(database).open(collection);
-      const docs = await store.list();
+      const keys = await gladstone('Memes').open('Keys');
+      const docs = await keys.list();
       setKeys(docs);
       setIsLoading(false);
     }, 1 * 1000);
   };
 
   const removeCollectionItem = async (id) => {
-    const store = await gladstone(database).open(collection);
-    await store.unset(id);
+    const keys = await gladstone('Memes').open('Keys');
+    await keys.unset(id);
+
+    const identifiers = await gladstone('Memes').open('Identifiers');
+    await identifiers.unset(id);
     refreshList();
   };
 
