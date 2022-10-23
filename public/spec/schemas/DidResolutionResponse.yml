@@ -1,8 +1,0 @@
-type: object
-properties:
-  didDocument:
-    type: object
-  didResolutionMetadata:
-    type: object
-  didDocumentMetadata:
-    type: object

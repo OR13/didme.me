@@ -1,51 +1,9 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  height: 100%;
-  background-color: #121212;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 pre {
+  word-break: break-all;
+  width: 100%;
   white-space: pre-wrap; /* css-3 */
   white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
   white-space: -pre-wrap; /* Opera 4-6 */
   white-space: -o-pre-wrap; /* Opera 7 */
   word-wrap: break-word; /* Internet Explorer 5.5+ */
-}
-
-#tsparticles {
-  width: 100%;
-}
-
-#meme-canvas {
-  display: none;
-}
-
-.tui-image-editor-container .tui-image-editor-header-logo {
-  display: none;
-}
-
-.tui-image-editor-align-wrap {
-  overflow: hidden !important;
-}
-.tui-image-editor-header-buttons {
-  display: none !important;
-}
-.tui-image-editor-main-container,
-.tui-image-editor-submenu,
-.tui-image-editor-menu-text,
-.tui-image-editor-controls {
-  background-color: #121212 !important;
 }
