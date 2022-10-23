@@ -2,9 +2,8 @@ import Head from 'next/head';
 import AppPage from '../components/AppPage';
 
 import meta from '../services/social';
-import PrepareFile from '../components/PrepareFile';
-
-export default function Home() {
+import KeysTable from '../components/Gladstone/KeysTable';
+export default function ClientSideResolver() {
   return (
     <>
       <Head>
@@ -21,9 +20,8 @@ export default function Home() {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-
       <AppPage title={meta.title}>
-        <PrepareFile />
+        <KeysTable />
       </AppPage>
     </>
   );

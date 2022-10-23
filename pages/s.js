@@ -1,10 +1,21 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import AppPage from '../components/AppPage';
 
 import meta from '../services/social';
-import PrepareFile from '../components/PrepareFile';
+import Jws from '../components/Jws';
 
-export default function Home() {
+import { useRouter } from 'next/router';
+
+export default function ClientSideResolver() {
+  const router = useRouter();
+  const [jws, setJws] = useState();
+
+  useEffect(() => {
+    const jws = router.asPath.replace('/s#', '');
+    setJws(jws);
+  }, [router.asPath]);
+
   return (
     <>
       <Head>
@@ -21,9 +32,8 @@ export default function Home() {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-
       <AppPage title={meta.title}>
-        <PrepareFile />
+        <Jws jws={jws} />
       </AppPage>
     </>
   );

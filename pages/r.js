@@ -1,10 +1,21 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import AppPage from '../components/AppPage';
 
 import meta from '../services/social';
-import PrepareFile from '../components/PrepareFile';
+import DidDocument from '../components/DidDocument';
 
-export default function Home() {
+import { useRouter } from 'next/router';
+
+export default function ClientSideResolver() {
+  const router = useRouter();
+  const [did, setDid] = useState();
+
+  useEffect(() => {
+    const did = router.asPath.replace('/r#', '');
+    setDid(did);
+  }, [router.asPath]);
+
   return (
     <>
       <Head>
@@ -21,9 +32,8 @@ export default function Home() {
         <meta name="twitter:description" content={meta.description} />
         <meta name="twitter:image" content={meta.image} />
       </Head>
-
       <AppPage title={meta.title}>
-        <PrepareFile />
+        <DidDocument did={did} />
       </AppPage>
     </>
   );
