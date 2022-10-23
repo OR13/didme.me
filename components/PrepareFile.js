@@ -22,7 +22,7 @@ const writeImageToCanvas = (dataUrl) => {
   };
 };
 
-const memeDimension = 128;
+const memeDimension = 1024;
 
 export default function PrepareFile() {
   const router = useRouter();
