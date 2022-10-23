@@ -3,7 +3,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
 function CreateIfNotExistsSwitch({ checked, onChange }) {
-  const label = checked ? `Resolve Only` : `Create New`;
+  const label = checked ? `Resolve Only` : `Create new Post Quantum Key`;
 
   const handleChange = (event) => {
     onChange(event.target.checked);

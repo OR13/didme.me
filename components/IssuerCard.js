@@ -14,7 +14,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import GppMaybeIcon from '@mui/icons-material/GppMaybe';
-
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import { useRouter } from 'next/router';
 
 import { DID, JWS } from '@transmute/did-jwk-pqc';
@@ -86,6 +86,15 @@ export default function IssuerCard({ didDocument }) {
     router.push('/s#' + jws);
   };
 
+  const handleDownloadImage = () => {
+    var a = document.createElement('a');
+    a.href = image;
+    a.download = `${emojid}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   return (
     <Card sx={{ maxWidth: 512 }}>
       <CardHeader
@@ -132,6 +141,14 @@ export default function IssuerCard({ didDocument }) {
         />
       </CardContent>
       <CardActions>
+        <Button
+          onClick={handleDownloadImage}
+          endIcon={<CloudDownloadIcon />}
+          sx={{ m: 1 }}
+        >
+          Download
+        </Button>
+
         {!isIdentifierTrusted && privateKeyJwk && (
           <Button
             onClick={handleDeletePrivateKey}

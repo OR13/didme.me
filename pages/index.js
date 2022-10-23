@@ -3,7 +3,8 @@ import AppPage from '../components/AppPage';
 
 import meta from '../services/social';
 import PrepareFile from '../components/PrepareFile';
-
+import { Button } from '@mui/material';
+import CasinoIcon from '@mui/icons-material/Casino';
 export default function Home() {
   return (
     <>
@@ -22,7 +23,25 @@ export default function Home() {
         <meta name="twitter:image" content={meta.image} />
       </Head>
 
-      <AppPage title={meta.title}>
+      <AppPage
+        title={meta.title}
+        action={
+          <Button
+            color={'secondary'}
+            onClick={() => {
+              var a = document.createElement('a');
+              a.href = `https://source.unsplash.com/random?nature`;
+              a.download = `random.png`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            }}
+            endIcon={<CasinoIcon />}
+          >
+            Get Random Image
+          </Button>
+        }
+      >
         <PrepareFile />
       </AppPage>
     </>

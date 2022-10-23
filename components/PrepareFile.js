@@ -33,6 +33,7 @@ export default function PrepareFile() {
   const [resolveOnly, setResolveOnly] = React.useState(true);
   const [file, setFile] = React.useState();
   const [imageWithSecret, setImageWithSecret] = React.useState();
+
   const cryptoOptions = [
     { label: 'Dilithium', alg: JWK.dilithium_alg },
     { label: 'Falcon', alg: JWK.falcon_alg },
@@ -112,17 +113,21 @@ export default function PrepareFile() {
           Decentralized Identifiers inside of Images.
         </Typography>
         <Box sx={{ mb: 2 }}>
-          <KeyTypeRadioButtons
-            value={alg}
-            onChange={handleAlgChange}
-            options={cryptoOptions}
-          />
-          <CreateIfNotExistsSwitch
-            checked={resolveOnly}
-            onChange={(changed) => {
-              setResolveOnly(changed);
-            }}
-          />
+          <Box sx={{ mt: 2, mb: 2, display: 'flex', flexDirection: 'row' }}>
+            <CreateIfNotExistsSwitch
+              checked={resolveOnly}
+              onChange={(changed) => {
+                setResolveOnly(changed);
+              }}
+            />
+          </Box>
+          {!resolveOnly && (
+            <KeyTypeRadioButtons
+              value={alg}
+              onChange={handleAlgChange}
+              options={cryptoOptions}
+            />
+          )}
         </Box>
 
         {!file && <FileUploader onFilesAccepted={handleFileChange} />}
