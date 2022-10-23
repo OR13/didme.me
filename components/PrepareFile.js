@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { CircularProgress, Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-
+import { JWK } from '@transmute/did-jwk-pqc';
 import FileUploader from './FileUploader';
 
 import image from '../services/image';
@@ -10,7 +10,9 @@ import image from '../services/image';
 import gladstone from '../services/Gladstone';
 
 import KeyTypeRadioButtons from './KeyTypeRadioButtons';
-import { JWK } from '@transmute/did-jwk-pqc';
+import CreateIfNotExistsSwitch from './CreateIfNotExistsSwitch';
+
+import { toast } from 'react-toastify';
 
 const writeImageToCanvas = (dataUrl) => {
   const canvas = document.getElementById('canvas-original');
@@ -27,6 +29,7 @@ const memeDimension = 1024;
 export default function PrepareFile() {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState(false);
+  const [resolveOnly, setResolveOnly] = React.useState(true);
   const [file, setFile] = React.useState();
   const [imageWithSecret, setImageWithSecret] = React.useState();
   const cryptoOptions = [
@@ -57,7 +60,13 @@ export default function PrepareFile() {
             }
           } catch (e) {
             //
-            handleEncode();
+            if (!resolveOnly) {
+              handleEncode();
+            } else {
+              toast.error('Could not resolve an identifier.');
+              setFile(null);
+              setIsLoading(false);
+            }
           }
         }, 500);
       },
@@ -107,6 +116,12 @@ export default function PrepareFile() {
             value={alg}
             onChange={handleAlgChange}
             options={cryptoOptions}
+          />
+          <CreateIfNotExistsSwitch
+            checked={resolveOnly}
+            onChange={(changed) => {
+              setResolveOnly(changed);
+            }}
           />
         </Box>
 
