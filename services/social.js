@@ -1,15 +1,15 @@
-const title = "did:meme";
-const description = `🧌 Sharing small fragments of structured data with Decentralized Identifiers.`;
-const domain = "briefcase.transmute.id";
+const title = 'did:meme';
+const description = `🧌 Post Quantum Decentralized Identifiers & Steganography`;
+const domain = 'didme.me';
 
-const image = "https://briefcase.transmute.id/images/landing.png";
-const url = "https://briefcase.transmute.id";
+const image = 'https://didme.me/landing.png';
+const url = 'https://didme.me';
 const meta = {
   title,
   url,
   description,
   image,
-  domain,
+  domain
 };
 
 export default meta;
