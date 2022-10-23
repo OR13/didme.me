@@ -59,7 +59,6 @@ export default function PrepareFile() {
               setIsLoading(false);
             }
           } catch (e) {
-            //
             if (!resolveOnly) {
               handleEncode();
             } else {

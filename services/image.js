@@ -5,17 +5,19 @@ const { DID, JWK } = require('@transmute/did-jwk-pqc');
 
 const stegHardness = 5;
 
+const scryptConfig = {
+  N: 2 ** 19,
+  r: 8,
+  p: 1
+};
+
 const encode = async (
   querySelector,
   securePassword,
   secureSalt,
   alg = 'CRYDI5'
 ) => {
-  const passwordBasedKey = scrypt(securePassword, secureSalt, {
-    N: 2 ** 19,
-    r: 8,
-    p: 1
-  });
+  const passwordBasedKey = scrypt(securePassword, secureSalt, scryptConfig);
   const key = await JWK.generateKeyPair(alg);
   const did = DID.toDid(key.publicKeyJwk);
   const file = new RawFile(
@@ -35,11 +37,7 @@ const encode = async (
 };
 
 const decode = async (querySelector, securePassword, secureSalt) => {
-  const passwordBasedKey = scrypt(securePassword, secureSalt, {
-    N: 2 ** 19,
-    r: 8,
-    p: 1
-  });
+  const passwordBasedKey = scrypt(securePassword, secureSalt, scryptConfig);
   const el = document.querySelector(querySelector);
   const png = new StegImage(el);
   const revealed = await png.reveal(passwordBasedKey);
