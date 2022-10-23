@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "shove": "git add -A ; git commit -m '🌈 :rocket:'; git push origin feat/v2"
+    "shove": "git add -A ; git commit -m '🌈 :rocket:'; git push origin main"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
