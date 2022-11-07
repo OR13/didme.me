@@ -49,11 +49,11 @@ const FileUploader = ({ onFilesAccepted, sx }) => {
       <input {...getInputProps()} />
       {isDragActive ? (
         <Typography color={theme.palette.secondary.main}>
-          Drop the file here ...
+          Drop the image here ...
         </Typography>
       ) : (
         <Typography color={theme.palette.primary.main}>
-          Drag images here, or click to select.
+          Drag an image here to resolve a public key.
         </Typography>
       )}
     </Paper>

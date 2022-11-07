@@ -3,9 +3,18 @@ import AppPage from '../components/AppPage';
 
 import meta from '../services/social';
 import PrepareFile from '../components/PrepareFile';
-import { Button } from '@mui/material';
+import { Button, Box, Typography } from '@mui/material';
 import CasinoIcon from '@mui/icons-material/Casino';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+
+const getRandomExample = () => {
+  const items = ['🐌🦬🐪.png', '🐠🌷🦞.png', '🐸🦧🦤.png'];
+  const item = items[Math.floor(Math.random() * items.length)];
+  return item;
+};
+
 export default function Home() {
+  const example = getRandomExample();
   return (
     <>
       <Head>
@@ -27,7 +36,6 @@ export default function Home() {
         title={meta.title}
         action={
           <Button
-            color={'secondary'}
             onClick={() => {
               var a = document.createElement('a');
               a.href = `https://source.unsplash.com/random?nature`;
@@ -43,6 +51,33 @@ export default function Home() {
         }
       >
         <PrepareFile />
+
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection={'column'}
+          sx={{ p: 2 }}
+        >
+          <Button
+            color={'secondary'}
+            variant={'outlined'}
+            sx={{ m: 2 }}
+            onClick={() => {
+              var a = document.createElement('a');
+              a.href = `/${example}`;
+              a.download = example;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            }}
+            endIcon={<CloudDownloadIcon />}
+          >
+            Download this Example
+          </Button>
+
+          <img src={`/${example}`} style={{ maxWidth: '512px' }} />
+        </Box>
       </AppPage>
     </>
   );
